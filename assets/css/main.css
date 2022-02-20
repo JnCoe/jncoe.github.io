@@ -87,10 +87,10 @@ input, select, textarea {
 		src: url(../webfonts/cbu-mono.ttf);
 	}
 
-	@font-face {
+/*	@font-face {
 		font-family: cbuSerif;
 		src: url(../webfonts/cbu-serif.ttf);
-	}
+	} */
 
 	body {
 		background: #fff;
