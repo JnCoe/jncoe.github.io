@@ -2244,6 +2244,19 @@ input, select, textarea {
 			padding-left: 0.5em;
 		}
 
+			ul li.social {
+				opacity: 0.5;
+			}
+
+			ul li.social:hover {
+				opacity: 1;
+			}
+
+			ul li.menu:hover {
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+
+
 		ul.alt {
 			list-style: none;
 			padding-left: 0;
