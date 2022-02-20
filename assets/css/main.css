@@ -2427,6 +2427,8 @@ input, select, textarea {
 	ul.feature-icons {
 		list-style: none;
 		padding-left: 0;
+	    font-size: 0.85em;
+		font-style: italic;
 	}
 
 		ul.feature-icons li {
@@ -3355,6 +3357,7 @@ input, select, textarea {
 			ul.feature-icons li {
 				display: block;
 				width: 100%;
+				font-size: 0.9em;
 			}
 
 		/* Button */
