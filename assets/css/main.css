@@ -2439,6 +2439,7 @@ input, select, textarea {
 			position: relative;
 			vertical-align: top;
 			width: 48%;
+			text-align: justify;
 		}
 
 			ul.feature-icons li:before {
