@@ -2702,6 +2702,7 @@ img.grayscale {
 			}
 
 		.features article .inner {
+			text-align: justify;
 			display: inline-block;
 			vertical-align: middle;
 			width: 50%;
