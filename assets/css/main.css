@@ -3137,7 +3137,7 @@ input, select, textarea {
 					line-height: 44px;
 					padding: 0 1em;
 					width: 100%;
-					text-align: left;
+					text-align: center;
 				}
 
 					#titleBar .title a {
@@ -3303,7 +3303,7 @@ input, select, textarea {
 		/* Main */
 
 			#main > section > .container {
-				padding: 2em 0 0 0;
+				padding: 2em;
 			}
 
 		/* Footer */
