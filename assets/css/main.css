@@ -2449,17 +2449,20 @@ input, select, textarea {
 		padding-left: 0;
 	    font-size: 0.85em;
 		font-style: italic;
+		line-height: 1.3em;
 	}
 
 		ul.feature-icons li {
 			text-decoration: none;
 			display: inline-block;
-			margin: 0 0 1.6875em 0;
-			padding: 0.35em 22px 0 3.5em;
+			margin: 0 0 2.5em 0;
+			padding: 0.35em 25px 0 3.5em;
 			position: relative;
 			vertical-align: top;
 			width: 48%;
 			text-align: justify;
+			display: inline-flex;
+			align-items: center;
 		}
 
 			ul.feature-icons li:before {
@@ -2485,7 +2488,7 @@ input, select, textarea {
 				line-height: 2.5em;
 				position: absolute;
 				text-align: center;
-				top: 0;
+				/*top: 0;*/
 				width: 2.5em;
 			}
 
