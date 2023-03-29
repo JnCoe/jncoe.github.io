@@ -1,0 +1,261 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+}
+
+/*Variables*/
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #212121;
+    text-align: left;
+    padding: 20px;
+    display: block;
+    max-width: 1000px;
+    position: relative;
+}
+
+p {
+    margin: 1em 0;
+}
+
+/* Top City Filter */
+.filters {
+    margin: 24px;
+}
+
+.filters a {
+    padding-right: 15px;
+    color: #878785;
+}
+
+.filters a:hover,
+.filters a.active-filter {
+    color: #fff;
+}
+
+/* Boxes */
+a {
+    color: #f27d00;
+    text-decoration: none;
+}
+
+article {
+    display: inline;
+    float: left;
+    width: 300px;
+    margin: 0 10px 20px;
+}
+
+article a {
+    display: block;
+    padding: 0 20px 10px;
+    background: #fff;
+    overflow: hidden;
+    color: #f27d00;
+    text-decoration: none;
+}
+
+article a:hover img {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    opacity: 0.8;
+}
+
+article img {
+    width: 300px;
+    height: auto;
+    margin: 0 -20px 20px;
+}
+
+article i {
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    display: block;
+    margin: 0 0 5px;
+}
+
+article b {
+    font-weight: normal;
+    font-size: 20px;
+    color: #121212;
+    padding-bottom: 10px;
+}
+
+article.current {
+    margin-bottom: 0;
+    border-bottom: 20px solid #fff;
+}
+
+article div {
+    display: none;
+}
+
+.content {
+    clear: both;
+    background: #fff;
+    padding: 0 20px;
+    margin: 0 10px 0;
+    position: relative;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.content.open {
+    max-height: 1000px;
+    padding: 20px;
+    margin: 0 10px 20px;
+    opacity: 1;
+}
+
+.content a {
+    float: right;
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.content i {
+    font-style: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    color: #f27d00;
+}
+
+.content img,
+.content video {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px;
+}
+
+.content b {
+    font-weight: normal;
+    font-size: 30px;
+    color: #121212;
+    margin: 18px 0;
+    display: block;
+}
+
+.details {
+    width: 100%;
+}
+
+.details .bio {
+    width: 61.8%;
+    float: left;
+    padding-right: 20px;
+}
+
+@media (max-width: 728px) {
+    .details .bio {
+        width: 100%;
+    }
+}
+
+.details .social {
+    width: 38.2%;
+    float: left;
+    margin: 1em 0;
+}
+
+@media (max-width: 728px) {
+    .details .social {
+        width: 100%;
+    }
+}
+
+.details .social b {
+    margin: 0;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.details .social ul {
+    list-style: none;
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+.details .social ul li {
+    display: block;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+}
+
+.details .social ul li a {
+    position: relative;
+    background: #efefef;
+    float: none;
+    text-align: left;
+    display: block;
+    padding: 10px 0 10px 70px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.details .social ul li a.facebook {
+    border-left: 5px solid #3b5998;
+}
+
+.details .social ul li a.facebook:before {
+    color: #3b5998;
+}
+
+.details .social ul li a.twitter {
+    border-left: 5px solid #00acee;
+}
+
+.details .social ul li a.twitter:before {
+    color: #00acee;
+}
+
+.details .social ul li a.web {
+    border-left: 5px solid #f27d00;
+}
+
+.details .social ul li a:hover {
+    background: #ccc;
+    color: #686868;
+}
+
+.details .social ul li a:before {
+    position: absolute;
+    left: 25px;
+    font-size: 1.5em;
+}
+
+.content p {
+    font-size: 13px;
+    line-height: 17px;
+}
+
+.bigbox {
+    width: 100%;
+    padding: 20px;
+    overflow: hidden;
+}
