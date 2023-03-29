@@ -13,6 +13,7 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
+/*
 body {
     background: #333;
     font-family: Helvetica, Arial, sans-serif;
@@ -24,7 +25,7 @@ body {
     max-width: 1000px;
     position: relative;
 }
-
+*/
 p {
     margin: 1em 0;
 }
