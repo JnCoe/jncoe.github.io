@@ -191,6 +191,10 @@ textarea {
 	border: 1px solid #ccc;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	width: 25em;
+	font-weight: 300;
+	line-height: 1.2;
+	border-radius: 7px;
+	text-align: justify;
 }
 
 .info-pop-up::before {
@@ -292,7 +296,7 @@ i {
 	font-style: italic;
 }
 
-p {
+p:not(.card-description) {
 	margin: 0 0 2.25em 0;
 	text-align: justify;
 }

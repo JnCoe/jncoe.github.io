@@ -26,8 +26,8 @@ body {
     position: relative;
 }
 */
-p {
-    margin: 1em 0;
+article>p {
+    margin: 0;
 }
 
 p.card-description {
@@ -109,14 +109,14 @@ article i {
     font-weight: bold;
     font-size: 11px;
     display: block;
-    margin: 0 0 5px;
 }
 
 article b {
-    font-weight: normal;
-    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
     color: #121212;
-    padding-bottom: 10px;
+    line-height: 1.2;
 }
 
 article.current {
