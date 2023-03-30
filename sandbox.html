@@ -27,6 +27,9 @@
 	<link rel="icon"
 		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+	<script src="assets/js/jquery.min.js"></script>
+
 </head>
 
 <body class="is-preload">
@@ -37,10 +40,10 @@
 		</header>
 		<nav id="nav">
 			<ul>
-				<li class="menu"><a href="#experiencia">EXPERIÊNCIA</a></li>
-				<li class="menu"><a href="#publicacoes">PUBLICAÇÕES</a></li>
-				<li class="menu"><a href="#formacao">FORMAÇÃO</a></li>
-				<li class="menu"><a href="#contato">CONTATO</a></li>
+				<li class="menu"><a href="#about" class="active">ABOUT ME</a></li>
+				<li class="menu"><a href="#education">EDUCATION</a></li>
+				<li class="menu"><a href="#projects">SOME OF MY WORK</a></li>
+				<li class="menu"><a href="#contact">CONTACT</a></li>
 			</ul>
 		</nav>
 		<footer>
@@ -139,8 +142,6 @@
 					<h3>EDUCATION</h3>
 					<section id="cd-timeline" class="cd-container">
 						<div class="cd-timeline-block">
-							<div class="cd-timeline-img cd-picture">
-							</div>
 
 							<div class="cd-timeline-content">
 								<h2>Carnegie Mellon University</h2>
@@ -166,12 +167,25 @@
 							</div> <!-- cd-timeline-content -->
 						</div> <!-- cd-timeline-block -->
 
-						<div class="cd-timeline-block">
+						<div class="cd-timeline-block data-animation=" animate"">
 							<div class="cd-timeline-img cd-movie">
 							</div> <!-- cd-timeline-img -->
 
 							<div class="cd-timeline-content">
-								<h2>FGV-EBAPE</h2>
+								<h2>FGV - EBAPE <div class="info-container">
+										<span class="info-icon" aria-describedby="info-pop-up"><i
+												class="fa fa-circle-info"></i></span>
+										<div id="info-pop-up" class="info-pop-up">
+											Fundação Getulio Vargas (FGV) is one of the most prestigious universities in
+											Latin America, renowned for its top-rated MSc program offered through its
+											School of Administration (EBAPE). The MSc program offered through its
+											School of Administration (EBAPE) has achieved the highest
+											score in the evaluation conducted by CAPES - a governmental agency
+											responsible for overseeing educational institutions in Brazil - along with
+											only three other universities.
+										</div>
+									</div>
+								</h2>
 								<div class="timeline-content-info">
 									<span class="timeline-content-info-title">
 										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -200,7 +214,7 @@
 							</div>
 
 							<div class="cd-timeline-content">
-								<h2>FGV-EMAp</h2>
+								<h2>FGV - EMAp</h2>
 								<div class="timeline-content-info">
 									<span class="timeline-content-info-title">
 										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -222,11 +236,9 @@
 						</div> <!-- cd-timeline-block -->
 
 						<div class="cd-timeline-block">
-							<div class="cd-timeline-img cd-picture">
-							</div>
 
 							<div class="cd-timeline-content">
-								<h2>FGV- Direito Rio</h2>
+								<h2>FGV - Direito Rio</h2>
 								<div class="timeline-content-info">
 									<span class="timeline-content-info-title">
 										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -327,33 +339,6 @@
 			<section id="projects">
 				<div class="container">
 					<h3>SOME OF MY WORK</h3>
-					<!-- Thumbs -->
-					<ul class="posts-box">
-						<!-- JSON Here! -->
-					</ul>
-
-					<!-- Modal -->
-					<div class="modal" id="modal-name">
-						<div class="modal-sandbox"></div>
-						<div class="modal-box">
-							<div class="modal-header">
-								<img src="" class="inner-img" alt="">
-							</div>
-							<div class="modal-body">
-								<h2 class="inner-title"></h2>
-								<div class="inner-text"></div>
-								<button class="prev-post">Previous</button>
-								<button class="next-post">Next</button>
-								<button class="close-post">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section id="projects">
-				<div class="container">
-					<h3>SOME OF MY WORK 2</h3>
 
 					<!-- partial:index.partial.html -->
 					<div class="bigBox">
@@ -366,15 +351,44 @@
 
 							<article class="sydney">
 								<a href="#" data-cat="news" data-state="vic">
-									<img src="http://lorempixel.com/800/500/people/1/">
-									<i>3rd July, 2013</i><b>Marion Grasby</b></a>
-								<div>
+									<img src="images/pic07.jpg">
+									<i>PROJECT</i>
+									<b>Baltimore roofs</b>
+
+
+									<p class="card-description">
+										Using deep learning and aerial imagery, in this project I co-developed an
+										algorithm
+										to identify collapsing structures in Baltimore city.
+									</p>
+									<ul class="projects-skills">
+										<li class="skills">Deep Learning</li>
+										<li class="skills">PostgreSQL</li>
+										<li class="skills">Machine Learning</li>
+										<li class="skills">GIS</li>
+									</ul>
+								</a>
+								<div class="hidden">
 									<a href="www.marionskitchen.com.au
 	" target="_blank">marionskitchen.com.au</a>
 									<i>3rd July, 2012</i>
 									<b>Marion Grasby</b>
 									<div class="details">
 										<div class="bio">
+											<div class="row">
+												<div class="col-md-3">
+													<img src="images/Python-Numpy.svg" alt="Python Numpy"
+														style="width: 100%;">
+												</div>
+												<div class="col-md-3">
+													<img src="images/Python-Pandas-yellow.svg" alt="Python Pandas"
+														style="width: 100%;">
+												</div>
+												<div class="col-md-3">
+													<img src="images/Python-Scikit Learn-yellow.svg"
+														alt="Python Scikit Learn" style="width: 100%;">
+												</div>
+											</div>
 											<p>Marion Grasby started life in the tropical city of Darwin, where the
 												papaya salads are spicy and the mangoes are sweet and sticky. Marion is
 												a little bit Thai (courtesy of her Mum) and a little bit Australian
@@ -404,9 +418,18 @@
 								</div>
 							</article>
 							<article class="sydney melbourne">
-								<a href="#" data-cat="columns" data-state="nat"><img
-										src="http://lorempixel.com/800/500/people/2/"><i>3rd, 10th & 11th July,
-										2013</i><b>Justin North</b></a>
+								<a href="#" data-cat="columns" data-state="nat">
+									<img src="images/pic08.jpg">
+									<i>REPORT</i>
+
+									<b>Financiamento de creches e escolas: o impacto do orçamento secreto</b>
+									<ul class="projects-skills">
+										<li class="skills">Deep Learning</li>
+										<li class="skills">PostgreSQL</li>
+										<li class="skills">Machine Learning</li>
+										<li class="skills">GIS</li>
+									</ul>
+								</a>
 								<div>
 									<a href="https://www.JustinNorth.com.au" target="_blank">JustinNorth.com.au</a>
 									<i>3rd, 10th & 11th July, 2013</i>
@@ -446,8 +469,7 @@
 								</div>
 							</article>
 							<article class="melbourne">
-								<a href="#" data-cat="features" data-state="vic"><img
-										src="http://lorempixel.com/800/500/people/3/"><i>19th & 22nd July (Dinner),
+								<a href="#" data-cat="features" data-state="vic"><i>19th & 22nd July (Dinner),
 										2013</i><b>Dani Venn</b></a>
 								<div>
 									<a href="http://www.danivenn.com" target="_blank">danivenn.com
@@ -488,8 +510,7 @@
 							</article>
 
 							<article class="sydney melbourne">
-								<a href="#" data-cat="news" data-state="nat"><img
-										src="http://lorempixel.com/800/500/people/4/"><i>5th July, 2013</i><b>Julie
+								<a href="#" data-cat="news" data-state="nat"><i>5th July, 2013</i><b>Julie
 										Goodwin</b></a>
 								<div>
 									<a href="https://www.juliegoodwin.com.au" target="_blank">juliegoodwin.com.au
@@ -531,8 +552,7 @@
 								</div>
 							</article>
 							<article class="sydney">
-								<a href="#" data-cat="features" data-state="nat"><img
-										src="http://lorempixel.com/800/500/people/5/"><i>6th, 18th & 21st July,
+								<a href="#" data-cat="features" data-state="nat"><i>6th, 18th & 21st July,
 										2013</i><b>Justine Schofield</b></a>
 								<div>
 									<a href="https://www.justineschofield.com.au"
@@ -567,8 +587,7 @@
 								</div>
 							</article>
 							<article class="sydney">
-								<a href="#" data-cat="features" data-state="nat"><img
-										src="http://lorempixel.com/800/500/people/6/"><i>12th & 13th July,
+								<a href="#" data-cat="features" data-state="nat"><i>12th & 13th July,
 										2013</i><b>Colin Fassnidge</b></a>
 								<div>
 									<a href="https://fourinhand.com.au" target="_blank">fourinhand.com.au</a>
@@ -612,62 +631,8 @@
 				</div>
 			</section>
 
-			<!-- Two -->
-			<section id="publicacoes">
-				<div class="container">
-					<h3>SOME OF MY WORK</h3>
-					<div class="features">
-						<article>
-							<a href="https://www.transparencia.org.br/downloads/publicacoes/ProfessoreseTerritorios-Publicacao.pdf"
-								class="image"><img class="report" src="images/pic01.jpg" alt="" /></a>
-							<div class="inner">
-								<h4>Gastos salariais em escolas municipais de São Paulo: análise territorial e
-									racial
-								</h4>
-								<p>Relatório elaborado em co-autoria onde foram identificadas diversas desigualdades
-									na
-									distribuição dos salários pagos a professores da rede pública das escolas
-									paulistanas.</p>
-							</div>
-						</article>
-						<article>
-							<a href="#" class="image"><img class="report" src="images/pic04.jpg" alt="" /></a>
-							<div class="inner">
-								<h4>Relatório Tá de Pé 2020</h4>
-								<p>Análise sobre o estado de entrega e atrasos em obras de escolas e creches
-									públicas em
-									diversos municípios brasileiros.</p>
-							</div>
-						</article>
-						<article>
-							<a href="#" class="image"><img class="report" src="images/pic05.jpg" alt="" /></a>
-							<div class="inner">
-								<h4>Are Governments Complying with Transparency? Findings from 15 Years of
-									Evaluation
-									(em inglês)</h4>
-								<p>Artigo publicado no Government Information Quarterly que identificou padrões e
-									falhas
-									em avaliações de transparência pública na América Latina.</p>
-							</div>
-						</article>
-						<article>
-							<a href="http://bibliotecadigital.fgv.br/dspace/handle/10438/30849" class="image"><img
-									class="report" src="images/pic06.jpg" alt="" /></a>
-							<div class="inner">
-								<h4>Different types of transparency, different impacts? Three analyses of municipal
-									education in Brazil (em inglês)</h4>
-								<p>Dissertação de mestrado que analisou a dinâmica entre transparência pública e
-									eficiência dos gastos municipais com educação. Foram realizadas análises
-									estatísticas através de Análise Envoltória de Dados (DEA) e Propensity Score
-									Matching.</p>
-							</div>
-						</article>
-					</div>
-				</div>
-			</section>
-
 			<!-- Four -->
-			<section id="contato">
+			<section id="contact">
 				<div class="container">
 					<h3>CONTATO</h3>
 					<p>Caso queira entrar em contato, basta usar o formulário abaixo.</p>
@@ -707,7 +672,6 @@
 		</div>
 
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.scrollex.min.js"></script>
 		<script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
