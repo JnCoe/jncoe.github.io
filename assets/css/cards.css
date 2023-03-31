@@ -36,6 +36,7 @@ p.card-description {
     line-height: 1.2em;
     text-align: justify;
     hyphens: auto;
+    margin: 10px 0 10px 0;
 }
 
 /* Top City Filter */
@@ -71,7 +72,7 @@ article a {
     padding: 0 20px 10px;
     background: #fff;
     overflow: hidden;
-    color: #f27d00;
+    color: #5393ce;
     text-decoration: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.22);
     box-sizing: border-box;
@@ -83,6 +84,7 @@ article a:hover {
     -moz-transition: all 0.2s ease;
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
+    color: #e0741b !important;
     box-shadow: 18px 0px 18px rgba(33, 33, 33, .2);
 }
 
@@ -107,8 +109,9 @@ article i {
     font-style: normal;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 13px;
     display: block;
+    line-height: 1.5;
 }
 
 article b {
@@ -117,6 +120,7 @@ article b {
     font-size: 17px;
     color: #121212;
     line-height: 1.2;
+    text-transform: uppercase;
 }
 
 article.current {
@@ -241,20 +245,20 @@ article div:not(.row):not(.col-md-3) {
     transition: all 0.2s linear;
 }
 
-.details .social ul li a.facebook {
-    border-left: 5px solid #3b5998;
+.details .social ul li a.github {
+    border-left: 5px solid #000000;
 }
 
-.details .social ul li a.facebook:before {
-    color: #3b5998;
+.details .social ul li a.github:before {
+    color: #000000;
 }
 
-.details .social ul li a.twitter {
-    border-left: 5px solid #00acee;
+.details .social ul li a.news {
+    border-left: 5px solid #8d1111;
 }
 
-.details .social ul li a.twitter:before {
-    color: #00acee;
+.details .social ul li a.news:before {
+    color: #8d1111;
 }
 
 .details .social ul li a.web {
@@ -301,4 +305,20 @@ article div:not(.row):not(.col-md-3) {
     margin: 3px 2px;
     text-align: center;
     flex-grow: 1;
+    animation: color-transition 10s infinite;
+}
+
+@keyframes color-transition {
+    0% {
+        background-color: #5a5a5a;
+    }
+
+    50% {
+        background-color: #747474;
+        animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    }
+
+    100% {
+        background-color: #5a5a5a;
+    }
 }
