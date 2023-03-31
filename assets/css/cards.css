@@ -247,17 +247,19 @@ article div:not(.row):not(.col-md-3) {
 
 .details .social ul li a.github {
     border-left: 5px solid #000000;
+    color: #000000;
 }
 
 .details .social ul li a.github:before {
     color: #000000;
 }
 
-.details .social ul li a.news {
+.details .social ul li a.newspaper {
     border-left: 5px solid #8d1111;
+    color: #8d1111;
 }
 
-.details .social ul li a.news:before {
+.details .social ul li a.newspaper:before {
     color: #8d1111;
 }
 
