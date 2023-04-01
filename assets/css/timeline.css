@@ -113,6 +113,42 @@ i {
     display: block;
     width: 100%;
   }
+
+  .cd-container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 10%;
+    border-radius: 2px;
+  }
+
+
+  .cd-container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 10%;
+  }
+
+  #cd-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    height: 100%;
+    width: 4px;
+    background-image: linear-gradient(to bottom, rgb(104, 104, 104), rgb(138, 138, 138));
+    background-attachment: fixed;
+  }
+
+  .cd-timeline-img {
+    left: 4px;
+  }
+
+  .cd-timeline-content {
+    margin-left: 30px;
+  }
+
 }
 
 .content-skills {
