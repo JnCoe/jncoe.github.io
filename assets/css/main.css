@@ -1635,6 +1635,23 @@ pre code {
 		padding-top: 2.5em;
 	}
 
+	.info-pop-up {
+		/* change left to auto and set right to 100% + 5px */
+		left: auto;
+		right: calc(100% + 5px);
+		max-width: 100vw;
+		/* limit the width of the pop-up to the width of the screen */
+	}
+
+	.info-pop-up::before {
+		/* change right to auto and set left to 100% */
+		right: auto;
+		left: 100%;
+		/* invert the arrow by changing border-right-color to transparent and setting border-left-color to the desired color */
+		border: 6px solid transparent;
+		border-left-color: #ccc;
+		border-right: none;
+	}
 }
 
 @media screen and (max-width: 480px) {
