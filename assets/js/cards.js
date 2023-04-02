@@ -1,5 +1,4 @@
 // Define Functions
-
 function contentDiv() {
     $('.added').remove();
     $('article').removeClass('current');
@@ -15,17 +14,13 @@ function contentDiv() {
     $('article.show:nth-of-type(' + ratio + ')').after('<div class="content added"></div>');
 }
 
-
 $('article').addClass('show');
 contentDiv();
-
 
 // RESIZE -   
 $(window).resize(function () {
     contentDiv();
 });
-
-
 
 var articles = $('article');
 
@@ -47,26 +42,32 @@ $('.filters a').click(function (e) {
 
 });
 
-
 // ARTICLE CLICK
-$('.container').on('click', 'article', function (e) {
+function handleArticleClick(e) {
     e.preventDefault();
     content = $(this).find('div').html();
     box = $(this).nextAll('.content').first();
     if ($(this).hasClass('current')) {
-
         $(this).removeClass('current');
         $(box).removeClass('open').empty();
         $(this).parent().find('.content').empty();
-
     } else {
-
         $('article').removeClass('current');
         $(this).addClass('current');
         $(this).parent().find('.content').empty();
         $('.open').removeClass('open').empty();
         $(box).addClass('open').html(content);
-
     }
+}
 
+var touchedElement = null;
+$('.container').on('touchstart', 'article', function (e) {
+    touchedElement = this;
 });
+$('.container').on('touchend', function (e) {
+    if (touchedElement) {
+        e.preventDefault();
+        handleArticleClick.call(touchedElement, e);
+    }
+});
+$('.container').on('click', 'article', handleArticleClick);
