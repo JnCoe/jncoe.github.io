@@ -47,6 +47,7 @@ function handleArticleClick(e) {
     e.preventDefault();
     content = $(this).find('div').html();
     box = $(this).nextAll('.content').first();
+
     if ($(this).hasClass('current')) {
         $(this).removeClass('current');
         $(box).removeClass('open').empty();
@@ -60,14 +61,28 @@ function handleArticleClick(e) {
     }
 }
 
-var touchedElement = null;
+$('.container').on('click', 'article', handleArticleClick);
+
+// Touch handling
+var touchStartX = 0;
+var touchStartY = 0;
+var touchEndX = 0;
+var touchEndY = 0;
+var touchThreshold = 5;
+
 $('.container').on('touchstart', 'article', function (e) {
-    touchedElement = this;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
 });
-$('.container').on('touchend', function (e) {
-    if (touchedElement) {
-        e.preventDefault();
-        handleArticleClick.call(touchedElement, e);
+
+$('.container').on('touchend', 'article', function (e) {
+    touchEndX = e.changedTouches[0].clientX;
+    touchEndY = e.changedTouches[0].clientY;
+
+    var deltaX = touchEndX - touchStartX;
+    var deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) <= touchThreshold && Math.abs(deltaY) <= touchThreshold) {
+        handleArticleClick.call(this, e);
     }
 });
-$('.container').on('click', 'article', handleArticleClick);
