@@ -3111,7 +3111,6 @@ input[type="button"]:disabled,
 #wrapper {
 	/* background: #fff  ;*/
 	padding-right: 18em;
-	transform: translateZ(0);
 }
 
 #wrapper:before {
