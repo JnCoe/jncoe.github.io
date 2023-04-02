@@ -3111,6 +3111,7 @@ input[type="button"]:disabled,
 #wrapper {
 	/* background: #fff  ;*/
 	padding-right: 18em;
+	transform: translateZ(0);
 }
 
 #wrapper:before {
@@ -3127,6 +3128,7 @@ input[type="button"]:disabled,
 	position: fixed;
 	top: 0;
 	z-index: -1;
+	transform: translateZ(0);
 	/* transform: rotate(20deg);*/
 }
 
