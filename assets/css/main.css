@@ -1639,7 +1639,7 @@ pre code {
 		/* change left to auto and set right to 100% + 5px */
 		left: auto;
 		right: calc(100% + 5px);
-		max-width: 100vw;
+		width: 20em;
 		/* limit the width of the pop-up to the width of the screen */
 	}
 
