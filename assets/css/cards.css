@@ -156,7 +156,7 @@ article div:not(.row):not(.col-md-3) {
 }
 
 .content.open {
-    max-height: 1000px;
+    max-height: 100000px;
     padding: 20px;
     margin: 0 10px 20px;
     opacity: 1;
