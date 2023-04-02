@@ -3280,7 +3280,7 @@ input[type="button"]:disabled,
 	}
 
 	.image.main {
-		height: 20em;
+		height: 1px;
 	}
 
 	/* Header */
@@ -3471,7 +3471,7 @@ input[type="button"]:disabled,
 	}
 
 	.image.main {
-		height: 12em;
+		height: 1px;
 	}
 
 	/* Section/Article */
