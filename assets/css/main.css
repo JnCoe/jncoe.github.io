@@ -1652,6 +1652,10 @@ pre code {
 		border-left-color: #ccc;
 		border-right: none;
 	}
+
+	#about div {
+		padding-bottom: 1em !important;
+	}
 }
 
 @media screen and (max-width: 480px) {
