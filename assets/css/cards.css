@@ -63,6 +63,7 @@ a {
 
 article {
     display: inline;
+    position: relative;
     float: left;
     width: 260px;
     margin: 0 10px 20px;
@@ -102,6 +103,62 @@ article a:hover img {
     -ms-transition: all 0.2s ease;
     transition: all 0.2s ease;
     opacity: 0.8;
+}
+
+article a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px; 
+    left: 50%; /* Position it horizontally in the center */
+    height: 25px;
+    background-color: inherit;
+
+    /* Arrow styling */
+    width: 0;
+    height: 0;
+    margin-left: -5px; /* This will horizontally center the arrow */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(74, 74, 74);
+
+    /* Keep the arrow at the bottom, 5px away */
+    bottom: 5px;
+    top: auto;
+
+    /* Transition for smoother animation */
+    transition: transform 0.5s;
+}
+
+/* Apply the animation on hover */
+article a:hover::after {
+    animation: flushDownAndReappear 1s infinite;
+}
+
+article::after {
+    content: 'Click to learn more';
+    position: absolute;
+    font-size: small;
+    text-align: center;
+    line-height: 1.5;
+    width: 60%;
+    font-family: 'Open Sans', sans-serif;
+    top: 98%; /* Position it right at the bottom of the article */
+    left: 50%; /* This, combined with the transform property, centers it horizontally */
+    transform: translateX(-50%);
+    padding: 0px 10px;
+    background-color: #a6a6a6;
+    color: white;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    margin-top: 0px; /* This provides some space between the anchor and the "Learn More" box */
+}
+
+article:hover::after {
+    opacity: 0.7;
+    visibility: visible;
 }
 
 article img {
@@ -331,5 +388,15 @@ article div:not(.row):not(.col-md-3) {
 
     100% {
         background-color: #5a5a5a;
+    }
+}
+
+/* Define the keyframe animation */
+@keyframes flushDownAndReappear {
+    0%, 100% {
+        transform: translateY(-4px);
+    }
+    50% {
+        transform: translateY(4px); /* move down by its own height + some extra space */
     }
 }
