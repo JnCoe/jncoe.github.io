@@ -161,6 +161,11 @@ article:hover::after {
     visibility: visible;
 }
 
+article.current::after {
+    opacity: 0;
+    visibility: hidden;
+}
+
 article img {
     width: 260px;
     height: auto;
