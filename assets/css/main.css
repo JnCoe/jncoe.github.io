@@ -282,7 +282,7 @@ a {
 
 a:hover {
 	border-bottom-color: transparent;
-	color: #5393ce !important;
+	color: #605778 !important;
 }
 
 strong,
@@ -297,7 +297,7 @@ i {
 }
 
 p:not(.card-description) {
-	margin: 0 0 2.25em 0;
+	margin: 0 0 1.5em 0;
 	text-align: justify;
 }
 
@@ -2649,14 +2649,14 @@ ul.feature-icons {
 	list-style: none;
 	padding-left: 0;
 	font-size: 0.85em;
-	font-style: italic;
+	font-family: 'cbuMono';
 	line-height: 1.3em;
 }
 
 ul.feature-icons li {
 	text-decoration: none;
 	display: inline-block;
-	margin: 0 0 2.5em 0;
+	margin: 0 0 1.5em 0;
 	padding: 0.35em 25px 0 3.5em;
 	position: relative;
 	vertical-align: top;

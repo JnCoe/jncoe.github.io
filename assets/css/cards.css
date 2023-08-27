@@ -334,7 +334,8 @@ article div:not(.row):not(.col-md-3) {
 }
 
 .details .social ul li a.web {
-    border-left: 5px solid #f27d00;
+    border-left: 5px solid #5393ce;
+    color: #5393ce;
 }
 
 .details .social ul li a:hover {
@@ -383,16 +384,16 @@ article div:not(.row):not(.col-md-3) {
 
 @keyframes color-transition {
     0% {
-        background-color: #5a5a5a;
+        background-color: #5c6993;
     }
 
     50% {
-        background-color: #747474;
+        background-color: #5e5f84;
         animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0);
     }
 
     100% {
-        background-color: #5a5a5a;
+        background-color: #5c6993;
     }
 }
 
