@@ -188,7 +188,7 @@
  <div class="container">
   <h3>CONTEXT</h3>
   <p>
-   In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral districts. This approach, while unique, presents a challenge: it's impossible to determine where each candidate has the strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to analyze the data, even though creating such maps is straightforward with tools like Python.
+   In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral districts. This approach presents a challenge: it is impossible to determine where each candidate has the strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to analyze the data, even though creating such maps is straightforward with tools like Python.
    This project aims to fill that gap by using vote data to plot a bubble map, revealing patterns of candidate support across the city. Beyond offering a novel perspective on the election, it demonstrates how data visualization can make complex electoral outcomes more accessible and meaningful.
  </p>
 </div>
@@ -205,7 +205,7 @@
   </p>
 
   <p>
-    On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received, while the color shows the proportion of votes for the candidate in that location. Size and color scale values is shown on the candidate information panel.
+    On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received in that location, while the color shows the proportion of votes for the candidate in that location. Size and color scale values are shown on the candidate information panel.
   </p>
 
   <p>
@@ -226,7 +226,7 @@
         <option selected="" value="Councilman/Councilwoman">Councilman/Councilwoman</option>
         <option value="Mayor">Mayor</option>
       </select>
-      <h4>2. SELECT A PARTY:</h4>
+      <h4 style="margin: 0">2. SELECT A PARTY:</h4><h7>(optional)</h7>
       <select id="partyDropdown">
         <option value="">All Parties</option>
       </select>
@@ -458,7 +458,7 @@
         const party = numberAndParty.split(" (")[1].replace(")", "");
 
         // Update the image
-        const imageUrl = `https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/2045202024/${candidate.sq_candidato}/60011`;
+        const imageUrl = `images/candidates_pic/FRJ${candidate.sq_candidato}_div.jpg`;
         document.querySelector("#infoContainer img").src = imageUrl;
 
         // Update the text lines
