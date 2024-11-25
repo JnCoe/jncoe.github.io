@@ -506,33 +506,20 @@
     // The global variable to store the embed token
         let embedToken
 
-    // The URL to your deployed AWS Lambda function
-    const lambdaFunctionURL = "https://jkfe5eusmpra4sgbptsfo5yr3i0coruz.lambda-url.us-east-2.on.aws/"; // Replace with your Lambda URL
-
-    // Function to fetch the embed token
-    async function fetchEmbedToken() {
-        try {
-            const response = await fetch(lambdaFunctionURL, {
-                method: 'POST', // This should be adjusted if your Lambda is configured to accept GET requests
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                embedToken = data.embed_token; // Store the token in the global variable
-                console.log("Embed token fetched successfully:", embedToken);
-
-                // After fetching the token, initialize the Power BI report embedding
+    async function getEmbedToken() {
+    try {
+        const response = await fetch('https://kwmkwg6rcimi7xjrvoh5sdnx2e0kpkuh.lambda-url.us-east-2.on.aws/', {
+            method: 'POST'
+        });
+        const data = await response.json();
+        embedToken = data.embedToken;
+        console.log('Embed token retrieved successfully');
+                        // After fetching the token, initialize the Power BI report embedding
                 initializePowerBIEmbedding();
-            } else {
-                console.error("Failed to fetch the embed token. Status:", response.status);
-            }
-        } catch (error) {
-            console.error("An error occurred while fetching the embed token:", error);
-        }
+    } catch (error) {
+        console.error('Failed to retrieve embed token:', error);
     }
+}
 
     // Function to initialize Power BI embedding
     function initializePowerBIEmbedding() {
@@ -630,9 +617,7 @@
 
     // Fetch the embed token on page load
     window.onload = function() {
-        fetchEmbedToken();
-        embedToken = 'H4sIAAAAAAAEAB2Utw6sCBJF_-WljISnYaQJ8B4abzK8957V_vv2Tn6DqlOn7n_-fJOnn5L8z99_NkOQc9iD6nt1sEUN5g4oDPqc6rhI5hXYqu57HxQ-fp6VHzy5T5mTAAxgICGDwrjxqf30u2QLcpFypwMAsqFLwuY5oxgz5kd3zcTRg7Q3GDu0BljcLWM06qCenhosYPeWwLWsM68mDWki0p0uC6B9fiFjlxlRYfjnGtRjjB-3dVRphF5u-RFpVXTGYsf3tHDxhY-RHEbYXmCkciHzacjKzZ7yLdvUzNJczG32G-0ZJ0Dhho-Qr-JdoMPUvpgH5xAKQ9DMC5YLgWVDcCFNg3Wm6DHUJW4Le6FB2RZGMfhSQ70LGDqqaiLSJDlyFsteomB74XYlvkLTbf6yRBvCrYwCkooCTAePsIa_bK6wL799oCiZMqrM0l4GPShdYcDvRPGcFKaMSulhGL_ap9WyOyZG60B3SQoZbJhSgaP_wHKq956IUFVzcEld121D6W2Yn_LsMSj0vLLaI3G72MzZyXveW_fMmL6IYOqYZIi5GUzKnjuf5gdQrS20BrYRZmzKbBihCUmrHd5ha4JIouRqNBD--H3KS5sPON6RrDbcP-OAsjJONd-L1ZIwnKjHa4eATKYtWsNhUXgFS3DZFGSiIoLujF3KaIsvWT1RQZJajnrFYWQVti2Yu3ZfcDee7jnFqDoT5f8bTjkeJCNQvm9E4nwnyTX8GuSymKiAuzVp9qOZeQlz7rB1OH4CibkFo6fsButgiHZUyEkTkVKD1thkCCkO7pyoDBooz_woBZz9YVScM_N7--fPX3_Y9Zn3SS2en_r5w58wU2YFwMS9rmRLFwu2BWvp7LhYmMtKE-9L1gaObPYX_Rp-Bde9D_u3dgasno02RoL6cc1fIBMsQ-ahBxYIiKJ1sdjeYSSszBEyLpSZ-2fyZKvXM_pFqpyzDy6p7EtmGVl-wymfZyp5PADpZe-TTijwdr9awUauT_2bawpk5vVC7H2Ii0gSSi7gPHWtVzUYFCHPnTRrb564bk9hdGwNBiAfFHF9-SQspxjBb3vNClVS1gaceq3KZpsDqSRcqUvf08UM6XayAilIvsb_GiAdcxzzPuuChjsxZXCKGifYeB7OrIYtt5h4ZB-lBH0jDCLfRiWP6I6GOeZCKUoxktB7o__5F_Mz18Uq-z_Ks9NxOBcggD7XNNmDn98HLtW_KaepxmQ_1uIXi4YvWEgZ6pzm26Y67VO5ul3DsT2HkUtnb_PPIiMCpsLSO1RmR8y01dngKTe_gxof7PNdG-VejIobzGyA1QbufpJOom61HGI50DOgfNdiQA4mMaA2VXV-R-ANPcRnRf9hTA9yPpHe10ul6hOwEE5rWzrPDRflleCB1nwXT-R7ZwKM2GwiVNRrAEEvtHjvdw_Zv2aM966odo03qQh_46EHzqM9lDxEXrXtWVft2MvjtuTcE6xrgKOX2gdRfCwQP8Vn2S4yZ7Wc-jo_a0JTyzFi2U7mWXJMqrXvkegziankCxbDbBQ76QrhxeC4VEwWQdLXDEdgTHtdpy0bbVMOXIAcvrvXD_N__we6U0IU7gUAAA==.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJleHAiOjE3MzI1NjIxNzAsImFsbG93QWNjZXNzT3ZlclB1YmxpY0ludGVybmV0Ijp0cnVlfQ==';
-        initializePowerBIEmbedding()
+        getEmbedToken();
     };
 </script>
     </body>
