@@ -417,7 +417,9 @@
           suggestion.addEventListener('click', () => {
             candidateSearch.value = candidate.Candidate;
             updateCandidateAndPartyDropdown();
-            candidateSuggestions.style.display = 'none'; // Hide suggestions once clicked
+            candidateDropdown.value = candidate.Candidate; // Update the dropdown value
+            updateCandidateInfo(candidate.Candidate);      // Update the candidate info
+            candidateSuggestions.style.display = 'none';   // Hide suggestions once clicked
           });
           candidateSuggestions.appendChild(suggestion);
         });
@@ -606,7 +608,7 @@
                     filterType: models.FilterType.BasicFilter
                 });
             }
-
+            document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
             try {
                 await visual1.setFilters(filters);
                 console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
