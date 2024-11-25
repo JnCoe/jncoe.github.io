@@ -1,0 +1,628 @@
+<!DOCTYPE HTML>
+<!--
+   Read Only by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+ -->
+ <html>
+ <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NJRJQG4Y13"></script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag() { dataLayer.push(arguments); }
+   gtag('js', new Date());
+
+   gtag('config', 'G-NJRJQG4Y13');
+ </script>
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+ <!-- Hotjar Tracking Code for https://jncoe.github.io/ -->
+ <script>
+   (function(h,o,t,j,a,r){
+     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+     h._hjSettings={hjid:3547449,hjsv:6};
+     a=o.getElementsByTagName('head')[0];
+     r=o.createElement('script');r.async=1;
+     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+     a.appendChild(r);
+   })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+ </script>
+ <title>Jonas Coelho</title>
+ <meta charset="utf-8"/>
+ <meta content="width=device-width, initial-scale=1" name="viewport"/>
+ <link href="assets/css/main.css" rel="stylesheet"/>
+ <link href="assets/css/timeline.css" rel="stylesheet"/>
+ <link href="assets/css/cards.css" rel="stylesheet"/>
+ <link href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🎲&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+ <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+ <script src="assets/js/jquery.min.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
+ <link href="css/app.css" rel="stylesheet">
+ <script src="scripts/jquery.js"></script>
+ <script src="scripts/powerbi.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+ <style>
+   #embedContainer1 {
+     width: 100%;
+     height: 70vh;
+   }
+   select,
+   input[type="text"] {
+     width: 80%;
+     max-width: 300px;
+     padding: 5px;
+     margin: 10px;
+   }
+   button {
+     padding: 5px 10px;
+     margin-top: 10px;
+   }
+   .suggestions {
+     position: absolute;
+     border: 1px solid #ccc;
+     background: #fff;
+     max-height: 150px;
+     overflow-y: hidden;
+     overflow-x: hidden;
+     width: 200px;
+     margin-left: 10px;
+     display: none; /* Hidden by default */
+     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+     border-radius: 4px;
+     z-index: 100;
+   }
+   .suggestions div {
+     padding: 10px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+   }
+   .suggestions div:hover {
+     background: #f0f0f0;
+   }
+   .suggestions::-webkit-scrollbar {
+     display: none; /* Hide scrollbar */
+   }
+   #filters {
+    padding: 20px;
+  }
+
+  #filtersContainer {
+    margin: 20px;
+    padding-right: 10px;
+    border-right: 2px solid #ccc;
+  }
+
+  #infoContainer {
+    padding-left: 10px;
+  }
+
+  #infoContainer img {
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center top;
+    margin-right: 15px;
+    border-radius: 30%;
+  }
+
+  #infoContainer .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  #infoContainer .grid div {
+    background: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .container {
+      flex-direction: column;
+    }
+
+    #filtersContainer,
+    #infoContainer {
+      padding: 10px 0;
+      border-right: none; /* Remove border when stacked vertically */
+    }
+
+    #infoContainer {
+      order: 2; /* Display info below filters */
+    }
+    #filtersContainer {
+      order: 1; /* Display filters on top */
+      border-right: none; /* Remove vertical border */
+      border-bottom: 2px solid #ccc; /* Add horizontal border */
+  }
+}
+
+</style>
+</link>
+</head>
+<body class="is-preload">
+  <!-- Header -->
+  <section id="header" style="font-family: 'cbuMono'">
+   <header>
+    <h2 id="logo" style="visibility: hidden;">MENU</h2>
+  </header>
+  <nav id="nav">
+    <ul>
+     <li class="menu"><a class="active" href="#context">CONTEXT</a></li>
+     <li class="menu"><a href="#howto">HOW TO USE</a></li>
+     <li class="menu"><a href="#filters">FILTERS</a></li>
+     <li class="menu"><a href="#map">MAP</a></li>
+   </ul>
+ </nav>
+ <footer>
+  <ul class="icons">
+   <li class="social"><a class="icon brands fa-linkedin" href="https://www.linkedin.com/in/jonasbarros/"><span class="label">Linkedin</span></a></li>
+   <li class="social"><a class="icon brands fa-github" href="https://github.com/JnCoe"><span class="label">Github</span></a></li>
+   <!--<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>-->
+ </ul>
+</footer>
+</section>
+<!-- Wrapper -->
+<div id="wrapper">
+ <!-- Main -->
+ <div id="main">
+  <section id="one">
+   <div class="image main" data-position="center"></div>
+ </section>
+ <section id="topo">
+   <div class="container">
+    <header class="major">
+     <h3 style="margin-bottom: 0;font-family: 'cbuMono'; font-size:3em;">ELECTORAL MAP</h3>
+     <div class="typewriter">
+      <p>Rio de Janeiro elections 2024</p>
+    </div>
+  </header>
+</div>
+</section>
+<!-- One -->
+<section id="context">
+ <div class="container">
+  <h3>CONTEXT</h3>
+  <p>
+   In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral districts. This approach, while unique, presents a challenge: it's impossible to determine where each candidate has the strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to analyze the data, even though creating such maps is straightforward with tools like Python.
+   This project aims to fill that gap by using vote data to plot a bubble map, revealing patterns of candidate support across the city. Beyond offering a novel perspective on the election, it demonstrates how data visualization can make complex electoral outcomes more accessible and meaningful.
+ </p>
+</div>
+</section>
+<!-- Two -->
+<section id="howto">
+ <div class="container">
+  <h3>HOW TO USE</h3>
+
+<p><strong>Using the Election Map Tool</strong></p>
+
+<p>
+  Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate, the candidate's voting information will be loaded on the right. To see the voting patterns of the selected candidate across Rio de Janeiro City, click the "See candidate on the map" button.
+</p>
+
+<p>
+  On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received, while the color shows the proportion of votes for the candidate in that location. Size and color scale values is shown on the candidate information panel.
+</p>
+
+<p>
+  To explore further details, hover over a bubble to see specific information, such as the voting location's address, total votes, and the candidate's vote share at that location.
+</p>
+
+
+
+</div>
+</section>
+<section id="filters" style="width: 100%;">
+  <div class="container" style="display: flex; flex-wrap: wrap; align-items: flex-start;">
+    <!-- Left side (Filters) -->
+    <div id="filtersContainer">
+      <h3>FILTERS</h3>
+      <h4>1. SELECT A POSITION:</h4>
+      <select id="positionDropdown">
+        <option selected="" value="Councilman/Councilwoman">Councilman/Councilwoman</option>
+        <option value="Mayor">Mayor</option>
+      </select>
+      <h4>2. SELECT A PARTY:</h4>
+      <select id="partyDropdown">
+        <option value="">All Parties</option>
+      </select>
+      <h4>3. SELECT A CANDIDATE:</h4>
+      <input id="candidateSearch" placeholder="Search candidate..." type="text" />
+      <div class="suggestions" id="candidateSuggestions"></div>
+      <select id="candidateDropdown">
+        <option value="">All Candidates</option>
+      </select>
+      <button id="applyButton" style="
+      width: 85%; 
+      margin: 20px auto; 
+      padding: 15px 20px; 
+      text-align: center; 
+      font-weight: bold; 
+      font-size: 16px; 
+      color: #ffffff; 
+      background: linear-gradient(to right, #4b79a1, #283e51); 
+      border: none; 
+      border-radius: 25px; 
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+      cursor: pointer; 
+      transition: all 0.3s ease;
+      display: inline-block; 
+      ">
+      See candidate on the map
+    </button>
+
+    <script>
+      const applyButton = document.getElementById("applyButton");
+
+  // Add hover effect to make the button look whiter
+      applyButton.addEventListener("mouseover", function () {
+        this.style.background = "linear-gradient(to right, #6ba5d8, #a6c8e8)";
+      });
+
+  // Revert back to the original style when mouse leaves
+      applyButton.addEventListener("mouseout", function () {
+        this.style.background = "linear-gradient(to right, #4b79a1, #283e51)";
+      });
+    </script>
+  </div>
+
+    <!-- Right side (Candidate Information) -->
+    <div id="infoContainer" style="flex: 1; padding-left: 10px; min-width: 300px;">
+      <!-- Main Box -->
+      <div style="display: flex; align-items: center; background: white; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+      <img src="./placeholder.jpg" alt="Sample" style="width: 100px; height: 110px; object-fit: cover; margin-right: 15px; border-radius: 35%;">
+      <div>
+        <p style="margin: 0; font-weight: bold; background: linear-gradient(45deg, #6a11cb, #2575fc); -webkit-background-clip: text; -webkit-text-fill-color: #0000005c;">SELECT A CANDIDATE ON THE SIDE</p>
+        <p style="margin: 0;"></p>
+        <p style="margin: 0;"></p>
+      </div>
+    </div>
+
+    <!-- 2x2 Grid -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; gap: 15px;">
+      <div style="background: white; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+        <p style="text-align: center; margin-bottom: 5px;"></p><span style="
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border: 1px solid rgba(145, 145, 145, 1); /* Fully opaque border */
+        background-color: rgba(0, 0, 0, 0.2); /* 30% transparent inside */
+        border-radius: 50%; /* Makes it a circle */
+        vertical-align: middle; /* Aligns well with text or inline content */
+        "></span>
+      </div>
+      <div style="background: white; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+       <p style="text-align: center; margin-bottom: 5px;"></p><span style="
+       display: inline-block;
+       width: 30px;
+       height: 30px;
+       border: 1px solid rgba(145, 145, 145, 1); /* Fully opaque border */
+       background-color: rgba(0, 0, 0, 0.2); /* 30% transparent inside */
+       border-radius: 50%; /* Makes it a circle */
+       vertical-align: middle; /* Aligns well with text or inline content */
+       "></span>
+     </div>
+     <div style="background: linear-gradient(to right, #99999940, #a0d1ff40); padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+
+     </div>
+     <div style="background: linear-gradient(to left, #6b232840, #a0d1ff40); padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+
+     </div>
+     <div style="grid-column: span 2; background: #f9f9f9; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+
+     </div>
+     <div style="grid-column: span 2; background: #f9f9f9; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+
+     </div>
+   </div>
+ </div>
+</div>
+</section>
+
+
+
+
+<!-- Two -->
+<section id="map">
+ <div class="container"><h3>MAP</h3>
+  <div id="embedContainer1"></div>
+</div>
+</section>
+<!-- Footer -->
+<section id="footer">
+ <div class="container">
+  <ul class="copyright">
+   <li>© Some rights may be reserved.</li>
+ </ul>
+</div>
+</section>
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/cards.js"></script>
+</div>
+<script>
+
+        // URL of your AWS Lambda function
+        const lambdaUrl = "https://jkfe5eusmpra4sgbptsfo5yr3i0coruz.lambda-url.us-east-2.on.aws//";
+
+        // Global variable to store the embed token
+        let embedToken = '';
+
+        // Function to fetch the token and store it in a global variable
+        async function fetchEmbedToken() {
+            try {
+                // Send request to Lambda URL
+                const response = await fetch(lambdaUrl);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // Get the response data
+                const data = await response.json();
+                embedToken = data.embed_token;
+
+                // Log the token for debugging purposes (optional)
+                console.log('Embed Token:', embedToken);
+
+                // Load Power BI report after successfully fetching the token
+                loadPowerBI();
+            } catch (error) {
+                console.error('There was a problem fetching the token:', error);
+            }
+        }
+        
+        fetchEmbedToken();
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let candidatesData = []; // Array to store CSV data
+
+    Papa.parse("candidates.csv", {
+      download: true,
+      header: true,
+      complete: function (results) {
+        candidatesData = results.data; // Store parsed data
+        initializeDropdowns(candidatesData);
+      }
+    });
+  });
+
+  function initializeDropdowns(data) {
+    const positionDropdown = document.getElementById('positionDropdown');
+    const partyDropdown = document.getElementById('partyDropdown');
+    const candidateDropdown = document.getElementById('candidateDropdown');
+    const candidateSearch = document.getElementById('candidateSearch');
+    const candidateSuggestions = document.getElementById('candidateSuggestions');
+
+    // Extract unique parties for the dropdown
+    const uniqueParties = [...new Set(data.map(item => item.Party))];
+
+    // Populate Party Dropdown
+    uniqueParties.forEach(party => {
+      const option = document.createElement('option');
+      option.value = party;
+      option.textContent = party;
+      partyDropdown.appendChild(option);
+    });
+
+    // Function to filter and display candidates
+    function updateCandidateAndPartyDropdown() {
+      const selectedPosition = positionDropdown.value;
+      const selectedParty = partyDropdown.value;
+      const searchTerm = candidateSearch.value.toLowerCase();
+
+      // Filter candidates based on position, party, and search term
+      const filteredCandidates = data
+      .filter(item =>
+        (!selectedPosition || item.Position === selectedPosition) &&
+        (!selectedParty || item.Party === selectedParty) &&
+        (!searchTerm || item.Candidate.toLowerCase().includes(searchTerm))
+        );
+
+      // Populate candidate dropdown
+      candidateDropdown.innerHTML = '<option value="">All Candidates</option>';
+      candidateSuggestions.innerHTML = '';
+
+      filteredCandidates.forEach(candidate => {
+        const option = document.createElement('option');
+        option.value = candidate.Candidate;
+        option.textContent = candidate.Candidate;
+        candidateDropdown.appendChild(option);
+      });
+
+      // Show suggestions (limit to 10)
+      if (searchTerm) {
+        candidateSuggestions.style.display = 'block';
+        filteredCandidates.slice(0, 10).forEach(candidate => {
+          const suggestion = document.createElement('div');
+          suggestion.textContent = candidate.Candidate;
+          suggestion.addEventListener('click', () => {
+            candidateSearch.value = candidate.Candidate;
+            updateCandidateAndPartyDropdown();
+            candidateSuggestions.style.display = 'none'; // Hide suggestions once clicked
+          });
+          candidateSuggestions.appendChild(suggestion);
+        });
+      } else {
+        candidateSuggestions.style.display = 'none';
+      }
+
+      // Populate party dropdown based on position selection
+      const uniqueParties = [...new Set(
+        data.filter(item => !selectedPosition || item.Position === selectedPosition)
+        .map(item => item.Party)
+        )];
+
+      partyDropdown.innerHTML = '<option value="">All Parties</option>';
+
+      uniqueParties.forEach(party => {
+        const option = document.createElement('option');
+        option.value = party;
+        option.textContent = party;
+        partyDropdown.appendChild(option);
+      });
+    }
+
+    // Function to update the candidate info (image and text)
+    function updateCandidateInfo(selectedCandidate) {
+      if (!selectedCandidate) return; // Exit if no candidate selected
+
+      // Find the selected candidate in the data
+      const candidate = data.find(item => item.Candidate === selectedCandidate);
+
+      if (candidate) {
+        // Extract details from Candidate field
+        const name = candidate.Candidate.split(" - ")[0];
+        const numberAndParty = candidate.Candidate.split(" - ")[1];
+        const number = numberAndParty.split(" (")[0];
+        const party = numberAndParty.split(" (")[1].replace(")", "");
+
+        // Update the image
+        const imageUrl = `https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/2045202024/${candidate.sq_candidato}/60011`;
+        document.querySelector("#infoContainer img").src = imageUrl;
+
+        // Update the text lines
+        const infoContainer = document.querySelector("#infoContainer");
+        const textLines = infoContainer.querySelectorAll("p");
+        textLines[0].innerHTML = `<b>${name}</b>`;   // Line 1: Name
+        textLines[1].innerHTML = `<b>PARTY:</b> ${party}`; // Line 2: Party
+        textLines[2].innerHTML = `<b>NUMBER:</b> ${number}`; // Line 3: Number
+
+        const gridContainer = infoContainer.children[1];
+        const gridBoxes = gridContainer.querySelectorAll("div");
+        gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${candidate.min_abs_votes}`;
+        gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${candidate.max_abs_votes}`;
+
+        gridBoxes[2].innerHTML = `<b>MINIMUM SHARE OF VOTES:</b></br>${candidate.min_prop_votes}%`; // Box 1
+        gridBoxes[3].innerHTML = `<b>MAXIMUM SHARE OF VOTES:</b></br>${candidate.max_prop_votes}%`; // Box 2
+        gridBoxes[4].innerHTML = `<b>TOTAL VOTES:</b> ${Number(candidate.sum_votes).toLocaleString('en-US')}`; // Box 1
+        gridBoxes[5].innerHTML = `<b>TOTAL VOTING LOCATIONS:</b> ${Number(candidate.max_abs_votes).toLocaleString('en-US')}`; // Box 2
+      }
+    }
+
+    // Initial population of candidate dropdown
+    updateCandidateAndPartyDropdown();
+
+    // Add event listeners
+    partyDropdown.addEventListener('change', updateCandidateAndPartyDropdown);
+    positionDropdown.addEventListener('change', updateCandidateAndPartyDropdown);
+    candidateSearch.addEventListener('input', updateCandidateAndPartyDropdown);
+    candidateSearch.addEventListener('focus', () => {
+      if (candidateSearch.value) {
+        candidateSuggestions.style.display = 'block';
+      }
+    });
+    candidateSearch.addEventListener('blur', () => {
+      // Delay hiding to allow click selection
+      setTimeout(() => {
+        candidateSuggestions.style.display = 'none';
+      }, 150);
+    });
+
+    // Add event listener to candidate dropdown for info updates
+    candidateDropdown.addEventListener('change', function () {
+      updateCandidateInfo(this.value);
+    });
+
+  }
+
+         // Data required for embedding Power BI report
+  var embedReportId = "2ed7dc83-8366-49ef-82d8-3f8032fe840b";
+  var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=2ed7dc83-8366-49ef-82d8-3f8032fe840b&groupId=0468270a-6074-418a-8882-7d3b1b2cf7a9&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
+  var accessToken = embedToken;
+         // Get models object to access enums for embed configuration
+  var models = window['powerbi-client'].models;
+
+         // Configuration for the first visual (Map)
+         var pageName1 = "07a1194e5933246fa0e9"; // Replace with your page name if different
+         var visualName1 = "0dca03641e40aa8e9067"; // Replace with your visual name (Map)
+         
+         var config1 = {
+           type: 'visual',
+           id: embedReportId,
+           pageName: pageName1,
+           visualName: visualName1,
+           embedUrl: embedUrl,
+           accessToken: accessToken,
+           tokenType: models.TokenType.Embed,
+         };
+         
+         // Get a reference to the first embedded report HTML element
+         var reportContainer1 = document.getElementById('embedContainer1');
+         
+         // Embed the first visual (Map) and display it within the div container.
+         var visual1 = powerbi.embed(reportContainer1, config1);
+         
+         // Apply Position Filter Button Click Event
+         document.getElementById('applyButton').addEventListener('click', async function () {
+          const selectedCandidate = candidateDropdown.value;
+          const selectedParty = partyDropdown.value;
+          const selectedPosition = positionDropdown.value;
+
+          let filters = [];
+
+  // Map position to Power BI value
+          let powerBiPosition = "";
+          if (selectedPosition === "Mayor") {
+            powerBiPosition = "Prefeito";
+          } else if (selectedPosition === "Councilman/Councilwoman") {
+            powerBiPosition = "Vereador";
+          }
+
+          if (powerBiPosition) {
+            filters.push({
+              $schema: "http://powerbi.com/product/schema#basic",
+              target: {
+                table: "final_output",
+                column: "DS_CARGO"
+              },
+              operator: "In",
+              values: [powerBiPosition],
+              filterType: models.FilterType.BasicFilter
+            });
+          }
+
+          if (selectedCandidate) {
+            filters.push({
+              $schema: "http://powerbi.com/product/schema#basic",
+              target: {
+                table: "final_output",
+                column: "VOTAVEL"
+              },
+              operator: "In",
+              values: [selectedCandidate],
+              filterType: models.FilterType.BasicFilter
+            });
+          }
+
+          if (selectedParty && selectedParty !== "All Parties") {
+            filters.push({
+              $schema: "http://powerbi.com/product/schema#basic",
+              target: {
+                table: "final_output",
+                column: "PARTIDO"
+              },
+              operator: "In",
+              values: [selectedParty],
+              filterType: models.FilterType.BasicFilter
+            });
+          }
+
+          try {
+            await visual1.setFilters(filters);
+            console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
+          } catch (error) {
+            console.error('Error applying filters:', error);
+          }
+        });
+      </script>
+    </body>
+    </html>
