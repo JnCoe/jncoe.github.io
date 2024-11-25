@@ -137,8 +137,8 @@
       order: 1; /* Display filters on top */
       border-right: none; /* Remove vertical border */
       border-bottom: 2px solid #ccc; /* Add horizontal border */
+    }
   }
-}
 
 </style>
 </link>
@@ -197,19 +197,19 @@
  <div class="container">
   <h3>HOW TO USE</h3>
 
-<p><strong>Using the Election Map Tool</strong></p>
+  <p><strong>Using the Election Map Tool</strong></p>
 
-<p>
-  Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate, the candidate's voting information will be loaded on the right. To see the voting patterns of the selected candidate across Rio de Janeiro City, click the "See candidate on the map" button.
-</p>
+  <p>
+    Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate, the candidate's voting information will be loaded on the right. To see the voting patterns of the selected candidate across Rio de Janeiro City, click the "See candidate on the map" button.
+  </p>
 
-<p>
-  On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received, while the color shows the proportion of votes for the candidate in that location. Size and color scale values is shown on the candidate information panel.
-</p>
+  <p>
+    On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received, while the color shows the proportion of votes for the candidate in that location. Size and color scale values is shown on the candidate information panel.
+  </p>
 
-<p>
-  To explore further details, hover over a bubble to see specific information, such as the voting location's address, total votes, and the candidate's vote share at that location.
-</p>
+  <p>
+    To explore further details, hover over a bubble to see specific information, such as the voting location's address, total votes, and the candidate's vote share at that location.
+  </p>
 
 
 
@@ -269,10 +269,10 @@
     </script>
   </div>
 
-    <!-- Right side (Candidate Information) -->
-    <div id="infoContainer" style="flex: 1; padding-left: 10px; min-width: 300px;">
-      <!-- Main Box -->
-      <div style="display: flex; align-items: center; background: white; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+  <!-- Right side (Candidate Information) -->
+  <div id="infoContainer" style="flex: 1; padding-left: 10px; min-width: 300px;">
+    <!-- Main Box -->
+    <div style="display: flex; align-items: center; background: white; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
       <img src="./placeholder.jpg" alt="Sample" style="width: 100px; height: 110px; object-fit: cover; margin-right: 15px; border-radius: 35%;">
       <div>
         <p style="margin: 0; font-weight: bold; background: linear-gradient(45deg, #6a11cb, #2575fc); -webkit-background-clip: text; -webkit-text-fill-color: #0000005c;">SELECT A CANDIDATE ON THE SIDE</p>
@@ -350,37 +350,6 @@
 <script src="assets/js/cards.js"></script>
 </div>
 <script>
-
-        // URL of your AWS Lambda function
-        const lambdaUrl = "https://jkfe5eusmpra4sgbptsfo5yr3i0coruz.lambda-url.us-east-2.on.aws//";
-
-        // Global variable to store the embed token
-        let embedToken = '';
-
-        // Function to fetch the token and store it in a global variable
-        async function fetchEmbedToken() {
-            try {
-                // Send request to Lambda URL
-                const response = await fetch(lambdaUrl);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                // Get the response data
-                const data = await response.json();
-                embedToken = data.embed_token;
-
-                // Log the token for debugging purposes (optional)
-                console.log('Embed Token:', embedToken);
-
-                // Load Power BI report after successfully fetching the token
-                loadPowerBI();
-            } catch (error) {
-                console.error('There was a problem fetching the token:', error);
-            }
-        }
-        
-        fetchEmbedToken();
 
   document.addEventListener("DOMContentLoaded", function () {
     let candidatesData = []; // Array to store CSV data
@@ -534,95 +503,137 @@
 
   }
 
-         // Data required for embedding Power BI report
-  var embedReportId = "2ed7dc83-8366-49ef-82d8-3f8032fe840b";
-  var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=2ed7dc83-8366-49ef-82d8-3f8032fe840b&groupId=0468270a-6074-418a-8882-7d3b1b2cf7a9&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
-  var accessToken = embedToken;
-         // Get models object to access enums for embed configuration
-  var models = window['powerbi-client'].models;
+    // The global variable to store the embed token
+        let embedToken
 
-         // Configuration for the first visual (Map)
-         var pageName1 = "07a1194e5933246fa0e9"; // Replace with your page name if different
-         var visualName1 = "0dca03641e40aa8e9067"; // Replace with your visual name (Map)
-         
-         var config1 = {
-           type: 'visual',
-           id: embedReportId,
-           pageName: pageName1,
-           visualName: visualName1,
-           embedUrl: embedUrl,
-           accessToken: accessToken,
-           tokenType: models.TokenType.Embed,
-         };
-         
-         // Get a reference to the first embedded report HTML element
-         var reportContainer1 = document.getElementById('embedContainer1');
-         
-         // Embed the first visual (Map) and display it within the div container.
-         var visual1 = powerbi.embed(reportContainer1, config1);
-         
-         // Apply Position Filter Button Click Event
-         document.getElementById('applyButton').addEventListener('click', async function () {
-          const selectedCandidate = candidateDropdown.value;
-          const selectedParty = partyDropdown.value;
-          const selectedPosition = positionDropdown.value;
+    // The URL to your deployed AWS Lambda function
+    const lambdaFunctionURL = "https://jkfe5eusmpra4sgbptsfo5yr3i0coruz.lambda-url.us-east-2.on.aws/"; // Replace with your Lambda URL
 
-          let filters = [];
-
-  // Map position to Power BI value
-          let powerBiPosition = "";
-          if (selectedPosition === "Mayor") {
-            powerBiPosition = "Prefeito";
-          } else if (selectedPosition === "Councilman/Councilwoman") {
-            powerBiPosition = "Vereador";
-          }
-
-          if (powerBiPosition) {
-            filters.push({
-              $schema: "http://powerbi.com/product/schema#basic",
-              target: {
-                table: "final_output",
-                column: "DS_CARGO"
-              },
-              operator: "In",
-              values: [powerBiPosition],
-              filterType: models.FilterType.BasicFilter
+    // Function to fetch the embed token
+    async function fetchEmbedToken() {
+        try {
+            const response = await fetch(lambdaFunctionURL, {
+                method: 'POST', // This should be adjusted if your Lambda is configured to accept GET requests
+                headers: {
+                    'Content-Type': 'application/json',
+                }
             });
-          }
 
-          if (selectedCandidate) {
-            filters.push({
-              $schema: "http://powerbi.com/product/schema#basic",
-              target: {
-                table: "final_output",
-                column: "VOTAVEL"
-              },
-              operator: "In",
-              values: [selectedCandidate],
-              filterType: models.FilterType.BasicFilter
-            });
-          }
+            if (response.ok) {
+                const data = await response.json();
+                embedToken = data.embed_token; // Store the token in the global variable
+                console.log("Embed token fetched successfully:", embedToken);
 
-          if (selectedParty && selectedParty !== "All Parties") {
-            filters.push({
-              $schema: "http://powerbi.com/product/schema#basic",
-              target: {
-                table: "final_output",
-                column: "PARTIDO"
-              },
-              operator: "In",
-              values: [selectedParty],
-              filterType: models.FilterType.BasicFilter
-            });
-          }
+                // After fetching the token, initialize the Power BI report embedding
+                initializePowerBIEmbedding();
+            } else {
+                console.error("Failed to fetch the embed token. Status:", response.status);
+            }
+        } catch (error) {
+            console.error("An error occurred while fetching the embed token:", error);
+        }
+    }
 
-          try {
-            await visual1.setFilters(filters);
-            console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
-          } catch (error) {
-            console.error('Error applying filters:', error);
-          }
+    // Function to initialize Power BI embedding
+    function initializePowerBIEmbedding() {
+        // Data required for embedding Power BI report
+        var embedReportId = "2ed7dc83-8366-49ef-82d8-3f8032fe840b";
+        var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=2ed7dc83-8366-49ef-82d8-3f8032fe840b&groupId=0468270a-6074-418a-8882-7d3b1b2cf7a9&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
+        var accessToken = embedToken; // Use the embed token fetched earlier
+
+        // Get models object to access enums for embed configuration
+        var models = window['powerbi-client'].models;
+
+        // Configuration for the first visual (Map)
+        var pageName1 = "07a1194e5933246fa0e9"; // Replace with your page name if different
+        var visualName1 = "0dca03641e40aa8e9067"; // Replace with your visual name (Map)
+        
+        var config1 = {
+            type: 'visual',
+            id: embedReportId,
+            pageName: pageName1,
+            visualName: visualName1,
+            embedUrl: embedUrl,
+            accessToken: accessToken,
+            tokenType: models.TokenType.Embed,
+        };
+        
+        // Get a reference to the first embedded report HTML element
+        var reportContainer1 = document.getElementById('embedContainer1');
+        
+        // Embed the first visual (Map) and display it within the div container.
+        var visual1 = powerbi.embed(reportContainer1, config1);
+
+        // Apply Position Filter Button Click Event
+        document.getElementById('applyButton').addEventListener('click', async function () {
+            const selectedCandidate = candidateDropdown.value;
+            const selectedParty = partyDropdown.value;
+            const selectedPosition = positionDropdown.value;
+
+            let filters = [];
+
+            // Map position to Power BI value
+            let powerBiPosition = "";
+            if (selectedPosition === "Mayor") {
+                powerBiPosition = "Prefeito";
+            } else if (selectedPosition === "Councilman/Councilwoman") {
+                powerBiPosition = "Vereador";
+            }
+
+            if (powerBiPosition) {
+                filters.push({
+                    $schema: "http://powerbi.com/product/schema#basic",
+                    target: {
+                        table: "final_output",
+                        column: "DS_CARGO"
+                    },
+                    operator: "In",
+                    values: [powerBiPosition],
+                    filterType: models.FilterType.BasicFilter
+                });
+            }
+
+            if (selectedCandidate) {
+                filters.push({
+                    $schema: "http://powerbi.com/product/schema#basic",
+                    target: {
+                        table: "final_output",
+                        column: "VOTAVEL"
+                    },
+                    operator: "In",
+                    values: [selectedCandidate],
+                    filterType: models.FilterType.BasicFilter
+                });
+            }
+
+            if (selectedParty && selectedParty !== "All Parties") {
+                filters.push({
+                    $schema: "http://powerbi.com/product/schema#basic",
+                    target: {
+                        table: "final_output",
+                        column: "PARTIDO"
+                    },
+                    operator: "In",
+                    values: [selectedParty],
+                    filterType: models.FilterType.BasicFilter
+                });
+            }
+
+            try {
+                await visual1.setFilters(filters);
+                console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
+            } catch (error) {
+                console.error('Error applying filters:', error);
+            }
         });
-      </script>
+    }
+
+    // Fetch the embed token on page load
+    window.onload = function() {
+        fetchEmbedToken();
+        embedToken = 'H4sIAAAAAAAEAB2Utw6sCBJF_-WljISnYaQJ8B4abzK8957V_vv2Tn6DqlOn7n_-fJOnn5L8z99_NkOQc9iD6nt1sEUN5g4oDPqc6rhI5hXYqu57HxQ-fp6VHzy5T5mTAAxgICGDwrjxqf30u2QLcpFypwMAsqFLwuY5oxgz5kd3zcTRg7Q3GDu0BljcLWM06qCenhosYPeWwLWsM68mDWki0p0uC6B9fiFjlxlRYfjnGtRjjB-3dVRphF5u-RFpVXTGYsf3tHDxhY-RHEbYXmCkciHzacjKzZ7yLdvUzNJczG32G-0ZJ0Dhho-Qr-JdoMPUvpgH5xAKQ9DMC5YLgWVDcCFNg3Wm6DHUJW4Le6FB2RZGMfhSQ70LGDqqaiLSJDlyFsteomB74XYlvkLTbf6yRBvCrYwCkooCTAePsIa_bK6wL799oCiZMqrM0l4GPShdYcDvRPGcFKaMSulhGL_ap9WyOyZG60B3SQoZbJhSgaP_wHKq956IUFVzcEld121D6W2Yn_LsMSj0vLLaI3G72MzZyXveW_fMmL6IYOqYZIi5GUzKnjuf5gdQrS20BrYRZmzKbBihCUmrHd5ha4JIouRqNBD--H3KS5sPON6RrDbcP-OAsjJONd-L1ZIwnKjHa4eATKYtWsNhUXgFS3DZFGSiIoLujF3KaIsvWT1RQZJajnrFYWQVti2Yu3ZfcDee7jnFqDoT5f8bTjkeJCNQvm9E4nwnyTX8GuSymKiAuzVp9qOZeQlz7rB1OH4CibkFo6fsButgiHZUyEkTkVKD1thkCCkO7pyoDBooz_woBZz9YVScM_N7--fPX3_Y9Zn3SS2en_r5w58wU2YFwMS9rmRLFwu2BWvp7LhYmMtKE-9L1gaObPYX_Rp-Bde9D_u3dgasno02RoL6cc1fIBMsQ-ahBxYIiKJ1sdjeYSSszBEyLpSZ-2fyZKvXM_pFqpyzDy6p7EtmGVl-wymfZyp5PADpZe-TTijwdr9awUauT_2bawpk5vVC7H2Ii0gSSi7gPHWtVzUYFCHPnTRrb564bk9hdGwNBiAfFHF9-SQspxjBb3vNClVS1gaceq3KZpsDqSRcqUvf08UM6XayAilIvsb_GiAdcxzzPuuChjsxZXCKGifYeB7OrIYtt5h4ZB-lBH0jDCLfRiWP6I6GOeZCKUoxktB7o__5F_Mz18Uq-z_Ks9NxOBcggD7XNNmDn98HLtW_KaepxmQ_1uIXi4YvWEgZ6pzm26Y67VO5ul3DsT2HkUtnb_PPIiMCpsLSO1RmR8y01dngKTe_gxof7PNdG-VejIobzGyA1QbufpJOom61HGI50DOgfNdiQA4mMaA2VXV-R-ANPcRnRf9hTA9yPpHe10ul6hOwEE5rWzrPDRflleCB1nwXT-R7ZwKM2GwiVNRrAEEvtHjvdw_Zv2aM966odo03qQh_46EHzqM9lDxEXrXtWVft2MvjtuTcE6xrgKOX2gdRfCwQP8Vn2S4yZ7Wc-jo_a0JTyzFi2U7mWXJMqrXvkegziankCxbDbBQ76QrhxeC4VEwWQdLXDEdgTHtdpy0bbVMOXIAcvrvXD_N__we6U0IU7gUAAA==.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJleHAiOjE3MzI1NjIxNzAsImFsbG93QWNjZXNzT3ZlclB1YmxpY0ludGVybmV0Ijp0cnVlfQ==';
+        initializePowerBIEmbedding()
+    };
+</script>
     </body>
     </html>
