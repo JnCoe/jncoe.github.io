@@ -27,7 +27,7 @@
      a.appendChild(r);
    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
  </script>
- <title>Jonas Coelho</title>
+ <title>Electoral Map</title>
  <meta charset="utf-8"/>
  <meta content="width=device-width, initial-scale=1" name="viewport"/>
  <link href="assets/css/main.css" rel="stylesheet"/>
@@ -88,7 +88,7 @@
 
   #filtersContainer {
     margin: 0 20px 0 0;
-    padding-right: 0px;
+    padding-right: 20px;
     border-right: 2px solid #ccc;
   }
 
@@ -154,7 +154,7 @@
     <ul>
      <li class="menu"><a class="active" href="#context">CONTEXT</a></li>
      <li class="menu"><a href="#howto">HOW TO USE</a></li>
-     <li class="menu"><a href="#filters">FILTERS</a></li>
+     <li class="menu"><a href="#filterssection">FILTERS</a></li>
      <li class="menu"><a href="#map">MAP</a></li>
    </ul>
  </nav>
@@ -164,6 +164,7 @@
    <li class="social"><a class="icon brands fa-github" href="https://github.com/JnCoe"><span class="label">Github</span></a></li>
    <!--<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>-->
  </ul>
+ <p style="text-align: center;"><a href="https://jncoe.github.io" >JONAS COELHO</a></p>
 </footer>
 </section>
 <!-- Wrapper -->
@@ -216,7 +217,7 @@
 
 </div>
 </section>
-<section id="filters" style="width: 100%;">
+<section id="filterssection" style="width: 100%;">
   <div class="container" style="display: flex; flex-wrap: wrap; align-items: flex-start;">
     <!-- Left side (Filters) -->
     <div id="filtersContainer">
@@ -470,8 +471,8 @@
 
         const gridContainer = infoContainer.children[1];
         const gridBoxes = gridContainer.querySelectorAll("div");
-        gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${candidate.min_abs_votes}`;
-        gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${candidate.max_abs_votes}`;
+        gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${Number(candidate.min_abs_votes).toLocaleString('en-US')}`;
+        gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${Number(candidate.max_abs_votes).toLocaleString('en-US')}`;
 
         gridBoxes[2].innerHTML = `<b>MINIMUM SHARE OF VOTES:</b></br>${candidate.min_prop_votes}%`; // Box 1
         gridBoxes[3].innerHTML = `<b>MAXIMUM SHARE OF VOTES:</b></br>${candidate.max_prop_votes}%`; // Box 2
