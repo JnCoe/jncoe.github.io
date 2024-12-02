@@ -164,7 +164,7 @@
    <li class="social"><a class="icon brands fa-github" href="https://github.com/JnCoe"><span class="label">Github</span></a></li>
    <!--<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>-->
  </ul>
- <p style="text-align: center;"><a href="https://jncoe.github.io" >JONAS COELHO</a></p>
+ <p style="text-align: center; padding-top: 15px; font-size: x-small;"><a href="https://jncoe.github.io" >JONAS COELHO</a></p>
 </footer>
 </section>
 <!-- Wrapper -->
@@ -622,6 +622,8 @@
     // Fetch the embed token on page load
     window.onload = function() {
         getEmbedToken();
+
+        setInterval(getEmbedToken, 40 * 60 * 1000); // 40 minutes
     };
 </script>
     </body>

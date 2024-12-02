@@ -2488,39 +2488,31 @@ img.report:hover {
 	box-shadow: 0px 24px 24px rgba(33, 33, 33, .2);
 }
 
+@keyframes underline {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
 .typewriter p {
-	width: auto;
-	display: inline-block;
-	overflow: hidden;
-	border-right: .15em solid white;
-	white-space: nowrap;
-	margin: 0 auto;
-	letter-spacing: .15em;
-	animation: typing 5.5s steps(100, end),
-		blink-caret .85s step-end infinite;
+    position: relative;
+    display: inline-block;
+    letter-spacing: .15em;
+    color: #363636;
 }
 
-@keyframes typing {
-	from {
-		max-width: 0
-	}
-
-	to {
-		max-width: 100%
-	}
-}
-
-@keyframes blink-caret {
-
-	from,
-	to {
-		border-color: transparent
-	}
-
-	50% {
-		border-color: rgb(173, 173, 173)
-	}
-
+.typewriter p::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 3px;
+    width: 0;
+    background-image: linear-gradient(to right, #5393ce, #605778);
+    animation: underline 3s ease forwards;
 }
 
 ul.actions {
