@@ -42,52 +42,58 @@
  <script src="scripts/powerbi.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
  <style>
-   #embedContainer1 {
-     width: 100%;
-     height: 70vh;
-   }
-   select,
-   input[type="text"] {
-     width: 80%;
-     max-width: 300px;
-     padding: 5px;
-     margin: 10px;
-   }
-   button {
-     padding: 5px 10px;
-     margin-top: 10px;
-   }
-   .suggestions {
-     position: absolute;
-     border: 1px solid #ccc;
-     background: #fff;
-     max-height: 150px;
-     overflow-y: hidden;
-     overflow-x: hidden;
-     width: 200px;
-     margin-left: 10px;
-     display: none; /* Hidden by default */
-     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-     border-radius: 4px;
-     z-index: 100;
-   }
-   .suggestions div {
-     padding: 10px;
-     cursor: pointer;
-     transition: background-color 0.3s ease;
-   }
-   .suggestions div:hover {
-     background: #f0f0f0;
-   }
-   .suggestions::-webkit-scrollbar {
-     display: none; /* Hide scrollbar */
-   }
-   #filters {
+  #embedContainer1 {
+    width: 100%;
+    height: 70vh;
+  }
+
+  select,
+  input[type="text"] {
+    width: 80%;
+    max-width: 300px;
+    padding: 5px;
+    margin: 10px;
+  }
+
+  button {
+    padding: 5px 10px;
+    margin-top: 10px;
+  }
+
+  .suggestions {
+    position: absolute;
+    border: 1px solid #ccc;
+    background: #fff;
+    max-height: 150px;
+    overflow: hidden;
+    width: 200px;
+    margin-left: 10px;
+    display: none; /* Hidden by default */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 100;
+  }
+
+  .suggestions div {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .suggestions div:hover {
+    background: #f0f0f0;
+  }
+
+  .suggestions::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+  }
+
+  #filters {
     padding: 20px;
   }
 
   #filtersContainer {
-    margin: 0 20px 0 0;
+    margin-right: 20px;
     padding-right: 20px;
     border-right: 2px solid #ccc;
   }
@@ -119,6 +125,63 @@
     border-radius: 8px;
   }
 
+  #candidateList {
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    max-width: 300px;
+    background: white;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin; /* Firefox scrollbar styling */
+    scrollbar-color: #cccccc #ffffff; /* Firefox - thumb and track */
+  }
+
+  /* Fancy scroll styling for Webkit browsers (e.g., Chrome, Safari) */
+  #candidateList::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #candidateList::-webkit-scrollbar-track {
+    background: #f9f9f9;
+    border-radius: 10px;
+  }
+
+  #candidateList::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+
+  #candidateList::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+  }
+
+  .candidate-item {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    position: relative;
+    background: white;
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .candidate-item.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 5px;  /* Width of the accent bar */
+    background: #5393ce;  /* Accent color */
+    border-radius: 8px 0 0 8px; /* Match the box border radius on the left side */
+    z-index: 5;
+  }
+
+  .candidate-item:hover {
+    background: #f0f0f0;
+  }
+
   @media (max-width: 760px) {
     .container {
       flex-direction: column;
@@ -133,14 +196,13 @@
     #infoContainer {
       order: 2; /* Display info below filters */
     }
+
     #filtersContainer {
       order: 1; /* Display filters on top */
-      border-right: none; /* Remove vertical border */
       border-bottom: 2px solid #ccc; /* Add horizontal border */
-      margin: 0 0 20px 0;
+      margin-bottom: 20px;
     }
   }
-
 </style>
 </link>
 </head>
@@ -234,41 +296,7 @@
       <h4>3. SELECT A CANDIDATE:</h4>
       <input id="candidateSearch" placeholder="Search candidate..." type="text" />
       <div class="suggestions" id="candidateSuggestions"></div>
-      <select id="candidateDropdown">
-        <option value="">All Candidates</option>
-      </select>
-      <button id="applyButton" style="
-      width: 85%; 
-      margin: 20px auto; 
-      padding: 15px 20px; 
-      text-align: center; 
-      font-weight: bold; 
-      font-size: 16px; 
-      color: #ffffff; 
-      background: linear-gradient(to right, #4b79a1, #283e51); 
-      border: none; 
-      border-radius: 25px; 
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
-      cursor: pointer; 
-      transition: all 0.3s ease;
-      display: inline-block; 
-      ">
-      See candidate on the map
-    </button>
-
-    <script>
-      const applyButton = document.getElementById("applyButton");
-
-  // Add hover effect to make the button look whiter
-      applyButton.addEventListener("mouseover", function () {
-        this.style.background = "linear-gradient(to right, #6ba5d8, #a6c8e8)";
-      });
-
-  // Revert back to the original style when mouse leaves
-      applyButton.addEventListener("mouseout", function () {
-        this.style.background = "linear-gradient(to right, #4b79a1, #283e51)";
-      });
-    </script>
+      <div id="candidateList" style="border: 1px solid #ccc; padding: 10px; max-height: 300px; overflow-y: scroll; overflow-x: clip;"></div>
   </div>
 
   <!-- Right side (Candidate Information) -->
@@ -320,6 +348,37 @@
 
      </div>
    </div>
+         <button id="applyButton" style="
+      width: 85%; 
+      margin: 20px auto; 
+      padding: 15px 20px; 
+      text-align: center; 
+      font-weight: bold; 
+      font-size: 16px; 
+      color: #ffffff; 
+      background: linear-gradient(to right, #4b79a1, #283e51); 
+      border: none; 
+      border-radius: 25px; 
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+      cursor: pointer; 
+      transition: all 0.3s ease;
+      display: block; 
+      ">
+      See candidate on the map
+    </button>
+        <script>
+      const applyButton = document.getElementById("applyButton");
+
+  // Add hover effect to make the button look whiter
+      applyButton.addEventListener("mouseover", function () {
+        this.style.background = "linear-gradient(to right, #6ba5d8, #a6c8e8)";
+      });
+
+  // Revert back to the original style when mouse leaves
+      applyButton.addEventListener("mouseout", function () {
+        this.style.background = "linear-gradient(to right, #4b79a1, #283e51)";
+      });
+    </script>
  </div>
 </div>
 </section>
@@ -352,100 +411,116 @@
 <script src="assets/js/cards.js"></script>
 </div>
 <script>
-
-  document.addEventListener("DOMContentLoaded", function () {
     let candidatesData = []; // Array to store CSV data
+    let selectedCandidate = null; // To store the selected candidate
+    document.addEventListener("DOMContentLoaded", function () {
 
-    Papa.parse("candidates.csv", {
-      download: true,
-      header: true,
-      complete: function (results) {
+
+      Papa.parse("candidates.csv", {
+        download: true,
+        header: true,
+        complete: function (results) {
         candidatesData = results.data; // Store parsed data
         initializeDropdowns(candidatesData);
       }
     });
-  });
-
-  function initializeDropdowns(data) {
-    const positionDropdown = document.getElementById('positionDropdown');
-    const partyDropdown = document.getElementById('partyDropdown');
-    const candidateDropdown = document.getElementById('candidateDropdown');
-    const candidateSearch = document.getElementById('candidateSearch');
-    const candidateSuggestions = document.getElementById('candidateSuggestions');
-
-    // Extract unique parties for the dropdown
-    const uniqueParties = [...new Set(data.map(item => item.Party))];
-
-    // Populate Party Dropdown
-    uniqueParties.forEach(party => {
-      const option = document.createElement('option');
-      option.value = party;
-      option.textContent = party;
-      partyDropdown.appendChild(option);
     });
 
-    // Function to filter and display candidates
-    function updateCandidateAndPartyDropdown() {
-      const selectedPosition = positionDropdown.value;
-      const selectedParty = partyDropdown.value;
-      const searchTerm = candidateSearch.value.toLowerCase();
+    function initializeDropdowns(data) {
+      const positionDropdown = document.getElementById('positionDropdown');
+      const partyDropdown = document.getElementById('partyDropdown');
+      const candidateDropdown = document.getElementById('candidateDropdown');
+      const candidateSearch = document.getElementById('candidateSearch');
+      const candidateSuggestions = document.getElementById('candidateSuggestions');
 
-      // Filter candidates based on position, party, and search term
-      const filteredCandidates = data
-      .filter(item =>
-        (!selectedPosition || item.Position === selectedPosition) &&
-        (!selectedParty || item.Party === selectedParty) &&
-        (!searchTerm || item.Candidate.toLowerCase().includes(searchTerm))
-        );
+    // Extract unique parties for the dropdown
+      const uniqueParties = [...new Set(data.map(item => item.Party))];
 
-      // Populate candidate dropdown
-      candidateDropdown.innerHTML = '<option value="">All Candidates</option>';
-      candidateSuggestions.innerHTML = '';
-
-      filteredCandidates.forEach(candidate => {
-        const option = document.createElement('option');
-        option.value = candidate.Candidate;
-        option.textContent = candidate.Candidate;
-        candidateDropdown.appendChild(option);
-      });
-
-      // Show suggestions (limit to 10)
-      if (searchTerm) {
-        candidateSuggestions.style.display = 'block';
-        filteredCandidates.slice(0, 10).forEach(candidate => {
-          const suggestion = document.createElement('div');
-          suggestion.textContent = candidate.Candidate;
-          suggestion.addEventListener('click', () => {
-            candidateSearch.value = candidate.Candidate;
-            updateCandidateAndPartyDropdown();
-            candidateDropdown.value = candidate.Candidate; // Update the dropdown value
-            updateCandidateInfo(candidate.Candidate);      // Update the candidate info
-            candidateSuggestions.style.display = 'none';   // Hide suggestions once clicked
-          });
-          candidateSuggestions.appendChild(suggestion);
-        });
-      } else {
-        candidateSuggestions.style.display = 'none';
-      }
-
-      // Populate party dropdown based on position selection
-      const uniqueParties = [...new Set(
-        data.filter(item => !selectedPosition || item.Position === selectedPosition)
-        .map(item => item.Party)
-        )];
-
-      partyDropdown.innerHTML = '<option value="">All Parties</option>';
-
+    // Populate Party Dropdown
       uniqueParties.forEach(party => {
         const option = document.createElement('option');
         option.value = party;
         option.textContent = party;
         partyDropdown.appendChild(option);
       });
-    }
+
+    // Function to filter and display candidates
+      function updateCandidateAndPartyDropdown() {
+        const positionDropdown = document.getElementById('positionDropdown');
+        const partyDropdown = document.getElementById('partyDropdown');
+        const candidateSearch = document.getElementById('candidateSearch');
+        const candidateList = document.getElementById('candidateList');
+
+        const selectedPosition = positionDropdown.value;
+        const selectedParty = partyDropdown.value;
+        const searchTerm = candidateSearch.value.toLowerCase();
+
+    // Filter candidates based on position, party, and search term
+        const filteredCandidates = candidatesData.filter(item =>
+          (!selectedPosition || item.Position === selectedPosition) &&
+          (!selectedParty || item.Party === selectedParty) &&
+          (!searchTerm || item.Candidate.toLowerCase().includes(searchTerm))
+          );
+
+    // Clear previous candidates list
+        candidateList.innerHTML = '';
+
+    // Populate candidate list with filtered candidates
+        filteredCandidates.forEach(candidate => {
+          const candidateItem = document.createElement('div');
+          candidateItem.className = 'candidate-item';
+          candidateItem.style = `
+          padding: 10px;
+          margin: 10px 0;
+          cursor: pointer;
+          position: relative;
+          background: white;
+          border-radius: 8px; 
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          `;
+
+        // Create a bar proportional to the number of votes
+          const voteBar = document.createElement('div');
+          voteBar.style = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: ${candidate.sum_votes/1310}%; 
+          background: rgb(232 232 232);
+          z-index: 0;
+          `;
+
+// Create a label for the candidate name
+          const candidateLabel = document.createElement('span');
+          candidateLabel.textContent = candidate.Candidate;
+candidateLabel.style = 'position: relative; z-index: 1;'; // Ensure the text is above the bar
+
+// Append elements
+candidateItem.appendChild(voteBar);
+candidateItem.appendChild(candidateLabel);
+
+
+        // Add click event to select the candidate
+candidateItem.addEventListener('click', () => {
+    selectedCandidate = candidate.Candidate; // Store the selected candidate
+    updateCandidateInfo(selectedCandidate);  // Update candidate info as before
+
+    // Remove the 'selected' class from all items
+    document.querySelectorAll('.candidate-item').forEach(item => item.classList.remove('selected'));
+
+    // Add the 'selected' class to the clicked item
+    candidateItem.classList.add('selected');
+});
+
+candidateList.appendChild(candidateItem);
+});
+      }
+
 
     // Function to update the candidate info (image and text)
-    function updateCandidateInfo(selectedCandidate) {
+      function updateCandidateInfo(selectedCandidate) {
       if (!selectedCandidate) return; // Exit if no candidate selected
 
       // Find the selected candidate in the data
@@ -508,28 +583,28 @@
   }
 
     // The global variable to store the embed token
-        let embedToken
+  let embedToken
 
-    async function getEmbedToken() {
+  async function getEmbedToken() {
     try {
-        const response = await fetch('https://kwmkwg6rcimi7xjrvoh5sdnx2e0kpkuh.lambda-url.us-east-2.on.aws/', {
-            method: 'POST'
-        });
-        const data = await response.json();
-        embedToken = data.embedToken;
-        console.log('Embed token retrieved successfully');
+      const response = await fetch('https://kwmkwg6rcimi7xjrvoh5sdnx2e0kpkuh.lambda-url.us-east-2.on.aws/', {
+        method: 'POST'
+      });
+      const data = await response.json();
+      embedToken = data.embedToken;
+      console.log('Embed token retrieved successfully');
                         // After fetching the token, initialize the Power BI report embedding
-                initializePowerBIEmbedding();
+      initializePowerBIEmbedding();
     } catch (error) {
-        console.error('Failed to retrieve embed token:', error);
+      console.error('Failed to retrieve embed token:', error);
     }
-}
+  }
 
     // Function to initialize Power BI embedding
-    function initializePowerBIEmbedding() {
+  function initializePowerBIEmbedding() {
         // Data required for embedding Power BI report
-        var embedReportId = "2ed7dc83-8366-49ef-82d8-3f8032fe840b";
-        var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=2ed7dc83-8366-49ef-82d8-3f8032fe840b&groupId=0468270a-6074-418a-8882-7d3b1b2cf7a9&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
+    var embedReportId = "2ed7dc83-8366-49ef-82d8-3f8032fe840b";
+    var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=2ed7dc83-8366-49ef-82d8-3f8032fe840b&groupId=0468270a-6074-418a-8882-7d3b1b2cf7a9&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
         var accessToken = embedToken; // Use the embed token fetched earlier
 
         // Get models object to access enums for embed configuration
@@ -540,13 +615,13 @@
         var visualName1 = "0dca03641e40aa8e9067"; // Replace with your visual name (Map)
         
         var config1 = {
-            type: 'visual',
-            id: embedReportId,
-            pageName: pageName1,
-            visualName: visualName1,
-            embedUrl: embedUrl,
-            accessToken: accessToken,
-            tokenType: models.TokenType.Embed,
+          type: 'visual',
+          id: embedReportId,
+          pageName: pageName1,
+          visualName: visualName1,
+          embedUrl: embedUrl,
+          accessToken: accessToken,
+          tokenType: models.TokenType.Embed,
         };
         
         // Get a reference to the first embedded report HTML element
@@ -557,74 +632,73 @@
 
         // Apply Position Filter Button Click Event
         document.getElementById('applyButton').addEventListener('click', async function () {
-            const selectedCandidate = candidateDropdown.value;
-            const selectedParty = partyDropdown.value;
-            const selectedPosition = positionDropdown.value;
+          const selectedParty = partyDropdown.value;
+          const selectedPosition = positionDropdown.value;
 
-            let filters = [];
+          let filters = [];
 
             // Map position to Power BI value
-            let powerBiPosition = "";
-            if (selectedPosition === "Mayor") {
-                powerBiPosition = "Prefeito";
-            } else if (selectedPosition === "Councilman/Councilwoman") {
-                powerBiPosition = "Vereador";
-            }
+          let powerBiPosition = "";
+          if (selectedPosition === "Mayor") {
+            powerBiPosition = "Prefeito";
+          } else if (selectedPosition === "Councilman/Councilwoman") {
+            powerBiPosition = "Vereador";
+          }
 
-            if (powerBiPosition) {
-                filters.push({
-                    $schema: "http://powerbi.com/product/schema#basic",
-                    target: {
-                        table: "final_output",
-                        column: "DS_CARGO"
-                    },
-                    operator: "In",
-                    values: [powerBiPosition],
-                    filterType: models.FilterType.BasicFilter
-                });
-            }
+          if (powerBiPosition) {
+            filters.push({
+              $schema: "http://powerbi.com/product/schema#basic",
+              target: {
+                table: "final_output",
+                column: "DS_CARGO"
+              },
+              operator: "In",
+              values: [powerBiPosition],
+              filterType: models.FilterType.BasicFilter
+            });
+          }
 
-            if (selectedCandidate) {
-                filters.push({
-                    $schema: "http://powerbi.com/product/schema#basic",
-                    target: {
-                        table: "final_output",
-                        column: "VOTAVEL"
-                    },
-                    operator: "In",
-                    values: [selectedCandidate],
-                    filterType: models.FilterType.BasicFilter
-                });
-            }
+          if (selectedCandidate) {
+            filters.push({
+              $schema: "http://powerbi.com/product/schema#basic",
+              target: {
+                table: "final_output",
+                column: "VOTAVEL"
+              },
+              operator: "In",
+              values: [selectedCandidate],
+              filterType: models.FilterType.BasicFilter
+            });
+          }
 
-            if (selectedParty && selectedParty !== "All Parties") {
-                filters.push({
-                    $schema: "http://powerbi.com/product/schema#basic",
-                    target: {
-                        table: "final_output",
-                        column: "PARTIDO"
-                    },
-                    operator: "In",
-                    values: [selectedParty],
-                    filterType: models.FilterType.BasicFilter
-                });
-            }
-            document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
-            try {
-                await visual1.setFilters(filters);
-                console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
-            } catch (error) {
-                console.error('Error applying filters:', error);
-            }
+          if (selectedParty && selectedParty !== "All Parties") {
+            filters.push({
+              $schema: "http://powerbi.com/product/schema#basic",
+              target: {
+                table: "final_output",
+                column: "PARTIDO"
+              },
+              operator: "In",
+              values: [selectedParty],
+              filterType: models.FilterType.BasicFilter
+            });
+          }
+          document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
+          try {
+            await visual1.setFilters(filters);
+            console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
+          } catch (error) {
+            console.error('Error applying filters:', error);
+          }
         });
-    }
+      }
 
     // Fetch the embed token on page load
-    window.onload = function() {
+      window.onload = function() {
         getEmbedToken();
 
         setInterval(getEmbedToken, 40 * 60 * 1000); // 40 minutes
-    };
-</script>
-    </body>
-    </html>
+      };
+    </script>
+  </body>
+  </html>
