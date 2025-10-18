@@ -144,11 +144,11 @@
 
 /* Hero Section */
 .hero-section {
-    min-height: 60vh;
+    min-height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-4xl) var(--space-xl);
+    padding: var(--space-2xl) var(--space-xl) var(--space-xl);
     position: relative;
 }
 

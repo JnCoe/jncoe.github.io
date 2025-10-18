@@ -6,9 +6,17 @@
 export const timelineData = [
     {
         type: 'work',
+        organization: 'Dow Jones',
+        title: 'Senior Data Analyst',
+        date: '2025 - Present',
+        description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights',
+        tags: ['Python', 'SQL', 'PowerBI', 'Business Intelligence']
+    },
+    {
+        type: 'work',
         organization: 'Multiplan',
         title: 'Data Scientist',
-        date: '2023 - Present',
+        date: '2023 - 2025',
         description: 'Working at a leading Brazilian real estate company, applying data science to drive insights and innovation in the real estate sector.',
         tags: ['Python', 'SQL', 'Machine Learning', 'Business Intelligence']
     },

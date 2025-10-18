@@ -475,12 +475,12 @@
 .project-modal-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-md);
+    gap: var(--space-sm);
     margin-bottom: var(--space-xl);
 }
 
 .project-modal-tech img {
-    height: 40px;
+    height: 28px;
     width: auto;
 }
 
