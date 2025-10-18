@@ -375,12 +375,25 @@
 }
 
 .project-tag {
-    background: var(--gradient-main);
     color: var(--text-on-primary);
     padding: var(--space-xs) var(--space-md);
     border-radius: var(--radius-full);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
+    position: relative;
+    background: linear-gradient(135deg, #5393ce 0%, #605778 50%, #5393ce 100%);
+    background-size: 300% 100%;
+    background-attachment: fixed;
+    animation: gradientShift 8s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* Project Modal */
