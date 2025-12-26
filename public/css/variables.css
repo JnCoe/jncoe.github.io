@@ -1,0 +1,165 @@
+/**
+ * CSS Custom Properties (Variables)
+ * Central theme configuration for light and dark modes
+ */
+
+:root {
+    /* Color Palette - Light Mode */
+    --color-primary: #5393ce;
+    --color-primary-dark: #4178b3;
+    --color-secondary: #605778;
+    --color-secondary-dark: #4a4360;
+    
+    /* Gradients */
+    --gradient-main: linear-gradient(135deg, #5393ce 0%, #605778 100%);
+    --gradient-sidebar: linear-gradient(to bottom right, #5393ce, #605778);
+    --gradient-card: linear-gradient(to bottom left, #5393ce, #605778);
+    
+    /* Background Colors */
+    --bg-body: #f5f5f7;
+    --bg-surface: rgba(255, 255, 255, 0.85);
+    --bg-surface-alt: rgba(255, 255, 255, 0.95);
+    --bg-sidebar: var(--gradient-sidebar);
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* Text Colors */
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-tertiary: #999999;
+    --text-on-dark: #ffffff;
+    --text-on-primary: #ffffff;
+    
+    /* Border & Divider */
+    --border-color: rgba(0, 0, 0, 0.1);
+    --divider-color: rgba(0, 0, 0, 0.08);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.15);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
+    
+    /* Typography */
+    --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-family-mono: 'JetBrains Mono', 'Courier New', monospace;
+    
+    --font-size-xs: 0.75rem;      /* 12px */
+    --font-size-sm: 0.875rem;     /* 14px */
+    --font-size-base: 1rem;       /* 16px */
+    --font-size-lg: 1.125rem;     /* 18px */
+    --font-size-xl: 1.25rem;      /* 20px */
+    --font-size-2xl: 1.5rem;      /* 24px */
+    --font-size-3xl: 1.875rem;    /* 30px */
+    --font-size-4xl: 2.25rem;     /* 36px */
+    --font-size-5xl: 3rem;        /* 48px */
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;    /* 4px */
+    --space-sm: 0.5rem;     /* 8px */
+    --space-md: 1rem;       /* 16px */
+    --space-lg: 1.5rem;     /* 24px */
+    --space-xl: 2rem;       /* 32px */
+    --space-2xl: 3rem;      /* 48px */
+    --space-3xl: 4rem;      /* 64px */
+    --space-4xl: 6rem;      /* 96px */
+    
+    /* Layout */
+    --sidebar-width: 320px;
+    --mobile-header-height: 64px;
+    --container-max-width: 1200px;
+    --content-max-width: 800px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+    
+    /* Z-index */
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+}
+
+/* Dark Mode Theme */
+[data-theme="dark"] {
+    /* Background Colors */
+    --bg-body: #0f0f14;
+    --bg-surface: rgba(28, 28, 35, 0.85);
+    --bg-surface-alt: rgba(28, 28, 35, 0.95);
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    
+    /* Text Colors */
+    --text-primary: #e8e8ea;
+    --text-secondary: #b4b4b8;
+    --text-tertiary: #808084;
+    
+    /* Border & Divider */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --divider-color: rgba(255, 255, 255, 0.08);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1280px) {
+    :root {
+        --sidebar-width: 280px;
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 100%;
+        --font-size-5xl: 2.5rem;
+        --font-size-4xl: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --font-size-5xl: 2rem;
+        --font-size-4xl: 1.75rem;
+        --font-size-3xl: 1.5rem;
+        --space-2xl: 2rem;
+        --space-3xl: 3rem;
+        --space-4xl: 4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --font-size-5xl: 1.75rem;
+        --font-size-4xl: 1.5rem;
+        --space-xl: 1.5rem;
+        --space-2xl: 1.75rem;
+    }
+}
+
