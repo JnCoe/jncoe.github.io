@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
 	const blogEntries = await getCollection('blog', ({ data }) => !data.draft);
 	return blogEntries.map(entry => ({
-		params: { slug: entry.id },
+		params: { slug: entry.id.replace(/\.md$/, '') },
 		props: { entry },
 	}));
 }
@@ -25,6 +25,9 @@ const { title, description, pubDate, updatedDate, author, tags } = entry.data;
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>{title} | Jonas Coelho</title>
 	<meta name="description" content={description} />
+	
+	<!-- Favicon -->
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
 
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +59,10 @@ const { title, description, pubDate, updatedDate, author, tags } = entry.data;
 					<li><a href="/#journey" class="nav-link">My Journey</a></li>
 					<li><a href="/#projects" class="nav-link">Projects</a></li>
 					<li><a href="/#contact" class="nav-link">Contact</a></li>
-					<li><a href="/blog/" class="nav-link active">Blog</a></li>
+				</ul>
+				<hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: var(--space-lg) 0;">
+				<ul style="list-style: none; padding: 0; margin: 0;">
+					<li><a href="/blog/" class="nav-link active" style="background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: var(--radius-md);">📝 Blog</a></li>
 				</ul>
 			</nav>
 			<div class="sidebar-footer">
@@ -86,16 +92,25 @@ const { title, description, pubDate, updatedDate, author, tags } = entry.data;
 	</header>
 
 	<main class="main-content">
+		<section class="hero-section">
+			<div class="hero-content">
+				<h1 class="hero-title">Jonas Coelho</h1>
+				<div class="hero-subtitle">
+					<span class="typing-text">Blog</span>
+				</div>
+			</div>
+		</section>
+
 		<section class="section">
 			<div class="container">
 				<nav style="margin-bottom: var(--space-lg);">
-					<a href="/blog/" class="nav-link" style="display:inline-block; padding:0;">← Back to Blog</a>
+					<a href="/blog/" style="display:inline-block; padding:0; color: var(--color-primary); text-decoration: none;">← Back to Blog</a>
 				</nav>
 
 				<article>
-					<h1 class="section-title" style="text-align:left; margin-bottom: var(--space-md);">{title}</h1>
+					<h1 style="font-family: var(--font-family-base); font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); line-height: var(--line-height-tight); color: var(--text-primary); margin-bottom: var(--space-lg);">{title}</h1>
 
-					<div class="timeline-subtitle" style="margin-bottom: var(--space-lg); color: var(--text-secondary);">
+					<div class="timeline-subtitle" style="margin-bottom: var(--space-xl); color: var(--text-secondary);">
 						<span>By {author}</span>
 						<span style="margin-left: var(--space-md);">Published: {pubDate.toLocaleDateString()}</span>
 						{updatedDate && <span style="margin-left: var(--space-md);">Updated: {updatedDate.toLocaleDateString()}</span>}
