@@ -81,19 +81,17 @@
   
   /* Electoral Map specific styles */
   .electoral-content {
-    padding: var(--space-xl);
+    padding: var(--space-md) var(--space-xl);
     max-width: var(--container-max-width);
     margin: 0 auto;
   }
 
   .electoral-header {
     text-align: center;
-    margin-bottom: var(--space-xl);
   }
 
   .electoral-header h1 {
     font-size: var(--font-size-5xl);
-    margin-bottom: var(--space-md);
     background: var(--gradient-main);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -107,7 +105,6 @@
   }
 
   .electoral-section {
-    margin-bottom: var(--space-xl);
     background: var(--bg-surface);
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
@@ -116,7 +113,6 @@
 
   .electoral-section h2 {
     color: var(--color-primary);
-    margin-bottom: var(--space-lg);
     font-size: var(--font-size-3xl);
   }
 
@@ -276,7 +272,7 @@
 
   @media (max-width: 760px) {
     .electoral-content {
-      padding: var(--space-lg);
+      padding: 0.75rem var(--space-lg);
     }
 
     #filtersContainer,
@@ -293,7 +289,6 @@
     #filtersContainer {
       order: 1;
       border-bottom: 1px solid var(--border-color);
-      margin-bottom: var(--space-lg);
     }
 
     select,
