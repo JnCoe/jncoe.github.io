@@ -39,7 +39,8 @@
  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
  <link href="css/app.css" rel="stylesheet">
  <script src="scripts/jquery.js"></script>
- <script src="scripts/powerbi.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
  <style>
   #embedContainer1 {
@@ -286,8 +287,8 @@
       <h3>FILTERS</h3>
       <h4>1. SELECT A POSITION:</h4>
       <select id="positionDropdown">
-        <option selected="" value="Councilman/Councilwoman">Councilman/Councilwoman</option>
-        <option value="Mayor">Mayor</option>
+        <option selected="" value="Vereador">Councilman/Councilwoman</option>
+        <option value="Prefeito">Mayor</option>
       </select>
       <h4 style="margin: 0">2. SELECT A PARTY:</h4><h7>(optional)</h7>
       <select id="partyDropdown">
@@ -366,19 +367,6 @@
       ">
       See candidate on the map
     </button>
-        <script>
-      const applyButton = document.getElementById("applyButton");
-
-  // Add hover effect to make the button look whiter
-      applyButton.addEventListener("mouseover", function () {
-        this.style.background = "linear-gradient(to right, #6ba5d8, #a6c8e8)";
-      });
-
-  // Revert back to the original style when mouse leaves
-      applyButton.addEventListener("mouseout", function () {
-        this.style.background = "linear-gradient(to right, #4b79a1, #283e51)";
-      });
-    </script>
  </div>
 </div>
 </section>
@@ -412,21 +400,53 @@
 </div>
 <script>
     let candidatesData = []; // Array to store CSV data
-    let selectedCandidate = null; // To store the selected candidate
+    window.selectedCandidate = null; // To store the selected candidate (using window for global scope)
+    const DATA_REPO = "https://raw.githubusercontent.com/JnCoe/rio-electoral-data-2024/refs/heads/main";
+    
     document.addEventListener("DOMContentLoaded", function () {
-
-
-      Papa.parse("candidates.csv", {
+      console.log("DOMContentLoaded fired");
+      const CANDIDATES_CSV_URL = `${DATA_REPO}/data/candidates.csv`;
+      console.log("Fetching CSV from:", CANDIDATES_CSV_URL);
+      
+      Papa.parse(CANDIDATES_CSV_URL, {
         download: true,
         header: true,
+        transformHeader: header => header.trim().toLowerCase(),
         complete: function (results) {
-        candidatesData = results.data; // Store parsed data
-        initializeDropdowns(candidatesData);
-      }
-    });
+          console.log("Papa.parse complete callback triggered");
+          console.log("Results data length:", results.data?.length);
+          console.log("Sample raw row:", results.data?.[0]);
+          candidatesData = results.data
+            .map(row => ({
+              ...row,
+              sq_candidato: row.sq_candidato || row.sq_candidado,
+              candidate: row.candidate || row.candidate_name || row.nome || row.name,
+              party: row.party || row.partido || row.party_name,
+              position: row.position || row.cargo,
+              sum_votes: parseInt(row.sum_votes || row.total_votes || 0) || 0,
+              count_local: parseInt(row.count_local || row.locations || 0) || 0,
+              min_abs_votes: parseInt(row.min_abs_votes || 0) || 0,
+              max_abs_votes: parseInt(row.max_abs_votes || 0) || 0,
+              min_prop_votes: parseFloat(row.min_prop_votes || 0) || 0,
+              max_prop_votes: parseFloat(row.max_prop_votes || 0) || 0
+            }))
+            .filter(row => row.candidate); // Store parsed data
+          console.log("Processed candidatesData length:", candidatesData.length);
+          console.log("Sample processed row:", candidatesData?.[0]);
+          const uniquePositions = [...new Set(candidatesData.map(c => c.position))];
+          console.log("Unique positions in data:", uniquePositions);
+          initializeDropdowns(candidatesData);
+          attachButtonListener(); // Attach button listener after data is loaded
+        },
+        error: function (error) {
+          console.error("Papa.parse error:", error);
+        }
+      });
     });
 
     function initializeDropdowns(data) {
+      console.log("initializeDropdowns called with data length:", data.length);
+      console.log("Sample data positions:", data.slice(0, 10).map(d => d.position));
       const positionDropdown = document.getElementById('positionDropdown');
       const partyDropdown = document.getElementById('partyDropdown');
       const candidateDropdown = document.getElementById('candidateDropdown');
@@ -434,7 +454,8 @@
       const candidateSuggestions = document.getElementById('candidateSuggestions');
 
     // Extract unique parties for the dropdown
-      const uniqueParties = [...new Set(data.map(item => item.Party))];
+      const uniqueParties = [...new Set(data.map(item => item.party))].filter(p => p);
+      console.log("Unique parties found:", uniqueParties.length, uniqueParties.slice(0, 5));
 
     // Populate Party Dropdown
       uniqueParties.forEach(party => {
@@ -446,6 +467,7 @@
 
     // Function to filter and display candidates
       function updateCandidateAndPartyDropdown() {
+        console.log("updateCandidateAndPartyDropdown called");
         const positionDropdown = document.getElementById('positionDropdown');
         const partyDropdown = document.getElementById('partyDropdown');
         const candidateSearch = document.getElementById('candidateSearch');
@@ -454,13 +476,27 @@
         const selectedPosition = positionDropdown.value;
         const selectedParty = partyDropdown.value;
         const searchTerm = candidateSearch.value.toLowerCase();
+        
+        console.log("Filters:", { selectedPosition, selectedParty, searchTerm });
+        console.log("candidatesData available:", window.candidatesData?.length || candidatesData?.length);
+        console.log("Sample positions from candidatesData:", candidatesData?.slice(0, 20).map(c => ({ candidate: c.candidate, position: c.position })));
 
-    // Filter candidates based on position, party, and search term
+    // Filter candidates based on party and search term
         const filteredCandidates = candidatesData.filter(item =>
-          (!selectedPosition || item.Position === selectedPosition) &&
-          (!selectedParty || item.Party === selectedParty) &&
-          (!searchTerm || item.Candidate.toLowerCase().includes(searchTerm))
+          (item.position === selectedPosition) &&
+          (!selectedParty || selectedParty === 'All Parties' || item.party === selectedParty) &&
+          (!searchTerm || (item.candidate || '').toLowerCase().includes(searchTerm)) &&
+          item.candidate !== 'NULO' && !(item.candidate || '').startsWith('Legenda:') // Hide NULO and Legenda entries
           );
+        
+        console.log("Filtered candidates count:", filteredCandidates.length);
+
+        // Sort candidates by total votes (descending)
+        filteredCandidates.sort((a, b) => {
+          const aVotes = Number(a.sum_votes) || 0;
+          const bVotes = Number(b.sum_votes) || 0;
+          return bVotes - aVotes;
+        });
 
     // Clear previous candidates list
         candidateList.innerHTML = '';
@@ -482,19 +518,20 @@
 
         // Create a bar proportional to the number of votes
           const voteBar = document.createElement('div');
+          const totalVotes = Number(candidate.sum_votes) || 0;
           voteBar.style = `
           position: absolute;
           top: 0;
           left: 0;
           height: 100%;
-          width: ${candidate.sum_votes/1310}%; 
+          width: ${totalVotes / 1310}%; 
           background: rgb(232 232 232);
           z-index: 0;
           `;
 
 // Create a label for the candidate name
           const candidateLabel = document.createElement('span');
-          candidateLabel.textContent = candidate.Candidate;
+          candidateLabel.textContent = candidate.candidate;
 candidateLabel.style = 'position: relative; z-index: 1;'; // Ensure the text is above the bar
 
 // Append elements
@@ -504,8 +541,8 @@ candidateItem.appendChild(candidateLabel);
 
         // Add click event to select the candidate
 candidateItem.addEventListener('click', () => {
-    selectedCandidate = candidate.Candidate; // Store the selected candidate
-    updateCandidateInfo(selectedCandidate);  // Update candidate info as before
+    window.selectedCandidate = candidate.candidate; // Store the selected candidate
+    updateCandidateInfo(window.selectedCandidate);  // Update candidate info as before
 
     // Remove the 'selected' class from all items
     document.querySelectorAll('.candidate-item').forEach(item => item.classList.remove('selected'));
@@ -524,17 +561,28 @@ candidateList.appendChild(candidateItem);
       if (!selectedCandidate) return; // Exit if no candidate selected
 
       // Find the selected candidate in the data
-      const candidate = data.find(item => item.Candidate === selectedCandidate);
+      const candidate = data.find(item => item.candidate === selectedCandidate);
 
       if (candidate) {
-        // Extract details from Candidate field
-        const name = candidate.Candidate.split(" - ")[0];
-        const numberAndParty = candidate.Candidate.split(" - ")[1];
-        const number = numberAndParty.split(" (")[0];
-        const party = numberAndParty.split(" (")[1].replace(")", "");
+        // Extract details from candidate field
+        const candidateText = candidate.candidate || '';
+        let name, number, party;
+        
+        // Check if candidate text contains the expected format
+        if (candidateText.includes(' - ') && candidateText.includes(' (')) {
+          name = candidateText.split(" - ")[0];
+          const numberAndParty = candidateText.split(" - ")[1];
+          number = numberAndParty.split(" (")[0];
+          party = numberAndParty.split(" (")[1].replace(")", "");
+        } else {
+          // Handle special cases like "NULO" or "Legenda"
+          name = candidateText;
+          number = candidate.number || '';
+          party = candidate.party || '';
+        }
 
         // Update the image
-        const imageUrl = `images/candidates_pic/FRJ${candidate.sq_candidato}_div.jpg`;
+        const imageUrl = `${DATA_REPO}/data/candidates_pic/FRJ${candidate.sq_candidato}_div.jpg`;
         document.querySelector("#infoContainer img").src = imageUrl;
 
         // Update the text lines
@@ -546,13 +594,17 @@ candidateList.appendChild(candidateItem);
 
         const gridContainer = infoContainer.children[1];
         const gridBoxes = gridContainer.querySelectorAll("div");
-        gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${Number(candidate.min_abs_votes).toLocaleString('en-US')}`;
-        gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${Number(candidate.max_abs_votes).toLocaleString('en-US')}`;
+        const minVotes = Number(candidate.min_abs_votes) || 0;
+        const maxVotes = Number(candidate.max_abs_votes) || 0;
+        const totalVotes = Number(candidate.sum_votes) || 0;
+        const totalLocations = Number(candidate.count_local) || 0;
+        gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${minVotes.toLocaleString('en-US')}`;
+        gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${maxVotes.toLocaleString('en-US')}`;
 
         gridBoxes[2].innerHTML = `<b>MINIMUM SHARE OF VOTES:</b></br>${candidate.min_prop_votes}%`; // Box 1
         gridBoxes[3].innerHTML = `<b>MAXIMUM SHARE OF VOTES:</b></br>${candidate.max_prop_votes}%`; // Box 2
-        gridBoxes[4].innerHTML = `<b>TOTAL VOTES:</b> ${Number(candidate.sum_votes).toLocaleString('en-US')}`; // Box 1
-        gridBoxes[5].innerHTML = `<b>TOTAL VOTING LOCATIONS:</b> ${Number(candidate.max_abs_votes).toLocaleString('en-US')}`; // Box 2
+        gridBoxes[4].innerHTML = `<b>TOTAL VOTES:</b> ${totalVotes.toLocaleString('en-US')}`; // Box 1
+        gridBoxes[5].innerHTML = `<b>TOTAL VOTING LOCATIONS:</b> ${totalLocations.toLocaleString('en-US')}`; // Box 2
       }
     }
 
@@ -575,130 +627,163 @@ candidateList.appendChild(candidateItem);
       }, 150);
     });
 
-    // Add event listener to candidate dropdown for info updates
-    candidateDropdown.addEventListener('change', function () {
-      updateCandidateInfo(this.value);
+  }
+
+    // Global variables for Leaflet map
+    let map;
+    let markersLayer;
+    let votingLocations = {};
+
+    // Initialize Leaflet map on page load
+    window.addEventListener('load', async function() {
+      // Initialize map
+      map = L.map('embedContainer1').setView([-22.9068, -43.1729], 11);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 19
+      }).addTo(map);
+      
+      markersLayer = L.featureGroup().addTo(map);
+      
+      // Load voting locations
+      try {
+        const response = await fetch(`${DATA_REPO}/data/processed/voting_locations_geocoded_cleaned.json`);
+        votingLocations = await response.json();
+        console.log(`Loaded ${Object.keys(votingLocations).length} voting locations`);
+      } catch (error) {
+        console.error('Failed to load voting locations:', error);
+        alert('Unable to load map data. Please try again later.');
+      }
     });
 
-  }
-
-    // The global variable to store the embed token
-  let embedToken
-
-  async function getEmbedToken() {
-    try {
-      const response = await fetch('https://kwmkwg6rcimi7xjrvoh5sdnx2e0kpkuh.lambda-url.us-east-2.on.aws/', {
-        method: 'POST'
-      });
-      const data = await response.json();
-      embedToken = data.embedToken;
-      console.log('Embed token retrieved successfully');
-                        // After fetching the token, initialize the Power BI report embedding
-      initializePowerBIEmbedding();
-    } catch (error) {
-      console.error('Failed to retrieve embed token:', error);
+    // Function to load and display candidate votes on map
+    async function loadCandidateVotes(candidateId, candidate) {
+      const applyButton = document.getElementById('applyButton');
+      const originalText = applyButton.textContent;
+      
+      // Clear existing markers
+      markersLayer.clearLayers();
+      
+      // Show loading state
+      applyButton.textContent = 'Loading map data...';
+      applyButton.disabled = true;
+      
+      try {
+        // Fetch candidate vote data
+        const response = await fetch(`${DATA_REPO}/data/processed/votes_${candidateId}.json`);
+        // Accept both 200 (success) and 304 (not modified - using cached data)
+        if (!response.ok && response.status !== 304) throw new Error('Failed to load candidate data');
+        
+        const votes = await response.json();
+        
+        // Get min/max for scaling
+        const minVotes = parseFloat(candidate.min_abs_votes);
+        const maxVotes = parseFloat(candidate.max_abs_votes);
+        const minProp = parseFloat(candidate.min_prop_votes);
+        const maxProp = parseFloat(candidate.max_prop_votes);
+        
+        // Add markers for each voting location
+        votes.forEach(vote => {
+          const loc = votingLocations[vote.location_id];
+          if (!loc || !loc.lat || !loc.lon) return; // Skip if location not found or has no coordinates
+          
+          const marker = L.circleMarker([loc.lat, loc.lon], {
+            radius: scaleRadius(vote.votes, minVotes, maxVotes),
+            fillColor: scaleColor(vote.proportion, minProp, maxProp),
+            color: '#666',
+            weight: 1,
+            opacity: 0.8,
+            fillOpacity: 0.6
+          }).bindPopup(`
+            <strong>${loc.name}</strong><br>
+            ${loc.address}<br>
+            <br>
+            <strong>Votes:</strong> ${vote.votes.toLocaleString()}<br>
+            <strong>Share:</strong> ${vote.proportion.toFixed(2)}%<br>
+            <strong>Total at location:</strong> ${vote.total_votes_location.toLocaleString()}
+          `);
+          
+          markersLayer.addLayer(marker);
+        });
+        
+        // Zoom to fit all markers
+        if (markersLayer.getLayers().length > 0) {
+          map.fitBounds(markersLayer.getBounds(), { padding: [50, 50] });
+        }
+        
+        // Scroll to map
+        document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
+        
+      } catch (error) {
+        console.error('Error loading candidate data:', error);
+        console.error('Error details:', error.message, error.stack);
+        alert(`Failed to load candidate data: ${error.message}. Please try again.`);
+      } finally {
+        applyButton.textContent = originalText;
+        applyButton.disabled = false;
+      }
     }
-  }
-
-    // Function to initialize Power BI embedding
-  function initializePowerBIEmbedding() {
-        // Data required for embedding Power BI report
-    var embedReportId = "2ed7dc83-8366-49ef-82d8-3f8032fe840b";
-    var embedUrl = "https://app.powerbi.com/reportEmbed?reportId=2ed7dc83-8366-49ef-82d8-3f8032fe840b&groupId=0468270a-6074-418a-8882-7d3b1b2cf7a9&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLUJSQVpJTC1TT1VUSC1CLVBSSU1BUlktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d";
-        var accessToken = embedToken; // Use the embed token fetched earlier
-
-        // Get models object to access enums for embed configuration
-        var models = window['powerbi-client'].models;
-
-        // Configuration for the first visual (Map)
-        var pageName1 = "07a1194e5933246fa0e9"; // Replace with your page name if different
-        var visualName1 = "0dca03641e40aa8e9067"; // Replace with your visual name (Map)
-        
-        var config1 = {
-          type: 'visual',
-          id: embedReportId,
-          pageName: pageName1,
-          visualName: visualName1,
-          embedUrl: embedUrl,
-          accessToken: accessToken,
-          tokenType: models.TokenType.Embed,
-        };
-        
-        // Get a reference to the first embedded report HTML element
-        var reportContainer1 = document.getElementById('embedContainer1');
-        
-        // Embed the first visual (Map) and display it within the div container.
-        var visual1 = powerbi.embed(reportContainer1, config1);
-
-        // Apply Position Filter Button Click Event
-        document.getElementById('applyButton').addEventListener('click', async function () {
-          const selectedParty = partyDropdown.value;
-          const selectedPosition = positionDropdown.value;
-
-          let filters = [];
-
-            // Map position to Power BI value
-          let powerBiPosition = "";
-          if (selectedPosition === "Mayor") {
-            powerBiPosition = "Prefeito";
-          } else if (selectedPosition === "Councilman/Councilwoman") {
-            powerBiPosition = "Vereador";
+    
+    // Scaling functions
+    function scaleRadius(votes, min, max) {
+      const minRadius = 5;
+      const maxRadius = 30;
+      if (max === min) return minRadius;
+      return minRadius + ((votes - min) / (max - min)) * (maxRadius - minRadius);
+    }
+    
+    function scaleColor(proportion, minProp, maxProp) {
+      // Three-point gradient: grey (low) → blue (middle) → red (high)
+      const lowColor = [153, 153, 153];  // #999999 - Grey for minimum
+      const midColor = [160, 209, 255];  // #A0D1FF - Blue for average
+      const highColor = [107, 35, 40];   // #6B2328 - Red for maximum
+      
+      if (maxProp === minProp) return `rgb(${midColor.join(',')})`;
+      
+      // Calculate the midpoint (average)
+      const midProp = (minProp + maxProp) / 2;
+      
+      let normalized, r, g, b;
+      
+      if (proportion <= midProp) {
+        // Interpolate between low and mid colors
+        normalized = (proportion - minProp) / (midProp - minProp);
+        r = Math.round(lowColor[0] + normalized * (midColor[0] - lowColor[0]));
+        g = Math.round(lowColor[1] + normalized * (midColor[1] - lowColor[1]));
+        b = Math.round(lowColor[2] + normalized * (midColor[2] - lowColor[2]));
+      } else {
+        // Interpolate between mid and high colors
+        normalized = (proportion - midProp) / (maxProp - midProp);
+        r = Math.round(midColor[0] + normalized * (highColor[0] - midColor[0]));
+        g = Math.round(midColor[1] + normalized * (highColor[1] - midColor[1]));
+        b = Math.round(midColor[2] + normalized * (highColor[2] - midColor[2]));
+      }
+      
+      return `rgb(${r},${g},${b})`;
+    }
+    
+    // Add event listener to "See candidate on the map" button
+    function attachButtonListener() {
+      const applyButton = document.getElementById('applyButton');
+      if (applyButton) {
+        applyButton.addEventListener('click', async () => {
+          if (!window.selectedCandidate) {
+            alert('Please select a candidate first');
+            return;
           }
-
-          if (powerBiPosition) {
-            filters.push({
-              $schema: "http://powerbi.com/product/schema#basic",
-              target: {
-                table: "final_output",
-                column: "DS_CARGO"
-              },
-              operator: "In",
-              values: [powerBiPosition],
-              filterType: models.FilterType.BasicFilter
-            });
+          
+          // Find candidate data
+          const candidate = candidatesData.find(c => c.candidate === window.selectedCandidate);
+          if (!candidate) {
+            alert('Candidate data not found');
+            return;
           }
-
-          if (selectedCandidate) {
-            filters.push({
-              $schema: "http://powerbi.com/product/schema#basic",
-              target: {
-                table: "final_output",
-                column: "VOTAVEL"
-              },
-              operator: "In",
-              values: [selectedCandidate],
-              filterType: models.FilterType.BasicFilter
-            });
-          }
-
-          if (selectedParty && selectedParty !== "All Parties") {
-            filters.push({
-              $schema: "http://powerbi.com/product/schema#basic",
-              target: {
-                table: "final_output",
-                column: "PARTIDO"
-              },
-              operator: "In",
-              values: [selectedParty],
-              filterType: models.FilterType.BasicFilter
-            });
-          }
-          document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
-          try {
-            await visual1.setFilters(filters);
-            console.log("Filters applied:", selectedPosition, selectedCandidate, selectedParty);
-          } catch (error) {
-            console.error('Error applying filters:', error);
-          }
+          
+          await loadCandidateVotes(candidate.sq_candidato, candidate);
         });
       }
+    }
 
-    // Fetch the embed token on page load
-      window.onload = function() {
-        getEmbedToken();
-
-        setInterval(getEmbedToken, 40 * 60 * 1000); // 40 minutes
-      };
     </script>
   </body>
   </html>
