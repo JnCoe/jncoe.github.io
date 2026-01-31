@@ -30,14 +30,23 @@
  <title>Electoral Map</title>
  <meta charset="utf-8"/>
  <meta content="width=device-width, initial-scale=1" name="viewport"/>
- <link href="assets/css/main.css" rel="stylesheet"/>
- <link href="assets/css/timeline.css" rel="stylesheet"/>
- <link href="assets/css/cards.css" rel="stylesheet"/>
  <link href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🎲&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
- <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+ 
+ <!-- Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+ 
+ <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+ <!-- Modern Stylesheets -->
+ <link rel="stylesheet" href="css/variables.css">
+ <link rel="stylesheet" href="css/base.css">
+ <link rel="stylesheet" href="css/components.css">
+ <link rel="stylesheet" href="css/layout.css">
+ 
  <script src="assets/js/jquery.min.js"></script>
- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
- <link href="css/app.css" rel="stylesheet">
  <script src="scripts/jquery.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -46,141 +55,6 @@
   #embedContainer1 {
     width: 100%;
     height: 70vh;
-  }
-
-  select,
-  input[type="text"] {
-    width: 80%;
-    max-width: 300px;
-    padding: 5px;
-    margin: 10px;
-  }
-
-  button {
-    padding: 5px 10px;
-    margin-top: 10px;
-  }
-
-  .suggestions {
-    position: absolute;
-    border: 1px solid #ccc;
-    background: #fff;
-    max-height: 150px;
-    overflow: hidden;
-    width: 200px;
-    margin-left: 10px;
-    display: none; /* Hidden by default */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    z-index: 100;
-  }
-
-  .suggestions div {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .suggestions div:hover {
-    background: #f0f0f0;
-  }
-
-  .suggestions::-webkit-scrollbar {
-    display: none; /* Hide scrollbar */
-  }
-
-  #filters {
-    padding: 20px;
-  }
-
-  #filtersContainer {
-    margin-right: 20px;
-    padding-right: 20px;
-    border-right: 2px solid #ccc;
-  }
-
-  #infoContainer {
-    padding-left: 10px;
-  }
-
-  #infoContainer img {
-    width: 100px;
-    height: 120px;
-    object-fit: cover;
-    object-position: center top;
-    margin-right: 15px;
-    border-radius: 30%;
-  }
-
-  #infoContainer .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  #infoContainer .grid div {
-    background: white;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-
-  #candidateList {
-    padding: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-    max-width: 300px;
-    background: white;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    scrollbar-width: thin; /* Firefox scrollbar styling */
-    scrollbar-color: #cccccc #ffffff; /* Firefox - thumb and track */
-  }
-
-  /* Fancy scroll styling for Webkit browsers (e.g., Chrome, Safari) */
-  #candidateList::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  #candidateList::-webkit-scrollbar-track {
-    background: #f9f9f9;
-    border-radius: 10px;
-  }
-
-  #candidateList::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-  }
-
-  #candidateList::-webkit-scrollbar-thumb:hover {
-    background: #b3b3b3;
-  }
-
-  .candidate-item {
-    padding: 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    position: relative;
-    background: white;
-    border-radius: 8px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-
-  .candidate-item.selected::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 5px;  /* Width of the accent bar */
-    background: #5393ce;  /* Accent color */
-    border-radius: 8px 0 0 8px; /* Match the box border radius on the left side */
-    z-index: 5;
-  }
-
-  .candidate-item:hover {
-    background: #f0f0f0;
   }
 
   @media (max-width: 760px) {
@@ -204,200 +78,428 @@
       margin-bottom: 20px;
     }
   }
+  
+  /* Electoral Map specific styles */
+  .electoral-content {
+    padding: var(--space-xl);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  .electoral-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .electoral-header h1 {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--space-md);
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .electoral-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .electoral-section {
+    margin-bottom: var(--space-xl);
+    background: var(--bg-surface);
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .electoral-section h2 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-3xl);
+  }
+
+  .electoral-section p {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  #filtersContainer {
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 2px solid var(--border-color);
+  }
+
+  select,
+  input[type="text"] {
+    width: 100%;
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-base);
+    background: var(--bg-surface-alt);
+    color: var(--text-primary);
+  }
+
+  select:focus,
+  input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(83, 147, 206, 0.1);
+  }
+
+  #applyButton {
+    width: 100%;
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    color: var(--text-on-primary);
+    background: var(--gradient-main);
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+  }
+
+  #applyButton:hover:not(:disabled) {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  #applyButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  #candidateList {
+    padding: var(--space-md);
+    max-height: 400px;
+    overflow-y: auto;
+    background: var(--bg-surface-alt);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-md);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--bg-body);
+  }
+
+  #candidateList::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #candidateList::-webkit-scrollbar-track {
+    background: var(--bg-body);
+    border-radius: var(--radius-md);
+  }
+
+  #candidateList::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: var(--radius-md);
+  }
+
+  #candidateList::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+  }
+
+  .candidate-item {
+    padding: var(--space-md);
+    margin: var(--space-sm) 0;
+    cursor: pointer;
+    position: relative;
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+    border-left: 4px solid transparent;
+  }
+
+  .candidate-item:hover {
+    background: var(--bg-surface-alt);
+    box-shadow: var(--shadow-md);
+    border-left-color: var(--color-primary);
+  }
+
+  .candidate-item.selected {
+    background: var(--bg-surface-alt);
+    border-left-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .candidate-item.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--color-primary);
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    z-index: 5;
+  }
+
+  .suggestions {
+    position: absolute;
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    margin-top: var(--space-sm);
+    display: none;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
+    z-index: 100;
+  }
+
+  .suggestions div {
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    color: var(--text-primary);
+  }
+
+  .suggestions div:hover {
+    background: var(--bg-body);
+  }
+
+  #embedContainer1 {
+    width: 100%;
+    height: 70vh;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  @media (max-width: 760px) {
+    .electoral-content {
+      padding: var(--space-lg);
+    }
+
+    #filtersContainer,
+    #infoContainer {
+      padding: var(--space-lg) 0;
+      border-right: none;
+      margin-right: 0;
+    }
+
+    #infoContainer {
+      order: 2;
+    }
+
+    #filtersContainer {
+      order: 1;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: var(--space-lg);
+    }
+
+    select,
+    input[type="text"] {
+      max-width: 100%;
+    }
+
+    .electoral-header h1 {
+      font-size: var(--font-size-3xl);
 </style>
-</link>
 </head>
-<body class="is-preload">
-  <!-- Header -->
-  <section id="header" style="font-family: 'cbuMono'">
-   <header>
-    <h2 id="logo" style="visibility: hidden;">MENU</h2>
-  </header>
-  <nav id="nav">
-    <ul>
-     <li class="menu"><a class="active" href="#context">CONTEXT</a></li>
-     <li class="menu"><a href="#howto">HOW TO USE</a></li>
-     <li class="menu"><a href="#filterssection">FILTERS</a></li>
-     <li class="menu"><a href="#map">MAP</a></li>
-   </ul>
- </nav>
- <footer>
-  <ul class="icons">
-   <li class="social"><a class="icon brands fa-linkedin" href="https://www.linkedin.com/in/jonasbarros/"><span class="label">Linkedin</span></a></li>
-   <li class="social"><a class="icon brands fa-github" href="https://github.com/JnCoe"><span class="label">Github</span></a></li>
-   <!--<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>-->
- </ul>
- <p style="text-align: center; padding-top: 15px; font-size: x-small;"><a href="https://jncoe.github.io" >JONAS COELHO</a></p>
-</footer>
-</section>
-<!-- Wrapper -->
-<div id="wrapper">
- <!-- Main -->
- <div id="main">
-  <section id="one">
-   <div class="image main" data-position="center"></div>
- </section>
- <section id="topo">
-   <div class="container">
-    <header class="major">
-     <h3 style="margin-bottom: 0;font-family: 'cbuMono'; font-size:3em;">ELECTORAL MAP</h3>
-     <div class="typewriter">
-      <p>Rio de Janeiro elections 2024</p>
-    </div>
-  </header>
-</div>
-</section>
-<!-- One -->
-<section id="context">
- <div class="container">
-  <h3>CONTEXT</h3>
-  <p>
-   In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral districts. This approach presents a challenge: it is impossible to determine where each candidate has the strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to analyze the data, even though creating such maps is straightforward with tools like Python.
-   This project aims to fill that gap by using vote data to plot a bubble map, revealing patterns of candidate support across the city. Beyond offering a novel perspective on the election, it demonstrates how data visualization can make complex electoral outcomes more accessible and meaningful.
- </p>
-</div>
-</section>
-<!-- Two -->
-<section id="howto">
- <div class="container">
-  <h3>HOW TO USE</h3>
-
-  <p><strong>Using the Election Map Tool</strong></p>
-
-  <p>
-    Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate, the candidate's voting information will be loaded on the right. To see the voting patterns of the selected candidate across Rio de Janeiro City, click the "See candidate on the map" button.
-  </p>
-
-  <p>
-    On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received in that location, while the color shows the proportion of votes for the candidate in that location. Size and color scale values are shown on the candidate information panel.
-  </p>
-
-  <p>
-    To explore further details, hover over a bubble to see specific information, such as the voting location's address, total votes, and the candidate's vote share at that location.
-  </p>
-
-
-
-</div>
-</section>
-<section id="filterssection" style="width: 100%;">
-  <div class="container" style="display: flex; flex-wrap: wrap; align-items: flex-start;">
-    <!-- Left side (Filters) -->
-    <div id="filtersContainer">
-      <h3>FILTERS</h3>
-      <h4>1. SELECT A POSITION:</h4>
-      <select id="positionDropdown">
-        <option selected="" value="Vereador">Councilman/Councilwoman</option>
-        <option value="Prefeito">Mayor</option>
-      </select>
-      <h4 style="margin: 0">2. SELECT A PARTY:</h4><h7>(optional)</h7>
-      <select id="partyDropdown">
-        <option value="">All Parties</option>
-      </select>
-      <h4>3. SELECT A CANDIDATE:</h4>
-      <input id="candidateSearch" placeholder="Search candidate..." type="text" />
-      <div class="suggestions" id="candidateSuggestions"></div>
-      <div id="candidateList" style="border: 1px solid #ccc; padding: 10px; max-height: 300px; overflow-y: scroll; overflow-x: clip;"></div>
-  </div>
-
-  <!-- Right side (Candidate Information) -->
-  <div id="infoContainer" style="flex: 1; padding-left: 10px;">
-    <!-- Main Box -->
-    <div style="display: flex; align-items: center; background: white; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-      <img src="./placeholder.jpg" alt="Sample" style="width: 100px; height: 110px; object-fit: cover; margin-right: 15px; border-radius: 35%;">
-      <div>
-        <p style="margin: 0; font-weight: bold; background: linear-gradient(45deg, #6a11cb, #2575fc); -webkit-background-clip: text; -webkit-text-fill-color: #0000005c;">SELECT A CANDIDATE ON THE SIDE</p>
-        <p style="margin: 0;"></p>
-        <p style="margin: 0;"></p>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h1 class="sidebar-logo">Electoral Map</h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#context" class="nav-link active">Context</a></li>
+          <li><a href="#howto" class="nav-link">How to Use</a></li>
+          <li><a href="#filterssection" class="nav-link">Filters</a></li>
+          <li><a href="#map" class="nav-link">Map</a></li>
+        </ul>
+        <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 1rem 0;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li><a href="/" class="nav-link" style="background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 8px;">🏠 Home</a></li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/jonasbarros/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/JnCoe" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
       </div>
     </div>
-
-    <!-- 2x2 Grid -->
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; gap: 15px;">
-      <div style="background: white; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-        <p style="text-align: center; margin-bottom: 5px;"></p><span style="
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border: 1px solid rgba(145, 145, 145, 1); /* Fully opaque border */
-        background-color: rgba(0, 0, 0, 0.2); /* 30% transparent inside */
-        border-radius: 50%; /* Makes it a circle */
-        vertical-align: middle; /* Aligns well with text or inline content */
-        "></span>
-      </div>
-      <div style="background: white; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-       <p style="text-align: center; margin-bottom: 5px;"></p><span style="
-       display: inline-block;
-       width: 30px;
-       height: 30px;
-       border: 1px solid rgba(145, 145, 145, 1); /* Fully opaque border */
-       background-color: rgba(0, 0, 0, 0.2); /* 30% transparent inside */
-       border-radius: 50%; /* Makes it a circle */
-       vertical-align: middle; /* Aligns well with text or inline content */
-       "></span>
-     </div>
-     <div style="background: linear-gradient(to right, #99999940, #a0d1ff40); padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-
-     </div>
-     <div style="background: linear-gradient(to left, #6b232840, #a0d1ff40); padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-
-     </div>
-     <div style="grid-column: span 2; background: #f9f9f9; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-
-     </div>
-     <div style="grid-column: span 2; background: #f9f9f9; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-
-     </div>
-   </div>
-         <button id="applyButton" style="
-      width: 85%; 
-      margin: 20px auto; 
-      padding: 15px 20px; 
-      text-align: center; 
-      font-weight: bold; 
-      font-size: 16px; 
-      color: #ffffff; 
-      background: linear-gradient(to right, #4b79a1, #283e51); 
-      border: none; 
-      border-radius: 25px; 
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
-      cursor: pointer; 
-      transition: all 0.3s ease;
-      display: block; 
-      ">
-      See candidate on the map
+  </aside>
+  
+  <!-- Mobile Header -->
+  <header class="mobile-header" id="mobileHeader">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
- </div>
-</div>
-</section>
+    <span class="mobile-title">Electoral Map</span>
+    <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="electoral-content">
+        <div class="electoral-header">
+          <h1>Electoral Map</h1>
+          <p class="electoral-subtitle">Rio de Janeiro elections 2024</p>
+        </div>
+      </div>
+    </section>
 
+    <!-- Context Section -->
+    <section id="context">
+      <div class="electoral-content">
+        <div class="electoral-section">
+          <h2>Context</h2>
+          <p>
+            In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral districts. This approach presents a challenge: it is impossible to determine where each candidate has the strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to analyze the data, even though creating such maps is straightforward with tools like Python.
+          </p>
+          <p>
+            This project aims to fill that gap by using vote data to plot a bubble map, revealing patterns of candidate support across the city. Beyond offering a novel perspective on the election, it demonstrates how data visualization can make complex electoral outcomes more accessible and meaningful.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <!-- How to Use Section -->
+    <section id="howto">
+      <div class="electoral-content">
+        <div class="electoral-section">
+          <h2>How to Use</h2>
+          <p><strong>Using the Election Map Tool</strong></p>
+          <p>
+            Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate, the candidate's voting information will be loaded on the right. To see the voting patterns of the selected candidate across Rio de Janeiro City, click the "See candidate on the map" button.
+          </p>
+          <p>
+            On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received in that location, while the color shows the proportion of votes for the candidate in that location. Size and color scale values are shown on the candidate information panel.
+          </p>
+          <p>
+            To explore further details, hover over a bubble to see specific information, such as the voting location's address, total votes, and the candidate's vote share at that location.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Filters Section -->
+    <section id="filterssection">
+      <div class="electoral-content">
+        <div class="electoral-section">
+          <h2>Filters</h2>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-2xl); align-items: flex-start;">
+            <!-- Left side (Filters) -->
+            <div id="filtersContainer" style="flex: 0 1 300px;">
+              
+              <div style="margin-bottom: var(--space-lg);">
+                <label style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Position:</label>
+                <select id="positionDropdown">
+                  <option selected="" value="Vereador">Councilman/Councilwoman</option>
+                  <option value="Prefeito">Mayor</option>
+                </select>
+              </div>
 
+              <div style="margin-bottom: var(--space-lg);">
+                <label style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Party (optional):</label>
+                <select id="partyDropdown">
+                  <option value="">All Parties</option>
+                </select>
+              </div>
 
-<!-- Two -->
-<section id="map">
- <div class="container"><h3>MAP</h3>
-  <div id="embedContainer1"></div>
-</div>
-</section>
-<!-- Footer -->
-<section id="footer">
- <div class="container">
-  <ul class="copyright">
-   <li>© Some rights may be reserved.</li>
- </ul>
-</div>
-</section>
-</div>
-<!-- Scripts -->
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/cards.js"></script>
-</div>
+              <div style="margin-bottom: var(--space-lg);">
+                <label style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Candidate:</label>
+                <div style="position: relative;">
+                  <input id="candidateSearch" placeholder="Search candidate..." type="text" />
+                  <div class="suggestions" id="candidateSuggestions"></div>
+                </div>
+              </div>
+
+              <div id="candidateList" style="border: 1px solid var(--border-color); padding: var(--space-md); max-height: 400px; overflow-y: scroll; overflow-x: clip; border-radius: var(--radius-md);"></div>
+            </div>
+
+            <!-- Right side (Candidate Information) -->
+            <div id="infoContainer" style="flex: 1; min-width: 300px;">
+              <!-- Main Box -->
+              <div style="display: flex; align-items: center; background: var(--bg-surface-alt); padding: var(--space-md); margin-bottom: var(--space-md); box-shadow: var(--shadow-card); border-radius: var(--radius-lg);">
+                <img src="./placeholder.jpg" alt="Sample" style="width: 90px; height: 100px; object-fit: cover; object-position: center 20%; margin-right: var(--space-lg); border-radius: 12px;">
+                <div>
+                  <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-primary); font-size: var(--font-size-lg);">SELECT A CANDIDATE</p>
+                  <p style="margin: var(--space-sm) 0 0 0; color: var(--text-secondary);"></p>
+                  <p style="margin: var(--space-sm) 0 0 0; color: var(--text-secondary);"></p>
+                </div>
+              </div>
+
+              <!-- Info Grid -->
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <div style="background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);">
+                  <p style="text-align: center; margin-bottom: var(--space-sm); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">Min Votes</p>
+                  <span style="display: inline-block; width: 10px; height: 10px; border: 2px solid var(--color-primary); background-color: rgba(83, 147, 206, 0.2); border-radius: 50%; vertical-align: middle;"></span>
+                </div>
+                <div style="background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);">
+                  <p style="text-align: center; margin-bottom: var(--space-sm); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">Max Votes</p>
+                  <span style="display: inline-block; width: 30px; height: 30px; border: 2px solid var(--color-primary); background-color: rgba(83, 147, 206, 0.2); border-radius: 50%; vertical-align: middle;"></span>
+                </div>
+                <div style="background: linear-gradient(to right, #99999940, #a0d1ff40); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                  Min % Share
+                </div>
+                <div style="background: linear-gradient(to left, #6b232840, #a0d1ff40); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                  Max % Share
+                </div>
+                <div style="grid-column: span 2; background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+
+                </div>
+                <div style="grid-column: span 2; background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+
+                </div>
+              </div>
+
+              <button id="applyButton">See candidate on the map</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Map Section -->
+    <section id="map">
+      <div class="electoral-content">
+        <div class="electoral-section">
+          <h2>Map</h2>
+          <div id="embedContainer1"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Leaflet and Scripts -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/cards.js"></script>
 <script>
     let candidatesData = []; // Array to store CSV data
     window.selectedCandidate = null; // To store the selected candidate (using window for global scope)
@@ -489,7 +591,7 @@
           item.candidate !== 'NULO' && !(item.candidate || '').startsWith('Legenda:') // Hide NULO and Legenda entries
           );
         
-        console.log("Filtered candidates count:", filteredCandidates.length);
+        console.log("Fvar(--bg-surface)ed candidates count:", filteredCandidates.length);
 
         // Sort candidates by total votes (descending)
         filteredCandidates.sort((a, b) => {
@@ -525,14 +627,15 @@
           left: 0;
           height: 100%;
           width: ${totalVotes / 1310}%; 
-          background: rgb(232 232 232);
+          background: var(--color-primary);
+          opacity: 0.15;
           z-index: 0;
           `;
 
 // Create a label for the candidate name
           const candidateLabel = document.createElement('span');
           candidateLabel.textContent = candidate.candidate;
-candidateLabel.style = 'position: relative; z-index: 1;'; // Ensure the text is above the bar
+candidateLabel.style = 'position: relative; z-index: 1; color: #2c3e50; font-weight: 500;'; // Ensure the text is above the bar
 
 // Append elements
 candidateItem.appendChild(voteBar);
@@ -785,5 +888,65 @@ candidateList.appendChild(candidateItem);
     }
 
     </script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+      /**
+       * Simple Theme Manager for Electoral Map
+       * Handles dark mode toggle and persistence
+       */
+      class ThemeManager {
+          constructor() {
+              this.currentTheme = this.getStoredTheme();
+              this.init();
+          }
+
+          getStoredTheme() {
+              const stored = localStorage.getItem('theme');
+              if (stored) {
+                  return stored;
+              }
+              return 'light';
+          }
+
+          setTheme(theme) {
+              document.documentElement.setAttribute('data-theme', theme);
+              localStorage.setItem('theme', theme);
+              this.currentTheme = theme;
+              this.updateToggleIcons();
+          }
+
+          toggleTheme() {
+              const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+              this.setTheme(newTheme);
+          }
+
+          updateToggleIcons() {
+              const icon = this.currentTheme === 'light' ? 'fa-moon' : 'fa-sun';
+              const toggleButtons = document.querySelectorAll('.theme-toggle i, .theme-toggle-mobile i');
+              toggleButtons.forEach(button => {
+                  button.className = `fas ${icon}`;
+              });
+          }
+
+          init() {
+              this.setTheme(this.currentTheme);
+              const toggleButtons = document.querySelectorAll('.theme-toggle, .theme-toggle-mobile');
+              toggleButtons.forEach(button => {
+                  button.addEventListener('click', () => this.toggleTheme());
+              });
+          }
+      }
+
+      // Initialize theme manager when DOM is ready
+      if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => {
+              new ThemeManager();
+          });
+      } else {
+          new ThemeManager();
+      }
+    </script>
   </body>
+</html>
   </html>
