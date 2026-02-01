@@ -53,7 +53,10 @@
     </script>
     <style>
         .grecaptcha-badge {
-            visibility: hidden;
+            display: none !important;
+        }
+        iframe[src*="recaptcha"] {
+            max-width: 100%;
         }
     </style>
 
