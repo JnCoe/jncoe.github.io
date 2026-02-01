@@ -11,12 +11,42 @@ export const projectsData = [
         image: 'images/pic07.jpg',
         tags: ['Deep Learning', 'PostgreSQL', 'Machine Learning', 'GIS'],
         technologies: [
-            'images/PostgreSQL-PostGIS.svg',
-            'images/Python-PyTorch.svg',
-            'images/Python-Tensorboard.svg',
-            'images/Python-Pandas-yellow.svg',
-            'images/Python-Scikit Learn-yellow.svg',
-            'images/Python-Pillow.svg'
+            {
+                label: 'PostGIS',
+                colorA: '#4F9FBF',
+                colorB: '#4a4a4a',
+                logoIcon: 'fas fa-globe'
+            },
+            {
+                label: 'PyTorch',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'Tensorboard',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'Pandas',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'Scikit Learn',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'Pillow',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            }
         ],
         fullDescription: `
             <p>Abandoned and deteriorating buildings can pose a serious threat to public safety, as well as negatively impacting the structural integrity of neighboring homes. This is especially true for the majority of housing units in Baltimore, Maryland, which are row homes. As part of the Data Science for Social Good Fellowship at Carnegie Mellon University, my team partnered with the Baltimore City Department of Housing and Community Development (DHCD) to develop a system that used machine learning to score each address based on the severity of roof damage.</p>
@@ -47,17 +77,163 @@ export const projectsData = [
         ]
     },
     {
+        id: 'electoral-map',
+        title: 'Interactive Electoral Map Dashboard',
+        description: 'A serverless dashboard using open source tools like Leaflet to enable browser-based interaction with pre-processed electoral data.',
+        image: 'images/electoral-map.jpg',
+        tags: ['Web Development', 'GIS', 'Data Visualization', 'Open Source'],
+        technologies: [
+            {
+                label: 'Polars',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'Javascript',
+                colorA: '#f7df1e',
+                colorB: '#333333',
+                logoIcon: 'fab fa-js',
+                iconColor: '#323330'
+            },
+            {
+                label: 'Leaflet',
+                colorA: '#88afdb',
+                colorB: '#076fe3',
+                logoIcon: 'fas fa-leaf',
+                iconColor: '#ffd423'
+            },
+            {
+                label: 'Nominatim API',
+                colorA: '#cfeab2',
+                colorB: '#9fd385',
+                logoIcon: 'fas fa-magnifying-glass',
+                iconColor: '#8698b1'
+            }
+        ],
+        fullDescription: `
+            <p>This interactive electoral map is a serverless dashboard built entirely with open source tools and publicly available electoral data. The project demonstrates how modern web technologies can be leveraged to create accessible and interactive data visualizations without requiring backend infrastructure.</p>
+
+            <p>Using Leaflet.js for mapping capabilities and OpenStreetMap's Nominatim for geocoding and address processing, the dashboard allows users to explore electoral data directly in their browser. All data processing is done beforehand, making the application fast and responsive while maintaining data integrity. The open source nature of the project ensures transparency and reproducibility in political data analysis.</p>
+        `,
+        links: [
+            { 
+                url: 'electoral_map.html', 
+                text: 'View Dashboard',
+                icon: 'fas fa-map'
+            },
+            { 
+                url: 'https://github.com/JnCoe/electoral-map-processing', 
+                text: 'GitHub Repository',
+                icon: 'fab fa-github'
+            }
+        ]
+    },
+    {
+        id: 'nutcracker',
+        title: 'Nutcracker - Free Calorie Tracker',
+        description: 'An open source Android app for tracking calories and exercises with a modern, easy-to-use interface. No ads, no account required.',
+        image: 'https://offline-labs.com/nutcracker-screenshot-1.png',
+        imagePosition: 'top',
+        tags: ['Android', 'Mobile Development', 'Open Source', 'Health & Fitness'],
+        technologies: [
+            {
+                label: 'Kotlin',
+                colorA: '#afccb7',
+                colorB: '#34a853',
+                logoIcon: 'fab fa-android',
+                iconColor: '#34a853'
+            },
+            {
+                label: 'Jetpack Compose',
+                colorA: '#afccb7',
+                colorB: '#34a853',
+                logoIcon: 'fab fa-android',
+                iconColor: '#34a853'
+            },
+            {
+                label: 'Room',
+                colorA: '#afccb7',
+                colorB: '#34a853',
+                logoIcon: 'fab fa-android',
+                iconColor: '#34a853'
+            },
+            {
+                label: 'Retrofit',
+                colorA: '#afccb7',
+                colorB: '#34a853',
+                logoIcon: 'fab fa-android',
+                iconColor: '#34a853'
+            },
+            {
+                label: 'Coil',
+                colorA: '#afccb7',
+                colorB: '#34a853',
+                logoIcon: 'fab fa-android',
+                iconColor: '#34a853'
+            }
+        ],
+        fullDescription: `
+            <p>Nutcracker is a fully open source Android application that I developed entirely as a personal side project to explore mobile development and expand my skills in new programming languages. Built from the ground up with user privacy and simplicity in mind, the app provides a modern interface for health tracking without any of the typical compromises found in commercial alternatives.</p>
+
+            <p>The application features no advertisements, requires no account creation, and respects user privacy by keeping all data local to the device. With an intuitive interface and comprehensive tracking capabilities, Nutcracker demonstrates that health and fitness tools can be both powerful and user-friendly without monetizing user data. The app is available on the Play Store and all source code is openly available on GitHub.</p>
+        `,
+        links: [
+            { 
+                url: 'https://offline-labs.com/wemade/nutcracker/', 
+                text: 'App Website',
+                icon: 'fas fa-globe'
+            },
+            { 
+                url: 'https://play.google.com/store/apps/details?id=com.offlinelabs.nutcracker', 
+                text: 'Play Store',
+                icon: 'fab fa-google-play'
+            },
+            { 
+                url: 'https://github.com/off-lineLabs/nutcracker', 
+                text: 'GitHub Repository',
+                icon: 'fab fa-github'
+            }
+        ]
+    },
+    {
         id: 'secret-budget',
         title: 'Misuse of public funding in education',
         description: 'By analyzing budgetary data from the Brazilian Federal Government and combining it with other databases, I identified and reported potential irregularities.',
         image: 'images/pic08.jpg',
         tags: ['Data visualization', 'ETL', 'Data analysis', 'Writing'],
         technologies: [
-            'images/R-Tidyverse-blue.svg',
-            'images/R-RMarkdown-blue.svg',
-            'images/R-GoogleVis-blue.svg',
-            'images/R-Matchit.svg',
-            'images/AWK-FCC624.svg'
+            {
+                label: 'Tidyverse',
+                colorA: '#c6dce8',
+                colorB: '#007ec6',
+                logoIcon: 'fab fa-r-project'
+            },
+            {
+                label: 'RMarkdown',
+                colorA: '#c6dce8',
+                colorB: '#007ec6',
+                logoIcon: 'fab fa-r-project'
+            },
+            {
+                label: 'GoogleVis',
+                colorA: '#c6dce8',
+                colorB: '#007ec6',
+                logoIcon: 'fab fa-r-project'
+            },
+            {
+                label: 'Matchit',
+                colorA: '#c6dce8',
+                colorB: '#007ec6',
+                logoIcon: 'fab fa-r-project'
+            },
+            {
+                label: 'AWK',
+                colorA: '#979797',
+                colorB: '#000000',
+                logoIcon: 'fab fa-linux',
+                iconColor: '#ffffff'
+            }
         ],
         fullDescription: `
             <p>The Brazilian Federal Government finances the construction of daycares and schools throughout the entire country with its vast territory. In 2020, a new budgetary tool emerged, significantly transforming the way money is distributed, reducing transparency, and encouraging the misappropriation of public funds.</p>

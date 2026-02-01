@@ -497,6 +497,34 @@
     width: auto;
 }
 
+.project-modal-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+}
+
+.project-modal-badge svg {
+    display: block;
+    height: 28px;
+    width: auto;
+}
+
+.project-modal-badge-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3776ab;
+    font-size: 14px;
+    pointer-events: none;
+    line-height: 1;
+}
+
 .project-modal-description {
     color: var(--text-primary);
     line-height: var(--line-height-relaxed);

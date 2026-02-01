@@ -9,8 +9,97 @@ class ProjectsManager {
     constructor() {
         this.container = document.getElementById('projectsGrid');
         this.modal = null;
+
+        this.badgeHeight = 28;
+        this.badgeLeftWidth = 28;
+        this.badgeTextPadding = 10;
+        this.badgeFontSize = 11;
+        this.badgeFontWeight = 700;
+        this.badgeFontFamily = 'Verdana, Geneva, "DejaVu Sans", sans-serif';
         
         this.init();
+    }
+
+    getBadgeCanvasContext() {
+        if (!ProjectsManager.badgeMeasureCanvas) {
+            ProjectsManager.badgeMeasureCanvas = document.createElement('canvas');
+        }
+
+        return ProjectsManager.badgeMeasureCanvas.getContext('2d');
+    }
+
+    measureBadgeTextWidth(text) {
+        const context = this.getBadgeCanvasContext();
+        if (!context) return text.length * (this.badgeFontSize * 0.6);
+
+        context.font = `${this.badgeFontWeight} ${this.badgeFontSize}px ${this.badgeFontFamily}`;
+        return context.measureText(text).width;
+    }
+
+    escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    buildBadgeSvg({ label, colorA, colorB, logoSrc }) {
+        const safeLabel = this.escapeHtml(label.toUpperCase());
+        const textWidth = this.measureBadgeTextWidth(label.toUpperCase());
+        const rightWidth = Math.ceil(textWidth + (this.badgeTextPadding * 2));
+        const totalWidth = this.badgeLeftWidth + rightWidth;
+        const logoSize = 16;
+        const logoX = Math.round((this.badgeLeftWidth - logoSize) / 2);
+        const logoY = Math.round((this.badgeHeight - logoSize) / 2);
+        const textX = this.badgeLeftWidth + this.badgeTextPadding;
+        const textY = this.badgeHeight / 2;
+
+        const logoMarkup = logoSrc ? `
+            <image href="${this.escapeHtml(logoSrc)}" x="${logoX}" y="${logoY}" width="${logoSize}" height="${logoSize}" preserveAspectRatio="xMidYMid meet" />
+        ` : '';
+
+        return `
+            <svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${this.badgeHeight}" viewBox="0 0 ${totalWidth} ${this.badgeHeight}" role="img" aria-label="${safeLabel}">
+                <rect width="${this.badgeLeftWidth}" height="${this.badgeHeight}" fill="${this.escapeHtml(colorA)}"></rect>
+                <rect x="${this.badgeLeftWidth}" width="${rightWidth}" height="${this.badgeHeight}" fill="${this.escapeHtml(colorB)}"></rect>
+                ${logoMarkup}
+                <text x="${textX}" y="${textY}" fill="#ffffff" font-family="${this.badgeFontFamily}" font-size="${this.badgeFontSize}" font-weight="${this.badgeFontWeight}" dominant-baseline="middle">${safeLabel}</text>
+            </svg>
+        `;
+    }
+
+    renderTechnologyBadge(tech) {
+        if (typeof tech === 'string') {
+            return `<img src="${this.escapeHtml(tech)}" alt="Technology">`;
+        }
+
+        if (!tech || !tech.label) {
+            return '';
+        }
+
+        const colorA = tech.colorA || '#4f4f4f';
+        const colorB = tech.colorB || '#6a6a6a';
+        const logoSrc = tech.logoSrc;
+        const logoIcon = tech.logoIcon;
+        const iconColor = tech.iconColor || '#3776ab';
+        const svg = this.buildBadgeSvg({
+            label: tech.label,
+            colorA,
+            colorB,
+            logoSrc
+        });
+        const iconMarkup = logoIcon
+            ? `<i class="project-modal-badge-icon ${this.escapeHtml(logoIcon)}" style="color: ${this.escapeHtml(iconColor)};" aria-hidden="true"></i>`
+            : '';
+
+        return `
+            <span class="project-modal-badge" role="img" aria-label="${this.escapeHtml(tech.label)}">
+                ${svg}
+                ${iconMarkup}
+            </span>
+        `;
     }
 
     /**
@@ -23,9 +112,11 @@ class ProjectsManager {
             `<span class="project-tag">${tag}</span>`
         ).join('');
 
+        const imageStyle = project.imagePosition ? `style="object-position: ${project.imagePosition}"` : '';
+
         return `
             <div class="project-card" data-project-id="${project.id}">
-                <img src="${project.image}" alt="${project.title}" class="project-image">
+                <img src="${project.image}" alt="${project.title}" class="project-image" ${imageStyle}>
                 <div class="project-content">
                     <h3 class="project-title">${project.title}</h3>
                     <p class="project-description">${project.description}</p>
@@ -46,9 +137,7 @@ class ProjectsManager {
         // Create technologies HTML
         const technologies = project.technologies.length > 0 ? `
             <div class="project-modal-tech">
-                ${project.technologies.map(tech => 
-                    `<img src="${tech}" alt="Technology">`
-                ).join('')}
+                ${project.technologies.map(tech => this.renderTechnologyBadge(tech)).join('')}
             </div>
         ` : '';
 
