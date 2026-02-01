@@ -175,7 +175,7 @@
 
 .timeline-item {
     position: relative;
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-md);
     padding-left: calc(var(--space-3xl) + 30px);
     opacity: 0;
     animation: fadeInUp 0.6s ease forwards;
@@ -224,7 +224,7 @@
 
 .timeline-content {
     background: var(--gradient-card);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
     color: var(--text-on-dark);
