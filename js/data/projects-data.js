@@ -81,7 +81,7 @@ export const projectsData = [
         title: 'Interactive Electoral Map Dashboard',
         description: 'A serverless dashboard using open source tools like Leaflet to enable browser-based interaction with pre-processed electoral data.',
         image: 'images/electoral-map.jpg',
-        tags: ['Web Development', 'GIS', 'Data Visualization', 'Open Source'],
+        tags: ['Web Development', 'ETL', 'Data Visualization', 'Open Source'],
         technologies: [
             {
                 label: 'Polars',
@@ -135,7 +135,7 @@ export const projectsData = [
         description: 'An open source Android app for tracking calories and exercises with a modern, easy-to-use interface. No ads, no account required.',
         image: 'https://offline-labs.com/nutcracker-screenshot-1.png',
         imagePosition: 'top',
-        tags: ['Android', 'Mobile Development', 'Open Source', 'Health & Fitness'],
+        tags: ['Android', 'Mobile Development', 'Open Source', 'Product Design'],
         technologies: [
             {
                 label: 'Kotlin',
