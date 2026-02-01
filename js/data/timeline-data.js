@@ -9,7 +9,7 @@ export const timelineData = [
         organization: 'Dow Jones',
         title: 'Senior Data Analyst',
         date: '2025 - Present',
-        description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights',
+        description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights.',
         tags: ['Python', 'SQL', 'PowerBI', 'Business Intelligence']
     },
     {
