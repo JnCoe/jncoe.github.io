@@ -45,10 +45,10 @@
     </script>
 
     <!-- Recaptcha -->
-         <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
-        function onSubmit() {
-            document.getElementById("myForm").submit()
+        function onSubmit(token) {
+            document.getElementById("contactForm").submit();
         }
     </script>
 
@@ -215,9 +215,8 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="6" required></textarea>
                     </div>
-                    <!--<div class="g-recaptcha" data-sitekey="6LfuDvgrAAAAAF-XNHN2_pGJDoyGSrcvJTq11QBV"></div>-->
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="6LfI_1ssAAAAAOOE8ejC6cZamUyHxJO7fkX6ZeTo" data-callback="onSubmit" data-action="submit">Send Message</button>
+                        <button type="button" class="btn btn-primary g-recaptcha" data-sitekey="6LfI_1ssAAAAAOOE8ejC6cZamUyHxJO7fkX6ZeTo" data-callback="onSubmit" data-action="submit">Send Message</button>
                         <button type="reset" class="btn btn-secondary">Clear</button>
                     </div>
                 </form>
