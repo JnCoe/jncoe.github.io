@@ -1,6 +1,9 @@
 /**
  * Navigation Module
  * Handles smooth scrolling, active states, and mobile menu
+ * 
+ * Created by Jonas Coelho
+ * Licensed under GPLv3 - see LICENSE.txt for details
  */
 
 class NavigationManager {

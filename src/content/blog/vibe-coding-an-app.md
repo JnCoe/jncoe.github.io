@@ -4,6 +4,7 @@ description: "A scientific experiment on the limits of AI-assisted development"
 pubDate: 2025-12-10
 author: "Jonas Coelho"
 tags: ["AI", "coding", "android"]
+license: "All Rights Reserved"
 ---
 
 

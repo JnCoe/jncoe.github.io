@@ -4,6 +4,7 @@ description: "Who to ask when you need a movie summary?"
 pubDate: 2026-02-02
 author: "Jonas Coelho"
 tags: ["Data analysis", "movies", "dashboards"]
+license: "All Rights Reserved"
 ---
 
 I was telling a friend that I had just finished watching the 3h 30min version of "The Irishman." He replied: "Can you summarize it for me? I want to make an informed decision before making any commitments." At first I thought it was a joke, but then I decided to try it for real, because this is kinda of my job.

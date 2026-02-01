@@ -1,6 +1,9 @@
 /**
  * Projects Module
  * Renders project cards and manages modal
+ * 
+ * Created by Jonas Coelho
+ * Licensed under GPLv3 - see LICENSE.txt for details
  */
 
 import { projectsData } from '../data/projects-data.js';

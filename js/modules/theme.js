@@ -1,6 +1,9 @@
 /**
  * Theme Module
  * Handles dark mode toggle and persistence
+ * 
+ * Created by Jonas Coelho
+ * Licensed under GPLv3 - see LICENSE.txt for details
  */
 
 class ThemeManager {

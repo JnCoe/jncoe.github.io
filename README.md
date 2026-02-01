@@ -1,24 +1,14 @@
 # Jonas Coelho - Personal Website
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE.txt)
+[![Code License](https://img.shields.io/badge/Code-GPL--3.0-blue)](LICENSE.txt)
+[![Content License](https://img.shields.io/badge/Content-All%20Rights%20Reserved-red)](LICENSE.txt)
+
 A modern, responsive personal portfolio website showcasing data science projects and professional experience.
 
-## 🎨 Features
-
-- **Modern Design**: Clean, professional aesthetic with custom gradient backgrounds
-- **Dark Mode**: Toggle between light and dark themes with localStorage persistence
-- **Responsive**: Fully responsive design that works on all devices
-- **Accessible**: Built with semantic HTML and ARIA labels for accessibility
-- **Interactive Timeline**: Unified timeline showing both education and professional experience with filtering
-- **Project Showcase**: Interactive project cards with detailed modal views
-- **Smooth Animations**: Subtle animations and transitions for better UX
-- **No jQuery**: Built with modern vanilla JavaScript (ES6+)
+**Created by Jonas Coelho** based on the [Read Only template](https://html5up.net/read-only) by HTML5 UP ([@ajlkn](https://twitter.com/ajlkn)).
 
 ## 🏗️ Architecture
-
-### HTML
-- Semantic HTML5 structure
-- Accessibility-focused markup
-- Meta tags for SEO and social sharing
 
 ### CSS
 Modular CSS architecture using CSS Custom Properties:
@@ -99,40 +89,6 @@ jncoe.github.io/
 
 ## 🔧 Customization
 
-### Adding a Timeline Item
-
-Edit `js/data/timeline-data.js`:
-
-```javascript
-{
-    type: 'work', // or 'education'
-    organization: 'Company Name',
-    title: 'Job Title',
-    date: '2023 - Present',
-    description: 'Job description...',
-    tags: ['Skill1', 'Skill2']
-}
-```
-
-### Adding a Project
-
-Edit `js/data/projects-data.js`:
-
-```javascript
-{
-    id: 'unique-id',
-    title: 'Project Title',
-    description: 'Short description',
-    image: 'images/project.jpg',
-    tags: ['Tag1', 'Tag2'],
-    technologies: ['images/tech1.svg'],
-    fullDescription: '<p>Full HTML description</p>',
-    links: [
-        { url: '...', text: 'Link Text', icon: 'fas fa-link' }
-    ]
-}
-```
-
 ### Customizing Colors
 
 Edit CSS custom properties in `css/variables.css`:
@@ -144,29 +100,36 @@ Edit CSS custom properties in `css/variables.css`:
     /* ... more variables */
 }
 ```
-
-## 📱 Browser Support
-
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
 ## 📄 License
 
-This project is based on a template by HTML5 UP and has been significantly refactored and modernized. Original template is licensed under CCA 3.0. Custom code and modifications are available for personal and commercial use.
+This project uses a dual-license structure:
 
-## 🤝 Contributing
+### Code License - GPLv3
+
+The **source code** of this website is licensed under the [GNU General Public License v3.0](LICENSE.txt). This means you are free to:
+- ✅ Use the code for personal or commercial projects
+- ✅ Modify and adapt the code to your needs
+- ✅ Distribute the code and your modifications
+- ⚠️ **Any derivative works must also be open-source under GPLv3**
+- ⚠️ **You must preserve attribution to the original authors**
+
+### Content Copyright - All Rights Reserved
+
+The **content** of this website (blog posts, images, personal information, project descriptions, etc.) is **© Jonas Coelho - All Rights Reserved**. You may NOT copy, reproduce, or distribute the content without explicit permission.
+
+### Original Template Attribution
+
+This project was originally based on the [Read Only template](https://html5up.net/read-only) by [HTML5 UP](https://html5up.net) ([@ajlkn](https://twitter.com/ajlkn)), licensed under [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/). The current codebase has been extensively refactored and modernized by Jonas Coelho.
+
+### Open Source Philosophy
+
+This website is open-source because I believe in sharing knowledge and helping others learn. If you fork this project:
+- 🎨 **Please customize the design** to make it your own - don't create an exact clone
+- 📝 **Replace all content** with your own information
+- ✅ **Keep the license notices** and attribution comments in the code
+- 💬 Feel free to reach out if you have questions!
+
+For more details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 This is a personal website, but if you find bugs or have suggestions, feel free to open an issue.
-
-## 👤 Author
-
-**Jonas Coelho**
-- LinkedIn: [@jonasbarros](https://www.linkedin.com/in/jonasbarros/)
-- GitHub: [@JnCoe](https://github.com/JnCoe)
-
----
-
-Built with 💙 using modern web technologies.
 

@@ -1,6 +1,9 @@
 /**
  * Main Application Entry Point
  * Initializes all modules and manages the application
+ * 
+ * Created by Jonas Coelho based on Read Only template by HTML5 UP (html5up.net)
+ * Licensed under GPLv3 - see LICENSE.txt for details
  */
 
 import ThemeManager from './modules/theme.js';

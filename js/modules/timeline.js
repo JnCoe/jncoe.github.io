@@ -1,6 +1,9 @@
 /**
  * Timeline Module
  * Renders and manages the timeline with filtering
+ * 
+ * Created by Jonas Coelho
+ * Licensed under GPLv3 - see LICENSE.txt for details
  */
 
 import { timelineData } from '../data/timeline-data.js';
