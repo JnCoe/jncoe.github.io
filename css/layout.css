@@ -67,7 +67,7 @@
 }
 
 .nav-link:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.866);
 }
 
 .nav-link.active {
