@@ -36,7 +36,7 @@ p.card-description {
     color: #878785;
     line-height: 1.2em;
     text-align: justify;
-    hyphens: auto;
+    hyphens: manual;
     margin: 10px 0 10px 0;
 }
 

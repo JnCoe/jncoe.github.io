@@ -248,7 +248,7 @@
 /* About Section */
 .about-content p {
     text-align: justify;
-    hyphens: auto;
+    hyphens: manual;
 }
 
 /* Footer */
