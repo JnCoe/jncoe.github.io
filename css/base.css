@@ -88,6 +88,15 @@ a {
     transition: color var(--transition-fast);
 }
 
+blockquote {
+  border-left: 4px solid #ccc; /* A subtle grey left border */
+  padding-left: 15px; /* Space between the border and the text */
+  margin: 1em 0; /* Add vertical margins to separate it from surrounding text,
+                    and reset horizontal margins if needed, though browsers often
+                    have default horizontal margins for blockquote */
+  color: var(--text-secondary); /* Slightly darker text color for contrast */
+}
+
 a:hover {
     color: var(--color-primary-dark);
 }

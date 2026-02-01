@@ -7,11 +7,16 @@ tags: ["Data analysis", "movies", "dashboards"]
 license: "All Rights Reserved"
 ---
 
-I was telling a friend that I had just finished watching the 3h 30min version of "The Irishman." He replied: "Can you summarize it for me? I want to make an informed decision before making any commitments." At first I thought it was a joke, but then I decided to try it for real, because this is kinda of my job.
+I was telling a friend that I had just finished watching the 3h 30min version of *The Irishman.* He replied:
+>Can you summarize it for me? I want to make an informed decision before making any commitments.
+<br><sub>*(That's how my friends talk)*</sub>
+
+At first I thought it was a joke, but then I decided to try it for real, because this is kinda of my job.
 
 A common misconception about data analysts is assuming our job relies solely on the technical skills to convert data into visualizations. It doesn't. **If it were just a matter of creating a dashboard, we would be software developers. If it were just a matter of designing good-looking graphs, we would be designers**. The real challenge lies in understanding how useless or misleading numbers can be. That requires cumulative knowledge of statistics, data interpretation, database architecture, and, most importantly, understanding how two people can come to different conclusions based on a single graph.
 
 There are infinite ways to summarize a 3-hour movie. Do you want to know the main events? Do you want to follow the perspective of one specific character? Do you want to feel the tension of the narrative? In any case, A LOT will be left out. When summarizing the movie, I had to keep two things in mind:
+
 1) The person I was talking to.
 2) What they intended to do with that information (decide whether to watch the movie or not).
 
