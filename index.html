@@ -51,6 +51,11 @@
             document.getElementById("contactForm").submit();
         }
     </script>
+    <style>
+        .grecaptcha-badge {
+            visibility: hidden;
+        }
+    </style>
 
 </head>
 <body>
@@ -216,7 +221,7 @@
                         <textarea id="message" name="message" rows="6" required></textarea>
                     </div>
                     <div class="form-actions">
-                        <button type="button" class="btn btn-primary g-recaptcha" data-sitekey="6LfI_1ssAAAAAOOE8ejC6cZamUyHxJO7fkX6ZeTo" data-callback="onSubmit" data-action="submit">Send Message</button>
+                        <button type="button" class="btn btn-primary g-recaptcha" data-sitekey="6LfI_1ssAAAAAOOE8ejC6cZamUyHxJO7fkX6ZeTo" data-callback="onSubmit" data-action="submit" style="margin-bottom: 0px">Send Message</button>
                         <button type="reset" class="btn btn-secondary">Clear</button>
                     </div>
                 </form>
@@ -227,6 +232,7 @@
         <footer class="footer">
             <div class="container">
                 <p>&copy; Jonas Coelho. Some rights may be reserved.</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> apply.</p>
             </div>
         </footer>
     </main>
