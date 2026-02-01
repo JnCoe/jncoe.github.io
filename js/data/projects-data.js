@@ -262,7 +262,7 @@ export const projectsData = [
                 icon: 'fas fa-newspaper'
             },
             { 
-                url: 'https://www.transparencia.org.br/downloads/publicacoes/relatriooramentosecretoecreches.pdf', 
+                url: './documents/relatriooramentosecretoecreches.pdf', 
                 text: 'PDF Report (Portuguese)',
                 icon: 'fas fa-file-pdf'
             }
@@ -303,7 +303,7 @@ export const projectsData = [
                 icon: 'fas fa-newspaper'
             },
             { 
-                url: 'https://www.transparencia.org.br/downloads/publicacoes/ProfessoreseTerritorios-Publicacao.pdf', 
+                url: './documents/ProfessoreseTerritorios-Publicacao.pdf', 
                 text: 'PDF Report (Portuguese)',
                 icon: 'fas fa-file-pdf'
             }
