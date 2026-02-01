@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection('blog', ({ data }) => !data.draft);
+	return blogEntries.map(entry => ({
+		params: { slug: entry.id.replace(/\.md$/, '') },
+		props: { entry },
+	}));
+}
+
+interface Props {
+	entry: any;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, description, pubDate, updatedDate, author, tags } = entry.data;
+---
+
+<BlogLayout title={title} description={description}>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<nav style="margin-bottom: var(--space-lg);">
+					<a href="/blog/" style="display:inline-block; padding:0; color: var(--color-primary); text-decoration: none;">← Back to Blog</a>
+				</nav>
+
+				<article>
+					<h1 style="font-family: var(--font-family-base); font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); line-height: var(--line-height-tight); color: var(--text-primary); margin-bottom: var(--space-lg);">{title}</h1>
+
+					<div class="timeline-subtitle" style="margin-bottom: var(--space-xl); color: var(--text-secondary);">
+						<span>By {author}</span>
+						<span style="margin-left: var(--space-md);">Published: {pubDate.toLocaleDateString()}</span>
+						{updatedDate && <span style="margin-left: var(--space-md);">Updated: {updatedDate.toLocaleDateString()}</span>}
+					</div>
+
+					<div>
+						<Content />
+					</div>
+
+					{tags.length > 0 && (
+						<div class="project-tags" style="margin-top: var(--space-xl);">
+							{tags.map(tag => (
+								<span class="project-tag">#{tag}</span>
+							))}
+						</div>
+					)}
+				</article>
+
+				<div style="margin-top: var(--space-xl);">
+					<a href="/blog/" class="btn btn-secondary">← All Posts</a>
+				</div>
+			</div>
+		</section>
+</BlogLayout>

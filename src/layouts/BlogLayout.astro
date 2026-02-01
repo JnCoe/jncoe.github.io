@@ -1,0 +1,75 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Blog posts about data science, programming, and tech" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{title} | Jonas Coelho</title>
+	<meta name="description" content={description} />
+	
+	<!-- Favicon -->
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+	<!-- Site styles -->
+	<link rel="stylesheet" href="/css/variables.css">
+	<link rel="stylesheet" href="/css/base.css">
+	<link rel="stylesheet" href="/css/components.css">
+	<link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+	<Sidebar />
+
+	<!-- Mobile Header -->
+	<header class="mobile-header" id="mobileHeader">
+		<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<span class="mobile-title">Jonas Coelho</span>
+		<button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
+			<i class="fas fa-moon"></i>
+		</button>
+	</header>
+
+	<main class="main-content">
+		<section class="hero-section">
+			<div class="hero-content">
+				<h1 class="hero-title">Jonas Coelho</h1>
+				<div class="hero-subtitle">
+					<span class="typing-text">Blog</span>
+				</div>
+			</div>
+		</section>
+
+		<slot />
+
+		<footer class="footer">
+			<div class="container" style="background: transparent;">
+				<p>&copy; Jonas Coelho. Some rights may be reserved.</p>
+			</div>
+		</footer>
+	</main>
+
+	<!-- Scripts -->
+	<script type="module" src="/js/main.js"></script>
+</body>
+</html>

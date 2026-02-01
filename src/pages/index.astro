@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BlogLayout title="Blog" description="Blog posts about data science, programming, and tech">
+
+		<section class="section">
+			<div class="container">
+				<h1 class="section-title">Latest Posts</h1>
+				<p class="section-intro">Thoughts on data science, programming, and technology</p>
+
+				{allPosts.length === 0 ? (
+					<div style="text-align:center; color: var(--text-secondary); padding: var(--space-2xl);">
+						<p>No posts yet. Check back soon!</p>
+					</div>
+				) : (
+					<div class="projects-grid">
+						{allPosts.map(post => (
+							<a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="project-card">
+								<div class="project-content">
+									<div class="post-date" style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-xs);">
+										{post.data.pubDate.toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric'
+										})}
+									</div>
+									<h2 class="project-title">{post.data.title}</h2>
+									<p class="project-description">{post.data.description}</p>
+									{post.data.tags.length > 0 && (
+										<div class="project-tags">
+											{post.data.tags.map(tag => (
+												<span class="project-tag">#{tag}</span>
+											))}
+										</div>
+									)}
+								</div>
+							</a>
+						))}
+					</div>
+				)}
+			</div>
+		</section>
+</BlogLayout>

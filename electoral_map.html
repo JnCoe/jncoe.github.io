@@ -4,302 +4,310 @@
    html5up.net | @ajlkn
    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
  -->
- <html>
- <head>
+<html>
+
+<head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NJRJQG4Y13"></script>
   <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag() { dataLayer.push(arguments); }
-   gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-   gtag('config', 'G-NJRJQG4Y13');
- </script>
- <!-- Global site tag (gtag.js) - Google Analytics -->
- <!-- Hotjar Tracking Code for https://jncoe.github.io/ -->
- <script>
-   (function(h,o,t,j,a,r){
-     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-     h._hjSettings={hjid:3547449,hjsv:6};
-     a=o.getElementsByTagName('head')[0];
-     r=o.createElement('script');r.async=1;
-     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-     a.appendChild(r);
-   })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
- </script>
- <title>Electoral Map</title>
- <meta charset="utf-8"/>
- <meta content="width=device-width, initial-scale=1" name="viewport"/>
- <link href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🎲&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
- 
- <!-- Fonts -->
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
- 
- <!-- Font Awesome -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
- <!-- Modern Stylesheets -->
- <link rel="stylesheet" href="css/variables.css">
- <link rel="stylesheet" href="css/base.css">
- <link rel="stylesheet" href="css/components.css">
- <link rel="stylesheet" href="css/layout.css">
- 
- <script src="assets/js/jquery.min.js"></script>
- <script src="scripts/jquery.js"></script>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
- <style>
-  #embedContainer1 {
-    width: 100%;
-    height: 70vh;
-  }
+    gtag('config', 'G-NJRJQG4Y13');
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Hotjar Tracking Code for https://jncoe.github.io/ -->
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 3547449, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <title>Electoral Map</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link
+    href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🎲&lt;/text&gt;&lt;/svg&gt;"
+    rel="icon" />
 
-  @media (max-width: 760px) {
-    .container {
-      flex-direction: column;
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Modern Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <style>
+    #embedContainer1 {
+      width: 100%;
+      height: 70vh;
     }
 
-    #filtersContainer,
-    #infoContainer {
-      padding: 10px 0;
-      border-right: none; /* Remove border when stacked vertically */
+    @media (max-width: 760px) {
+      .container {
+        flex-direction: column;
+      }
+
+      #filtersContainer,
+      #infoContainer {
+        padding: 10px 0;
+        border-right: none;
+        /* Remove border when stacked vertically */
+      }
+
+      #infoContainer {
+        order: 2;
+        /* Display info below filters */
+      }
+
+      #filtersContainer {
+        order: 1;
+        /* Display filters on top */
+        border-bottom: 2px solid #ccc;
+        /* Add horizontal border */
+        margin-bottom: 20px;
+      }
     }
 
-    #infoContainer {
-      order: 2; /* Display info below filters */
-    }
-
-    #filtersContainer {
-      order: 1; /* Display filters on top */
-      border-bottom: 2px solid #ccc; /* Add horizontal border */
-      margin-bottom: 20px;
-    }
-  }
-  
-  /* Electoral Map specific styles */
-  .electoral-content {
-    padding: var(--space-md) var(--space-xl);
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-  }
-
-  .electoral-header {
-    text-align: center;
-  }
-
-  .electoral-header h1 {
-    font-size: var(--font-size-5xl);
-    background: var(--gradient-main);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .electoral-subtitle {
-    font-size: var(--font-size-lg);
-    color: var(--text-secondary);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .electoral-section {
-    background: var(--bg-surface);
-    padding: var(--space-xl);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-  }
-
-  .electoral-section h2 {
-    color: var(--color-primary);
-    font-size: var(--font-size-3xl);
-  }
-
-  .electoral-section p {
-    color: var(--text-secondary);
-    line-height: var(--line-height-relaxed);
-  }
-
-  #filtersContainer {
-    margin-right: 20px;
-    padding-right: 20px;
-    border-right: 2px solid var(--border-color);
-  }
-
-  select,
-  input[type="text"] {
-    width: 100%;
-    padding: var(--space-md);
-    margin: var(--space-md) 0;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    font-family: var(--font-family-base);
-    background: var(--bg-surface-alt);
-    color: var(--text-primary);
-  }
-
-  select:focus,
-  input[type="text"]:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(83, 147, 206, 0.1);
-  }
-
-  #applyButton {
-    width: 100%;
-    padding: var(--space-lg);
-    margin: var(--space-xl) 0;
-    font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
-    color: var(--text-on-primary);
-    background: var(--gradient-main);
-    border: none;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    cursor: pointer;
-    transition: all var(--transition-base);
-  }
-
-  #applyButton:hover:not(:disabled) {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-  }
-
-  #applyButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  #candidateList {
-    padding: var(--space-md);
-    max-height: 400px;
-    overflow-y: auto;
-    background: var(--bg-surface-alt);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-    border-radius: var(--radius-md);
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) var(--bg-body);
-  }
-
-  #candidateList::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  #candidateList::-webkit-scrollbar-track {
-    background: var(--bg-body);
-    border-radius: var(--radius-md);
-  }
-
-  #candidateList::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: var(--radius-md);
-  }
-
-  #candidateList::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary-dark);
-  }
-
-  .candidate-item {
-    padding: var(--space-md);
-    margin: var(--space-sm) 0;
-    cursor: pointer;
-    position: relative;
-    background: var(--bg-surface);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    transition: all var(--transition-fast);
-    border-left: 4px solid transparent;
-  }
-
-  .candidate-item:hover {
-    background: var(--bg-surface-alt);
-    box-shadow: var(--shadow-md);
-    border-left-color: var(--color-primary);
-  }
-
-  .candidate-item.selected {
-    background: var(--bg-surface-alt);
-    border-left-color: var(--color-primary);
-    box-shadow: var(--shadow-md);
-  }
-
-  .candidate-item.selected::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: var(--color-primary);
-    border-radius: var(--radius-md) 0 0 var(--radius-md);
-    z-index: 5;
-  }
-
-  .suggestions {
-    position: absolute;
-    border: 1px solid var(--border-color);
-    background: var(--bg-surface);
-    max-height: 200px;
-    overflow-y: auto;
-    width: 100%;
-    margin-top: var(--space-sm);
-    display: none;
-    box-shadow: var(--shadow-md);
-    border-radius: var(--radius-md);
-    z-index: 100;
-  }
-
-  .suggestions div {
-    padding: var(--space-md);
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-    color: var(--text-primary);
-  }
-
-  .suggestions div:hover {
-    background: var(--bg-body);
-  }
-
-  #embedContainer1 {
-    width: 100%;
-    height: 70vh;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-  }
-
-  @media (max-width: 760px) {
+    /* Electoral Map specific styles */
     .electoral-content {
-      padding: 0.75rem var(--space-lg);
+      padding: var(--space-md) var(--space-xl);
+      max-width: var(--container-max-width);
+      margin: 0 auto;
     }
 
-    #filtersContainer,
-    #infoContainer {
-      padding: var(--space-lg) 0;
-      border-right: none;
-      margin-right: 0;
+    .electoral-header {
+      text-align: center;
     }
 
-    #infoContainer {
-      order: 2;
+    .electoral-header h1 {
+      font-size: var(--font-size-5xl);
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .electoral-subtitle {
+      font-size: var(--font-size-lg);
+      color: var(--text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .electoral-section {
+      background: var(--bg-surface);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .electoral-section h2 {
+      color: var(--color-primary);
+      font-size: var(--font-size-3xl);
+    }
+
+    .electoral-section p {
+      color: var(--text-secondary);
+      line-height: var(--line-height-relaxed);
     }
 
     #filtersContainer {
-      order: 1;
-      border-bottom: 1px solid var(--border-color);
+      margin-right: 20px;
+      padding-right: 20px;
+      border-right: 2px solid var(--border-color);
     }
 
     select,
     input[type="text"] {
-      max-width: 100%;
+      width: 100%;
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-family: var(--font-family-base);
+      background: var(--bg-surface-alt);
+      color: var(--text-primary);
     }
 
-    .electoral-header h1 {
-      font-size: var(--font-size-3xl);
-</style>
+    select:focus,
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(83, 147, 206, 0.1);
+    }
+
+    #applyButton {
+      width: 100%;
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-base);
+      color: var(--text-on-primary);
+      background: var(--gradient-main);
+      border: none;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: all var(--transition-base);
+    }
+
+    #applyButton:hover:not(:disabled) {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    #applyButton:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #candidateList {
+      padding: var(--space-md);
+      max-height: 400px;
+      overflow-y: auto;
+      background: var(--bg-surface-alt);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+      border-radius: var(--radius-md);
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-primary) var(--bg-body);
+    }
+
+    #candidateList::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #candidateList::-webkit-scrollbar-track {
+      background: var(--bg-body);
+      border-radius: var(--radius-md);
+    }
+
+    #candidateList::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: var(--radius-md);
+    }
+
+    #candidateList::-webkit-scrollbar-thumb:hover {
+      background: var(--color-primary-dark);
+    }
+
+    .candidate-item {
+      padding: var(--space-md);
+      margin: var(--space-sm) 0;
+      cursor: pointer;
+      position: relative;
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+      border-left: 4px solid transparent;
+    }
+
+    .candidate-item:hover {
+      background: var(--bg-surface-alt);
+      box-shadow: var(--shadow-md);
+      border-left-color: var(--color-primary);
+    }
+
+    .candidate-item.selected {
+      background: var(--bg-surface-alt);
+      border-left-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .candidate-item.selected::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--color-primary);
+      border-radius: var(--radius-md) 0 0 var(--radius-md);
+      z-index: 5;
+    }
+
+    .suggestions {
+      position: absolute;
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      max-height: 200px;
+      overflow-y: auto;
+      width: 100%;
+      margin-top: var(--space-sm);
+      display: none;
+      box-shadow: var(--shadow-md);
+      border-radius: var(--radius-md);
+      z-index: 100;
+    }
+
+    .suggestions div {
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+      color: var(--text-primary);
+    }
+
+    .suggestions div:hover {
+      background: var(--bg-body);
+    }
+
+    #embedContainer1 {
+      width: 100%;
+      height: 70vh;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    @media (max-width: 760px) {
+      .electoral-content {
+        padding: 0.75rem var(--space-lg);
+      }
+
+      #filtersContainer,
+      #infoContainer {
+        padding: var(--space-lg) 0;
+        border-right: none;
+        margin-right: 0;
+      }
+
+      #infoContainer {
+        order: 2;
+      }
+
+      #filtersContainer {
+        order: 1;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      select,
+      input[type="text"] {
+        max-width: 100%;
+      }
+
+      .electoral-header h1 {
+        font-size: var(--font-size-3xl);
+  </style>
 </head>
+
 <body>
   <!-- Sidebar Navigation -->
   <aside class="sidebar" id="sidebar">
@@ -310,7 +318,7 @@
           <i class="fas fa-moon"></i>
         </button>
       </div>
-      
+
       <nav class="sidebar-nav">
         <ul>
           <li><a href="#context" class="nav-link active">Context</a></li>
@@ -320,13 +328,16 @@
         </ul>
         <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 1rem 0;">
         <ul style="list-style: none; padding: 0; margin: 0;">
-          <li><a href="/" class="nav-link" style="background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 8px;">Jonascoelho.com</a></li>
+          <li><a href="/" class="nav-link"
+              style="background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 8px;">Jonascoelho.com</a>
+          </li>
         </ul>
       </nav>
-      
+
       <div class="sidebar-footer">
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/jonasbarros/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/jonasbarros/" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
           <a href="https://github.com/JnCoe" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -336,7 +347,7 @@
       </div>
     </div>
   </aside>
-  
+
   <!-- Mobile Header -->
   <header class="mobile-header" id="mobileHeader">
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
@@ -349,7 +360,7 @@
       <i class="fas fa-moon"></i>
     </button>
   </header>
-  
+
   <!-- Main Content -->
   <main class="main-content" id="mainContent">
     <!-- Hero Section -->
@@ -368,13 +379,22 @@
         <div class="electoral-section">
           <h2>Context</h2>
           <p>
-            In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral districts. This approach presents a challenge: it is impossible to determine where each candidate has the strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to analyze the data, even though creating such maps is straightforward with tools like Python.
+            In the 2024 municipal election in Rio de Janeiro, voters cast their ballots in a system without electoral
+            districts. This approach presents a challenge: it is impossible to determine where each candidate has the
+            strongest voter support geographically. Despite this, the press rarely provides visual tools like maps to
+            analyze the data, even though creating such maps is straightforward with tools like Python.
           </p>
           <p>
-            This project aims to fill that gap by using vote data to plot a bubble map, revealing patterns of candidate support across the city. Beyond offering a novel perspective on the election, it demonstrates how data visualization can make complex electoral outcomes more accessible and meaningful.
+            This project aims to fill that gap by using vote data to plot a bubble map, revealing patterns of candidate
+            support across the city. Beyond offering a novel perspective on the election, it demonstrates how data
+            visualization can make complex electoral outcomes more accessible and meaningful.
           </p>
           <p style="margin-top: var(--space-lg);">
-            <a href="https://github.com/JnCoe/rio-electoral-data-2024" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: var(--space-sm); color: var(--color-primary); text-decoration: none; font-weight: var(--font-weight-semibold); transition: all var(--transition-base);" onmouseover="this.style.color='var(--color-primary-dark)'" onmouseout="this.style.color='var(--color-primary)'"><i class="fab fa-github" style="font-size: var(--font-size-lg);"></i> Full code and methodology on GitHub</a>
+            <a href="https://github.com/JnCoe/rio-electoral-data-2024" target="_blank" rel="noopener noreferrer"
+              style="display: inline-flex; align-items: center; gap: var(--space-sm); color: var(--color-primary); text-decoration: none; font-weight: var(--font-weight-semibold); transition: all var(--transition-base);"
+              onmouseover="this.style.color='var(--color-primary-dark)'"
+              onmouseout="this.style.color='var(--color-primary)'"><i class="fab fa-github"
+                style="font-size: var(--font-size-lg);"></i> Full code and methodology on GitHub</a>
           </p>
         </div>
       </div>
@@ -387,13 +407,18 @@
           <h2>How to Use</h2>
           <p><strong>Using the Election Map Tool</strong></p>
           <p>
-            Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate, the candidate's voting information will be loaded on the right. To see the voting patterns of the selected candidate across Rio de Janeiro City, click the "See candidate on the map" button.
+            Start by selecting a position, party, or candidate from the filters below. Once you have chosen a candidate,
+            the candidate's voting information will be loaded on the right. To see the voting patterns of the selected
+            candidate across Rio de Janeiro City, click the "See candidate on the map" button.
           </p>
           <p>
-            On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes the candidate received in that location, while the color shows the proportion of votes for the candidate in that location. Size and color scale values are shown on the candidate information panel.
+            On the map, each bubble represents a voting location. The size of the bubble reflects the number of votes
+            the candidate received in that location, while the color shows the proportion of votes for the candidate in
+            that location. Size and color scale values are shown on the candidate information panel.
           </p>
           <p>
-            To explore further details, hover over a bubble to see specific information, such as the voting location's address, total votes, and the candidate's vote share at that location.
+            To explore further details, hover over a bubble to see specific information, such as the voting location's
+            address, total votes, and the candidate's vote share at that location.
           </p>
         </div>
       </div>
@@ -403,13 +428,14 @@
       <div class="electoral-content">
         <div class="electoral-section">
           <h2>Filters</h2>
-          
+
           <div style="display: flex; flex-wrap: wrap; gap: var(--space-2xl); align-items: flex-start;">
             <!-- Left side (Filters) -->
             <div id="filtersContainer" style="flex: 0 1 300px;">
-              
+
               <div style="margin-bottom: var(--space-lg);">
-                <label style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Position:</label>
+                <label
+                  style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Position:</label>
                 <select id="positionDropdown">
                   <option selected="" value="Vereador">Councilman/Councilwoman</option>
                   <option value="Prefeito">Mayor</option>
@@ -417,55 +443,77 @@
               </div>
 
               <div style="margin-bottom: var(--space-lg);">
-                <label style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Party (optional):</label>
+                <label
+                  style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Party
+                  (optional):</label>
                 <select id="partyDropdown">
                   <option value="">All Parties</option>
                 </select>
               </div>
 
               <div style="margin-bottom: var(--space-lg);">
-                <label style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Candidate:</label>
+                <label
+                  style="display: block; margin-bottom: var(--space-sm); font-weight: var(--font-weight-semibold);">Candidate:</label>
                 <div style="position: relative;">
                   <input id="candidateSearch" placeholder="Search candidate..." type="text" />
                   <div class="suggestions" id="candidateSuggestions"></div>
                 </div>
               </div>
 
-              <div id="candidateList" style="border: 1px solid var(--border-color); padding: var(--space-md); max-height: 400px; overflow-y: scroll; overflow-x: clip; border-radius: var(--radius-md);"></div>
+              <div id="candidateList"
+                style="border: 1px solid var(--border-color); padding: var(--space-md); max-height: 400px; overflow-y: scroll; overflow-x: clip; border-radius: var(--radius-md);">
+              </div>
             </div>
 
             <!-- Right side (Candidate Information) -->
             <div id="infoContainer" style="flex: 1; min-width: 300px;">
               <!-- Main Box -->
-              <div style="display: flex; align-items: center; background: var(--bg-surface-alt); padding: var(--space-md); margin-bottom: var(--space-md); box-shadow: var(--shadow-card); border-radius: var(--radius-lg);">
-                <img src="./placeholder.jpg" alt="Sample" style="width: 90px; height: 100px; object-fit: cover; object-position: center 20%; margin-right: var(--space-lg); border-radius: 12px;">
+              <div
+                style="display: flex; align-items: center; background: var(--bg-surface-alt); padding: var(--space-md); margin-bottom: var(--space-md); box-shadow: var(--shadow-card); border-radius: var(--radius-lg);">
+                <img src="./placeholder.jpg" alt="Sample"
+                  style="width: 90px; height: 100px; object-fit: cover; object-position: center 20%; margin-right: var(--space-lg); border-radius: 12px;">
                 <div>
-                  <p style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-primary); font-size: var(--font-size-lg);">SELECT A CANDIDATE</p>
+                  <p
+                    style="margin: 0; font-weight: var(--font-weight-semibold); color: var(--color-primary); font-size: var(--font-size-lg);">
+                    SELECT A CANDIDATE</p>
                   <p style="margin: var(--space-sm) 0 0 0; color: var(--text-secondary);"></p>
                   <p style="margin: var(--space-sm) 0 0 0; color: var(--text-secondary);"></p>
                 </div>
               </div>
 
               <!-- Info Grid -->
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; gap: var(--space-sm); margin-bottom: var(--space-md);">
-                <div style="background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);">
-                  <p style="text-align: center; margin-bottom: var(--space-sm); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">Min Votes</p>
-                  <span style="display: inline-block; width: 10px; height: 10px; border: 2px solid var(--color-primary); background-color: rgba(83, 147, 206, 0.2); border-radius: 50%; vertical-align: middle;"></span>
+              <div
+                style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: auto auto auto; gap: var(--space-sm); margin-bottom: var(--space-md);">
+                <div
+                  style="background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);">
+                  <p
+                    style="text-align: center; margin-bottom: var(--space-sm); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                    Min Votes</p>
+                  <span
+                    style="display: inline-block; width: 10px; height: 10px; border: 2px solid var(--color-primary); background-color: rgba(83, 147, 206, 0.2); border-radius: 50%; vertical-align: middle;"></span>
                 </div>
-                <div style="background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);">
-                  <p style="text-align: center; margin-bottom: var(--space-sm); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">Max Votes</p>
-                  <span style="display: inline-block; width: 30px; height: 30px; border: 2px solid var(--color-primary); background-color: rgba(83, 147, 206, 0.2); border-radius: 50%; vertical-align: middle;"></span>
+                <div
+                  style="background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md);">
+                  <p
+                    style="text-align: center; margin-bottom: var(--space-sm); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                    Max Votes</p>
+                  <span
+                    style="display: inline-block; width: 30px; height: 30px; border: 2px solid var(--color-primary); background-color: rgba(83, 147, 206, 0.2); border-radius: 50%; vertical-align: middle;"></span>
                 </div>
-                <div style="background: linear-gradient(to right, #99999940, #a0d1ff40); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                <div
+                  style="background: linear-gradient(to right, #99999940, #a0d1ff40); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
                   Min % Share
                 </div>
-                <div style="background: linear-gradient(to left, #6b232840, #a0d1ff40); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                <div
+                  style="background: linear-gradient(to left, #6b232840, #a0d1ff40); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
                   Max % Share
                 </div>
-                <div style="grid-column: span 2; background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                <div
+                  style="grid-column: span 2; background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
 
                 </div>
-                <div style="grid-column: span 2; background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
+                <div
+                  style="grid-column: span 2; background: var(--bg-surface); padding: var(--space-md); text-align: center; box-shadow: var(--shadow-sm); border-radius: var(--radius-md); color: var(--text-secondary); font-weight: var(--font-weight-semibold);">
 
                 </div>
               </div>
@@ -491,23 +539,16 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/cards.js"></script>
-<script>
+  <script>
     let candidatesData = []; // Array to store CSV data
     window.selectedCandidate = null; // To store the selected candidate (using window for global scope)
     const DATA_REPO = "https://raw.githubusercontent.com/JnCoe/rio-electoral-data-2024/refs/heads/main";
-    
+
     document.addEventListener("DOMContentLoaded", function () {
       console.log("DOMContentLoaded fired");
       const CANDIDATES_CSV_URL = `${DATA_REPO}/data/candidates.csv`;
       console.log("Fetching CSV from:", CANDIDATES_CSV_URL);
-      
+
       Papa.parse(CANDIDATES_CSV_URL, {
         download: true,
         header: true,
@@ -553,11 +594,11 @@
       const candidateSearch = document.getElementById('candidateSearch');
       const candidateSuggestions = document.getElementById('candidateSuggestions');
 
-    // Extract unique parties for the dropdown
+      // Extract unique parties for the dropdown
       const uniqueParties = [...new Set(data.map(item => item.party))].filter(p => p);
       console.log("Unique parties found:", uniqueParties.length, uniqueParties.slice(0, 5));
 
-    // Populate Party Dropdown
+      // Populate Party Dropdown
       uniqueParties.forEach(party => {
         const option = document.createElement('option');
         option.value = party;
@@ -565,7 +606,7 @@
         partyDropdown.appendChild(option);
       });
 
-    // Function to filter and display candidates
+      // Function to filter and display candidates
       function updateCandidateAndPartyDropdown() {
         console.log("updateCandidateAndPartyDropdown called");
         const positionDropdown = document.getElementById('positionDropdown');
@@ -576,19 +617,19 @@
         const selectedPosition = positionDropdown.value;
         const selectedParty = partyDropdown.value;
         const searchTerm = candidateSearch.value.toLowerCase();
-        
+
         console.log("Filters:", { selectedPosition, selectedParty, searchTerm });
         console.log("candidatesData available:", window.candidatesData?.length || candidatesData?.length);
         console.log("Sample positions from candidatesData:", candidatesData?.slice(0, 20).map(c => ({ candidate: c.candidate, position: c.position })));
 
-    // Filter candidates based on party and search term
+        // Filter candidates based on party and search term
         const filteredCandidates = candidatesData.filter(item =>
           (item.position === selectedPosition) &&
           (!selectedParty || selectedParty === 'All Parties' || item.party === selectedParty) &&
           (!searchTerm || (item.candidate || '').toLowerCase().includes(searchTerm)) &&
           item.candidate !== 'NULO' && !(item.candidate || '').startsWith('Legenda:') // Hide NULO and Legenda entries
-          );
-        
+        );
+
         console.log("Fvar(--bg-surface)ed candidates count:", filteredCandidates.length);
 
         // Sort candidates by total votes (descending)
@@ -598,10 +639,10 @@
           return bVotes - aVotes;
         });
 
-    // Clear previous candidates list
+        // Clear previous candidates list
         candidateList.innerHTML = '';
 
-    // Populate candidate list with filtered candidates
+        // Populate candidate list with filtered candidates
         filteredCandidates.forEach(candidate => {
           const candidateItem = document.createElement('div');
           candidateItem.className = 'candidate-item';
@@ -616,7 +657,7 @@
           overflow: hidden;
           `;
 
-        // Create a bar proportional to the number of votes
+          // Create a bar proportional to the number of votes
           const voteBar = document.createElement('div');
           const totalVotes = Number(candidate.sum_votes) || 0;
           voteBar.style = `
@@ -630,105 +671,105 @@
           z-index: 0;
           `;
 
-// Create a label for the candidate name
+          // Create a label for the candidate name
           const candidateLabel = document.createElement('span');
           candidateLabel.textContent = candidate.candidate;
-candidateLabel.style = 'position: relative; z-index: 1; color: #2c3e50; font-weight: 500;'; // Ensure the text is above the bar
+          candidateLabel.style = 'position: relative; z-index: 1; color: #2c3e50; font-weight: 500;'; // Ensure the text is above the bar
 
-// Append elements
-candidateItem.appendChild(voteBar);
-candidateItem.appendChild(candidateLabel);
+          // Append elements
+          candidateItem.appendChild(voteBar);
+          candidateItem.appendChild(candidateLabel);
 
 
-        // Add click event to select the candidate
-candidateItem.addEventListener('click', () => {
-    window.selectedCandidate = candidate.candidate; // Store the selected candidate
-    updateCandidateInfo(window.selectedCandidate);  // Update candidate info as before
+          // Add click event to select the candidate
+          candidateItem.addEventListener('click', () => {
+            window.selectedCandidate = candidate.candidate; // Store the selected candidate
+            updateCandidateInfo(window.selectedCandidate);  // Update candidate info as before
 
-    // Remove the 'selected' class from all items
-    document.querySelectorAll('.candidate-item').forEach(item => item.classList.remove('selected'));
+            // Remove the 'selected' class from all items
+            document.querySelectorAll('.candidate-item').forEach(item => item.classList.remove('selected'));
 
-    // Add the 'selected' class to the clicked item
-    candidateItem.classList.add('selected');
-});
+            // Add the 'selected' class to the clicked item
+            candidateItem.classList.add('selected');
+          });
 
-candidateList.appendChild(candidateItem);
-});
+          candidateList.appendChild(candidateItem);
+        });
       }
 
 
-    // Function to update the candidate info (image and text)
+      // Function to update the candidate info (image and text)
       function updateCandidateInfo(selectedCandidate) {
-      if (!selectedCandidate) return; // Exit if no candidate selected
+        if (!selectedCandidate) return; // Exit if no candidate selected
 
-      // Find the selected candidate in the data
-      const candidate = data.find(item => item.candidate === selectedCandidate);
+        // Find the selected candidate in the data
+        const candidate = data.find(item => item.candidate === selectedCandidate);
 
-      if (candidate) {
-        // Extract details from candidate field
-        const candidateText = candidate.candidate || '';
-        let name, number, party;
-        
-        // Check if candidate text contains the expected format
-        if (candidateText.includes(' - ') && candidateText.includes(' (')) {
-          name = candidateText.split(" - ")[0];
-          const numberAndParty = candidateText.split(" - ")[1];
-          number = numberAndParty.split(" (")[0];
-          party = numberAndParty.split(" (")[1].replace(")", "");
-        } else {
-          // Handle special cases like "NULO" or "Legenda"
-          name = candidateText;
-          number = candidate.number || '';
-          party = candidate.party || '';
+        if (candidate) {
+          // Extract details from candidate field
+          const candidateText = candidate.candidate || '';
+          let name, number, party;
+
+          // Check if candidate text contains the expected format
+          if (candidateText.includes(' - ') && candidateText.includes(' (')) {
+            name = candidateText.split(" - ")[0];
+            const numberAndParty = candidateText.split(" - ")[1];
+            number = numberAndParty.split(" (")[0];
+            party = numberAndParty.split(" (")[1].replace(")", "");
+          } else {
+            // Handle special cases like "NULO" or "Legenda"
+            name = candidateText;
+            number = candidate.number || '';
+            party = candidate.party || '';
+          }
+
+          // Update the image
+          const imageUrl = `${DATA_REPO}/data/candidates_pic/FRJ${candidate.sq_candidato}_div.jpg`;
+          document.querySelector("#infoContainer img").src = imageUrl;
+
+          // Update the text lines
+          const infoContainer = document.querySelector("#infoContainer");
+          const textLines = infoContainer.querySelectorAll("p");
+          textLines[0].innerHTML = `<b>${name}</b>`;   // Line 1: Name
+          textLines[1].innerHTML = `<b>PARTY:</b> ${party}`; // Line 2: Party
+          textLines[2].innerHTML = `<b>NUMBER:</b> ${number}`; // Line 3: Number
+
+          const gridContainer = infoContainer.children[1];
+          const gridBoxes = gridContainer.querySelectorAll("div");
+          const minVotes = Number(candidate.min_abs_votes) || 0;
+          const maxVotes = Number(candidate.max_abs_votes) || 0;
+          const totalVotes = Number(candidate.sum_votes) || 0;
+          const totalLocations = Number(candidate.count_local) || 0;
+          gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${minVotes.toLocaleString('en-US')}`;
+          gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${maxVotes.toLocaleString('en-US')}`;
+
+          gridBoxes[2].innerHTML = `<b>MINIMUM SHARE OF VOTES:</b></br>${candidate.min_prop_votes}%`; // Box 1
+          gridBoxes[3].innerHTML = `<b>MAXIMUM SHARE OF VOTES:</b></br>${candidate.max_prop_votes}%`; // Box 2
+          gridBoxes[4].innerHTML = `<b>TOTAL VOTES:</b> ${totalVotes.toLocaleString('en-US')}`; // Box 1
+          gridBoxes[5].innerHTML = `<b>TOTAL VOTING LOCATIONS:</b> ${totalLocations.toLocaleString('en-US')}`; // Box 2
         }
-
-        // Update the image
-        const imageUrl = `${DATA_REPO}/data/candidates_pic/FRJ${candidate.sq_candidato}_div.jpg`;
-        document.querySelector("#infoContainer img").src = imageUrl;
-
-        // Update the text lines
-        const infoContainer = document.querySelector("#infoContainer");
-        const textLines = infoContainer.querySelectorAll("p");
-        textLines[0].innerHTML = `<b>${name}</b>`;   // Line 1: Name
-        textLines[1].innerHTML = `<b>PARTY:</b> ${party}`; // Line 2: Party
-        textLines[2].innerHTML = `<b>NUMBER:</b> ${number}`; // Line 3: Number
-
-        const gridContainer = infoContainer.children[1];
-        const gridBoxes = gridContainer.querySelectorAll("div");
-        const minVotes = Number(candidate.min_abs_votes) || 0;
-        const maxVotes = Number(candidate.max_abs_votes) || 0;
-        const totalVotes = Number(candidate.sum_votes) || 0;
-        const totalLocations = Number(candidate.count_local) || 0;
-        gridBoxes[0].querySelector("p").innerHTML = `<b>MINIMUM VOTES:</b></br>${minVotes.toLocaleString('en-US')}`;
-        gridBoxes[1].querySelector("p").innerHTML = `<b>MAXIMUM VOTES:</b></br>${maxVotes.toLocaleString('en-US')}`;
-
-        gridBoxes[2].innerHTML = `<b>MINIMUM SHARE OF VOTES:</b></br>${candidate.min_prop_votes}%`; // Box 1
-        gridBoxes[3].innerHTML = `<b>MAXIMUM SHARE OF VOTES:</b></br>${candidate.max_prop_votes}%`; // Box 2
-        gridBoxes[4].innerHTML = `<b>TOTAL VOTES:</b> ${totalVotes.toLocaleString('en-US')}`; // Box 1
-        gridBoxes[5].innerHTML = `<b>TOTAL VOTING LOCATIONS:</b> ${totalLocations.toLocaleString('en-US')}`; // Box 2
       }
+
+      // Initial population of candidate dropdown
+      updateCandidateAndPartyDropdown();
+
+      // Add event listeners
+      partyDropdown.addEventListener('change', updateCandidateAndPartyDropdown);
+      positionDropdown.addEventListener('change', updateCandidateAndPartyDropdown);
+      candidateSearch.addEventListener('input', updateCandidateAndPartyDropdown);
+      candidateSearch.addEventListener('focus', () => {
+        if (candidateSearch.value) {
+          candidateSuggestions.style.display = 'block';
+        }
+      });
+      candidateSearch.addEventListener('blur', () => {
+        // Delay hiding to allow click selection
+        setTimeout(() => {
+          candidateSuggestions.style.display = 'none';
+        }, 150);
+      });
+
     }
-
-    // Initial population of candidate dropdown
-    updateCandidateAndPartyDropdown();
-
-    // Add event listeners
-    partyDropdown.addEventListener('change', updateCandidateAndPartyDropdown);
-    positionDropdown.addEventListener('change', updateCandidateAndPartyDropdown);
-    candidateSearch.addEventListener('input', updateCandidateAndPartyDropdown);
-    candidateSearch.addEventListener('focus', () => {
-      if (candidateSearch.value) {
-        candidateSuggestions.style.display = 'block';
-      }
-    });
-    candidateSearch.addEventListener('blur', () => {
-      // Delay hiding to allow click selection
-      setTimeout(() => {
-        candidateSuggestions.style.display = 'none';
-      }, 150);
-    });
-
-  }
 
     // Global variables for Leaflet map
     let map;
@@ -736,16 +777,16 @@ candidateList.appendChild(candidateItem);
     let votingLocations = {};
 
     // Initialize Leaflet map on page load
-    window.addEventListener('load', async function() {
+    window.addEventListener('load', async function () {
       // Initialize map
       map = L.map('embedContainer1').setView([-22.9068, -43.1729], 11);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 19
       }).addTo(map);
-      
+
       markersLayer = L.featureGroup().addTo(map);
-      
+
       // Load voting locations
       try {
         const response = await fetch(`${DATA_REPO}/data/processed/voting_locations_geocoded_cleaned.json`);
@@ -761,33 +802,33 @@ candidateList.appendChild(candidateItem);
     async function loadCandidateVotes(candidateId, candidate) {
       const applyButton = document.getElementById('applyButton');
       const originalText = applyButton.textContent;
-      
+
       // Clear existing markers
       markersLayer.clearLayers();
-      
+
       // Show loading state
       applyButton.textContent = 'Loading map data...';
       applyButton.disabled = true;
-      
+
       try {
         // Fetch candidate vote data
         const response = await fetch(`${DATA_REPO}/data/processed/votes_${candidateId}.json`);
         // Accept both 200 (success) and 304 (not modified - using cached data)
         if (!response.ok && response.status !== 304) throw new Error('Failed to load candidate data');
-        
+
         const votes = await response.json();
-        
+
         // Get min/max for scaling
         const minVotes = parseFloat(candidate.min_abs_votes);
         const maxVotes = parseFloat(candidate.max_abs_votes);
         const minProp = parseFloat(candidate.min_prop_votes);
         const maxProp = parseFloat(candidate.max_prop_votes);
-        
+
         // Add markers for each voting location
         votes.forEach(vote => {
           const loc = votingLocations[vote.location_id];
           if (!loc || !loc.lat || !loc.lon) return; // Skip if location not found or has no coordinates
-          
+
           const marker = L.circleMarker([loc.lat, loc.lon], {
             radius: scaleRadius(vote.votes, minVotes, maxVotes),
             fillColor: scaleColor(vote.proportion, minProp, maxProp),
@@ -803,18 +844,18 @@ candidateList.appendChild(candidateItem);
             <strong>Share:</strong> ${vote.proportion.toFixed(2)}%<br>
             <strong>Total at location:</strong> ${vote.total_votes_location.toLocaleString()}
           `);
-          
+
           markersLayer.addLayer(marker);
         });
-        
+
         // Zoom to fit all markers
         if (markersLayer.getLayers().length > 0) {
           map.fitBounds(markersLayer.getBounds(), { padding: [50, 50] });
         }
-        
+
         // Scroll to map
         document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
-        
+
       } catch (error) {
         console.error('Error loading candidate data:', error);
         console.error('Error details:', error.message, error.stack);
@@ -824,7 +865,7 @@ candidateList.appendChild(candidateItem);
         applyButton.disabled = false;
       }
     }
-    
+
     // Scaling functions
     function scaleRadius(votes, min, max) {
       const minRadius = 5;
@@ -832,20 +873,20 @@ candidateList.appendChild(candidateItem);
       if (max === min) return minRadius;
       return minRadius + ((votes - min) / (max - min)) * (maxRadius - minRadius);
     }
-    
+
     function scaleColor(proportion, minProp, maxProp) {
       // Three-point gradient: grey (low) → blue (middle) → red (high)
       const lowColor = [153, 153, 153];  // #999999 - Grey for minimum
       const midColor = [160, 209, 255];  // #A0D1FF - Blue for average
       const highColor = [107, 35, 40];   // #6B2328 - Red for maximum
-      
+
       if (maxProp === minProp) return `rgb(${midColor.join(',')})`;
-      
+
       // Calculate the midpoint (average)
       const midProp = (minProp + maxProp) / 2;
-      
+
       let normalized, r, g, b;
-      
+
       if (proportion <= midProp) {
         // Interpolate between low and mid colors
         normalized = (proportion - minProp) / (midProp - minProp);
@@ -859,10 +900,10 @@ candidateList.appendChild(candidateItem);
         g = Math.round(midColor[1] + normalized * (highColor[1] - midColor[1]));
         b = Math.round(midColor[2] + normalized * (highColor[2] - midColor[2]));
       }
-      
+
       return `rgb(${r},${g},${b})`;
     }
-    
+
     // Add event listener to "See candidate on the map" button
     function attachButtonListener() {
       const applyButton = document.getElementById('applyButton');
@@ -872,79 +913,81 @@ candidateList.appendChild(candidateItem);
             alert('Please select a candidate first');
             return;
           }
-          
+
           // Find candidate data
           const candidate = candidatesData.find(c => c.candidate === window.selectedCandidate);
           if (!candidate) {
             alert('Candidate data not found');
             return;
           }
-          
+
           await loadCandidateVotes(candidate.sq_candidato, candidate);
         });
       }
     }
 
-    </script>
+  </script>
 
-    <!-- Theme Toggle Script -->
-    <script>
-      /**
-       * Simple Theme Manager for Electoral Map
-       * Handles dark mode toggle and persistence
-       */
-      class ThemeManager {
-          constructor() {
-              this.currentTheme = this.getStoredTheme();
-              this.init();
-          }
-
-          getStoredTheme() {
-              const stored = localStorage.getItem('theme');
-              if (stored) {
-                  return stored;
-              }
-              return 'light';
-          }
-
-          setTheme(theme) {
-              document.documentElement.setAttribute('data-theme', theme);
-              localStorage.setItem('theme', theme);
-              this.currentTheme = theme;
-              this.updateToggleIcons();
-          }
-
-          toggleTheme() {
-              const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-              this.setTheme(newTheme);
-          }
-
-          updateToggleIcons() {
-              const icon = this.currentTheme === 'light' ? 'fa-moon' : 'fa-sun';
-              const toggleButtons = document.querySelectorAll('.theme-toggle i, .theme-toggle-mobile i');
-              toggleButtons.forEach(button => {
-                  button.className = `fas ${icon}`;
-              });
-          }
-
-          init() {
-              this.setTheme(this.currentTheme);
-              const toggleButtons = document.querySelectorAll('.theme-toggle, .theme-toggle-mobile');
-              toggleButtons.forEach(button => {
-                  button.addEventListener('click', () => this.toggleTheme());
-              });
-          }
+  <!-- Theme Toggle Script -->
+  <script>
+    /**
+     * Simple Theme Manager for Electoral Map
+     * Handles dark mode toggle and persistence
+     */
+    class ThemeManager {
+      constructor() {
+        this.currentTheme = this.getStoredTheme();
+        this.init();
       }
 
-      // Initialize theme manager when DOM is ready
-      if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', () => {
-              new ThemeManager();
-          });
-      } else {
-          new ThemeManager();
+      getStoredTheme() {
+        const stored = localStorage.getItem('theme');
+        if (stored) {
+          return stored;
+        }
+        return 'light';
       }
-    </script>
-  </body>
+
+      setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        this.currentTheme = theme;
+        this.updateToggleIcons();
+      }
+
+      toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.setTheme(newTheme);
+      }
+
+      updateToggleIcons() {
+        const icon = this.currentTheme === 'light' ? 'fa-moon' : 'fa-sun';
+        const toggleButtons = document.querySelectorAll('.theme-toggle i, .theme-toggle-mobile i');
+        toggleButtons.forEach(button => {
+          button.className = `fas ${icon}`;
+        });
+      }
+
+      init() {
+        this.setTheme(this.currentTheme);
+        const toggleButtons = document.querySelectorAll('.theme-toggle, .theme-toggle-mobile');
+        toggleButtons.forEach(button => {
+          button.addEventListener('click', () => this.toggleTheme());
+        });
+      }
+    }
+
+    // Initialize theme manager when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        new ThemeManager();
+      });
+    } else {
+      new ThemeManager();
+    }
+  </script>
+</body>
+
 </html>
-  </html>
+
+</html>
