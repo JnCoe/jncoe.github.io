@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
 const { title, description, pubDate, updatedDate, author, tags } = entry.data;
 ---
 
@@ -37,6 +37,21 @@ const { title, description, pubDate, updatedDate, author, tags } = entry.data;
 						<span style="margin-left: var(--space-md);">Published: {pubDate.toLocaleDateString()}</span>
 						{updatedDate && <span style="margin-left: var(--space-md);">Updated: {updatedDate.toLocaleDateString()}</span>}
 					</div>
+
+					{headings?.some(heading => heading.depth <= 2) && (
+						<nav class="toc" aria-label="Table of contents">
+							<strong class="toc-title">On this page</strong>
+							<ul class="toc-list">
+								{headings
+									.filter(heading => heading.depth <= 2)
+									.map(heading => (
+										<li class={`toc-item toc-depth-${heading.depth}`}>
+											<a href={`#${heading.slug}`} class="toc-link">{heading.text}</a>
+										</li>
+									))}
+							</ul>
+						</nav>
+					)}
 
 					<div>
 						<Content />
