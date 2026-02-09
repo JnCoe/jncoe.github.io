@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Regularização do design de redes [rascunho] | Jonas Coelho</title><meta name="description" content="Uma solução eficaz para um modelo de negócio prejudicial"><!-- Favicon --><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎲</text></svg>"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"><!-- Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- Site styles --><link rel="stylesheet" href="/css/variables.css"><link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/components.css"><link rel="stylesheet" href="/css/layout.css"></head> <body> <!-- Sidebar Navigation --><aside class="sidebar" id="sidebar"> <div class="sidebar-content"> <div class="sidebar-header"> <h1 class="sidebar-logo">Menu</h1> <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"> <i class="fas fa-moon"></i> </button> </div> <nav class="sidebar-nav"> <ul> <li><a href="/" class="nav-link">Jonascoelho.com</a></li> </ul> <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: var(--space-lg) 0;"> <ul style="list-style: none; padding: 0; margin: 0;"> <li><a href="/blog/" class="nav-link"><span><i class="fas fa-comment"></i> Blog home</span></a></li> </ul> </nav> <div class="sidebar-footer"> <div class="social-links"> <a href="https://www.linkedin.com/in/jonasbarros/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"> <i class="fab fa-linkedin"></i> </a> <a href="https://github.com/JnCoe" target="_blank" rel="noopener noreferrer" aria-label="GitHub"> <i class="fab fa-github"></i> </a> </div> </div> </div> </aside> <!-- Mobile Header --> <header class="mobile-header" id="mobileHeader"> <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"> <span></span> <span></span> <span></span> </button> <span class="mobile-title">Jonas Coelho</span> <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode"> <i class="fas fa-moon"></i> </button> </header> <main class="main-content"> <section class="hero-section"> <div class="hero-content"> <h1 class="hero-title">Jonas Coelho</h1> <div class="hero-subtitle"> <span class="typing-text">Blog</span> </div> </div> </section>  <section class="section"> <div class="container"> <nav style="margin-bottom: var(--space-lg);"> <a href="/blog/" style="display:inline-block; padding:0; color: var(--color-primary); text-decoration: none;">← Back to Blog</a> </nav> <article> <h1 style="font-family: var(--font-family-base); font-size: var(--font-size-4xl); font-weight: var(--font-weight-bold); line-height: var(--line-height-tight); color: var(--text-primary); margin-bottom: var(--space-lg);">Regularização do design de redes [rascunho]</h1> <div class="timeline-subtitle" style="margin-bottom: var(--space-xl); color: var(--text-secondary);"> <span>By Jonas Coelho</span> <span style="margin-left: var(--space-md);">Published: 2/9/2025</span>  </div> <div> <h2 id="1-introdução">1. INTRODUÇÃO</h2>
+<p>Este documento apresenta a defesa de uma proposta legislativa para regular um modelo de negócio que, embora onipresente e aparentemente inócuo, constitui um risco mensurável à saúde pública: o <strong>feed infinito combinado com recomendação algorítmica personalíssima</strong> em plataformas de compartilhamento de conteúdo visual (TikTok, Instagram Reels, YouTube Shorts, etc.).</p>
+<h3 id="o-que-muda-com-esta-proposta">O que muda com esta proposta</h3>
+<p>A proposta <strong>não proíbe redes sociais</strong>, não censura conteúdo e não limita liberdade de expressão. Ela:</p>
+<ol>
+<li>Obriga plataformas de grande porte a exibir, no feed principal, <strong>apenas conteúdo de contas explicitamente seguidas pelo usuário</strong>, em <strong>ordem cronológica</strong>;</li>
+<li>Elimina a rolagem infinita e o autoplay em fluxos algoritmicamente recomendados;</li>
+<li>Restringe recomendações audiovisuais personalizadas a uma <strong>janela diária limitada</strong> (ex.: máximo 10 conteúdos/dia);</li>
+<li>Permite que pesquisas algoritmicamente ordenadas continuem, <strong>mas apenas quando iniciadas ativamente pelo usuário</strong> (digitação de termo);</li>
+<li>Restaura <strong>stop cues naturais</strong> (marcos de parada), reintroduzindo ciclos conscientes de consumo.</li>
+</ol>
+<p>Em outras palavras: <strong>regula a forma de entrega, não o conteúdo</strong>. É análogo a como o Estado regula a publicidade de cigarro (aviso sanitário, horário, contexto) sem proibir fumar ou vender cigarros.</p>
+<h3 id="estrutura-desta-exposição">Estrutura desta exposição</h3>
+<p>Este documento apresenta três pilares:</p>
+<ol>
+<li><strong>Fundamento científico</strong>: evidência robusta de que o design atual causa dano cognitivo e emocional mensurável.</li>
+<li><strong>Fundamento jurídico</strong>: legitimidade constitucional e legal para regulação, inclusive jurisprudência recente do STF.</li>
+<li><strong>Fundamento político e social</strong>: por que essa regulação resolve problemas que propostas alternativas não resolvem, e por que é eleitoralmente viável e globalmente inovadora.</li>
+</ol>
+<h2 id="2-o-que-diz-a-ciência">2. O QUE DIZ A CIÊNCIA</h2>
+<h3 id="21-o-mecanismo-neuropsicológico">2.1. O mecanismo neuropsicológico</h3>
+<p>O feed infinito não é, no sentido ordinário, um “vício químico”. Mas explora, de forma sistemática e intencional, as mesmas vulnerabilidades neuropsicológicas que tornam caça-níqueis e drogas aditivas tão difíceis de resistir.</p>
+<h4 id="skinner-reforço-variável-e-a-analogia-do-caça-níquel">Skinner, reforço variável e a analogia do caça-níquel</h4>
+<p>Na década de 1950, o psicólogo behaviorista B.F. Skinner descobriu um princípio fundamental sobre aprendizado e motivação: <strong>quando recompensas vêm em sequência previsível, os organismos rápido se saciam</strong>. Mas quando as recompensas vêm de forma <strong>imprevisível</strong> (reforço em razão variável), o comportamento se torna praticamente inextinguível.<sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup></p>
+<p>Esse é exatamente o mecanismo do caça-níquel: você nunca sabe em qual alavancada virá o prêmio, então você segue puxando. E é exatamente o mecanismo do feed infinito:</p>
+<ul>
+<li>Cada swipe é uma “alavancada”.</li>
+<li>A maioria dos conteúdos é mundana: meme repetido, rotina de alguém, discussão chata.</li>
+<li>Mas, de forma irregular, aparece algo altamente recompensador: vídeo muito engraçado, imagem do crush, notícia bomba, conteúdo polarizador que desperta ira.</li>
+<li>Seu cérebro, condicionado por reforço variável, não consegue <strong>saber quando vai receber a próxima recompensa</strong>, então segue scrollando “só mais um”, “só mais um”, “só mais um”.</li>
+</ul>
+<p>Isso não é fraqueza moral; é <strong>predição de um mecanismo psicológico bem mapeado</strong>.</p>
+<h4 id="dopamina-erro-de-previsão-de-recompensa-e-o-truque-do-algoritmo">Dopamina, erro de previsão de recompensa e o truque do algoritmo</h4>
+<p>Há um equívoco popular de que dopamina = “prazer”. Na verdade, <strong>dopamina é o sinal neuroquímico de antecipação, não o prazer em si</strong>.<sup><a href="#user-content-fn-2" id="user-content-fnref-2" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup> <sup><a href="#user-content-fn-3" id="user-content-fnref-3" data-footnote-ref="" aria-describedby="footnote-label">3</a></sup></p>
+<p>Quando seu cérebro prevê uma recompensa (porque aconteceu antes), dopamina é liberada <strong>em antecipação</strong>. Se a recompensa chega como esperado, o sinal dopaminérgico permanece. Mas se <strong>não chega ou vem diferente</strong>, ocorre um “erro de previsão de recompensa” — e o cérebro libera ainda MAIS dopamina, ajustando-se para buscar a recompensa mais intensamente na próxima vez.<sup><a href="#user-content-fn-2" id="user-content-fnref-2-2" data-footnote-ref="" aria-describedby="footnote-label">2</a></sup></p>
+<p>Plataformas como TikTok exploram exatamente isso:</p>
+<ul>
+<li>O algoritmo aprende o que ativa cada usuário (seus interesses, seus traumas, suas inseguranças).</li>
+<li>Ele então intercala conteúdo “morno” com picos de conteúdo altamente engajante, de forma a maximizar esse “quase-mas-não-exatamente” de recompensa.</li>
+<li>Resultado: seu cérebro entra em modo de busca permanente, antecipando cada novo swipe, mesmo quando você já está cansado e insatisfeito.</li>
+</ul>
+<p>Aza Raskin, que inventou o feed infinito em 2006, <strong>posteriormente reconheceu o erro e a natureza viciante da invenção</strong>, comparando-a a adicionar açúcar a alimentos: é um detalhe pequeno, mas que transforma o produto em algo quase irresistível.<sup><a href="#user-content-fn-4" id="user-content-fnref-4" data-footnote-ref="" aria-describedby="footnote-label">4</a></sup></p>
+<h4 id="a-quebra-de-ciclos-removendo-o-relógio-do-cassino">A quebra de ciclos: removendo o “relógio” do cassino</h4>
+<p>Antes do feed infinito, páginas web tinham um <strong>fim natural</strong>. Você chegava ao rodapé, precisava clicar em “Próxima página”, havia uma micro-pausa em que você (conscientemente ou não) avaliava: “continuo ou paro?” Havia um ciclo: abertura-conteúdo-fechamento.</p>
+<p>O feed infinito remove essa aresta. Não há fim, não há página seguinte, não há rodapé. Só rola, rola, rola.</p>
+<p>Isso é análogo àquilo que casinos fazem: removem janelas e relógios para que o jogador perca a noção de tempo e de ciclos. No caso do cassino, é manipulação arquitetônica. No caso do feed, é <strong>manipulação de interface</strong>.</p>
+<p><strong>Se as ferramentas que produzem fragmentação são o “culpado”, então alterar essas ferramentas é a solução mais eficaz</strong>. Não é uma questão de força de vontade individual; é uma questão de <strong>design predatório</strong>.</p>
+<h3 id="22-prova-robusta-pior-desempenho-cognitivo-e-piora-de-atenção-e-autocontrole">2.2. Prova robusta: pior desempenho cognitivo e piora de atenção e autocontrole</h3>
+<h4 id="a-meta-análise-de-nguyen-et-al-2025-98299-participantes-71-estudos">A meta-análise de Nguyen et al. (2025): 98.299 participantes, 71 estudos</h4>
+<p>A mais recente e abrangente síntese de evidências vem de Nguyen et al. (2025), publicada em <em>Psychological Bulletin</em> (revista de mais alto impacto da APA). A meta-análise incluiu <strong>71 estudos, 98.299 participantes</strong> de múltiplos continentes, analisando associações entre uso de vídeos curtos em feed infinito (TikTok, Instagram Reels, YouTube Shorts) e desempenho cognitivo e saúde mental.<sup><a href="#user-content-fn-5" id="user-content-fnref-5" data-footnote-ref="" aria-describedby="footnote-label">5</a></sup></p>
+<p><strong>Achados centrais:</strong></p>
+<ul>
+<li><strong>Cognição geral</strong>: associação <strong>moderada</strong> entre maior uso de vídeos curtos e <strong>pior desempenho cognitivo geral</strong> (r ≈ −0,34).</li>
+<li><strong>Atenção</strong>: efeito forte (r ≈ −0,38) — usuários intensivos mostram pior concentração, dispersão mais rápida, dificuldade de manutenção de foco.</li>
+<li><strong>Controle inibitório</strong> (capacidade de resistir a impulsos): efeito forte (r ≈ −0,41) — piora significativa. Isso significa: dificuldade de dizer “não” a si mesmo, de adiar gratificação, de resistir a clicks impulsivos.</li>
+<li><strong>Memória de trabalho, linguagem, memória</strong>: associações negativas fracas a moderadas.</li>
+</ul>
+<p><strong>Crucialmente, esses padrões aparecem em TODOS OS GRUPOS ETÁRIOS e em MÚLTIPLAS PLATAFORMAS</strong>, não é um “problema do TikTok” isolado ou restrito a adolescentes.</p>
+<h4 id="pensamento-analítico-do-sistema-1-ao-sistema-2">Pensamento analítico: do sistema 1 ao sistema 2</h4>
+<p>Jiang &#x26; Ma (2024), em estudo experimental publicado em <em>CyberPsychology</em>, testaram se usar TikTok afeta <strong>pensamento analítico</strong> — a capacidade de ir além da intuição rápida e verificar premissas.<sup><a href="#user-content-fn-6" id="user-content-fnref-6" data-footnote-ref="" aria-describedby="footnote-label">6</a></sup></p>
+<p>Dois experimentos controlados: grupos expostos a swipear TikTok vs. controle.</p>
+<p><strong>Resultado</strong>: após exposure ao TikTok, participantes foram <strong>menos dispostos a aplicar pensamento analítico</strong> para verificar intuições erradas. Eles “ficavam presos” à resposta intuitiva (Sistema 1 rápido), com menos engajamento do Sistema 2 reflexivo.</p>
+<p>Mais importante: <strong>não era o conteúdo específico</strong>, era o <strong>ato de swipear continuamente e interagir com o algoritmo</strong> que reduzia disposição para pensar analiticamente. Essa degradação era mediada por queda de afeto positivo, sugerindo que o ambiente de interação (rápido, fragmentado) coloca o usuário em modo mais automático, menos reflexivo.</p>
+<p><strong>Implicação para legislação</strong>: a “culpa” está no <strong>formato e na dinâmica de interação</strong>, não no conteúdo particular. Isso fortalece a base para regulação de design.</p>
+<h3 id="23-efeito-em-memória-prospectiva-esquecer-o-que-você-mesmo-queria-fazer">2.3. Efeito em memória prospectiva: esquecer o que você mesmo queria fazer</h3>
+<h4 id="chiossi-et-al-2023-chi-conference">Chiossi et al. (2023): CHI Conference</h4>
+<p>Um dos seus estudos mais interessantes vem de Chiossi et al. (2023), apresentado na <em>CHI Conference on Human Factors in Computing Systems</em> (top-tier em HCI), o maior evento de pesquisa em design de interação.<sup><a href="#user-content-fn-7" id="user-content-fnref-7" data-footnote-ref="" aria-describedby="footnote-label">7</a></sup></p>
+<p><strong>Metodologia</strong>: N=60. Participants precisavam manter uma intenção em mente (“lembrar de fazer X depois”). Enquanto isso, cada grupo recebia uma <strong>distração diferente</strong>:</p>
+<ul>
+<li>Grupo 1: scrollar TikTok (vídeos curtos, feed infinito, autoplay).</li>
+<li>Grupo 2: scrollar Twitter.</li>
+<li>Grupo 3: scrollar YouTube (com controles normais, sem autoplay forçado).</li>
+<li>Grupo 4: nenhuma distração.</li>
+</ul>
+<p>Achado central: <strong>apenas o grupo TikTok teve queda significativa na capacidade de manter e executar as intenções prospectivas</strong> (prospective memory). Os autores apontam que é a <strong>combinação de:</strong></p>
+<ul>
+<li>vídeos muito curtos (6-15 segundos);</li>
+<li>rápida mudança de contexto entre vídeos;</li>
+<li>interface de autoplay contínuo;</li>
+</ul>
+<p>que degrada a capacidade do cérebro de manter “coisas em segundo plano da mente que preciso fazer”.</p>
+<p><strong>Por que isso importa para a lei?</strong> Imagine alguém que abre Reels para “rápido olhar” mas precisa lembrar de:</p>
+<ul>
+<li>tomar remédio;</li>
+<li>ligar para médico;</li>
+<li>pagar conta;</li>
+<li>sair para buscar filho.</li>
+</ul>
+<p>O feed fragmentado de TikTok especificamente prejudica essa manutenção de intenção, tornando a pessoa menos responsável por seus próprios compromissos.</p>
+<h4 id="barton--smyth-2025-context-switching-e-prospective-memory">Barton &#x26; Smyth (2025): Context-switching e prospective memory</h4>
+<p>Barton &#x26; Smyth (2025), publicado em <em>Memory</em> (periódico de psicologia experimental), aprofundam o tema de context-switching: o <strong>rápido salto entre diferentes vídeos com temas totalmente distintos</strong>, algo que diferencia TikTok de outros sites.<sup><a href="#user-content-fn-8" id="user-content-fnref-8" data-footnote-ref="" aria-describedby="footnote-label">8</a></sup></p>
+<p>Conclusão: cada troca de contexto exige <strong>sobrecarga cognitiva</strong> para “sair do contexto anterior e entrar no próximo”. Com dezenas de contextos por minuto, o cérebro fica em estado de “sempre entrando/saindo”, o que prejudica a memória prospectiva — exatamente o que Chiossi et al. encontraram experimentalmente.</p>
+<h3 id="24-ansiedade-depressão-e-bem-estar-doomscrolling-compulsivo">2.4. Ansiedade, depressão e bem-estar: doomscrolling compulsivo</h3>
+<h4 id="doomscrolling-validação-de-escala-e-associações-com-distress">Doomscrolling: validação de escala e associações com distress</h4>
+<p>O termo “doomscrolling” refere-se ao <strong>comportamento compulsivo de rolar feeds em busca de notícias negativas, geralmente sobre crises ou desastres</strong>, frequentemente até o ponto de exaustão</p>
+<p>Uma série de estudos validaram a <strong>Doomscrolling Scale</strong> e confirmaram associações robustas<sup><a href="#user-content-fn-9" id="user-content-fnref-9" data-footnote-ref="" aria-describedby="footnote-label">9</a></sup> <sup><a href="#user-content-fn-10" id="user-content-fnref-10" data-footnote-ref="" aria-describedby="footnote-label">10</a></sup>:</p>
+<ul>
+<li>Maior doomscrolling → <strong>maior sofrimento psicológico</strong> (distress);</li>
+<li>Sofrimento psicológico → <strong>menor bem-estar, menor satisfação com vida, menor harmonia na vida</strong>;</li>
+<li>A relação é <strong>mediada por distress</strong>: ou seja, doomscrolling aumenta o sentimento de ameaça/ansiedade, que por sua vez piora bem-estar.</li>
+</ul>
+<p>Um estudo transversal<sup><a href="#user-content-fn-11" id="user-content-fnref-11" data-footnote-ref="" aria-describedby="footnote-label">11</a></sup> (N=460 adultos egípcios, 2025) encontrou <strong>correlação forte entre doomscrolling e ansiedade</strong> (r ≈ 0,58, p&#x3C;.001). Resiliência psicológica agiu como fator protetor, mas não eliminou o risco.</p>
+<h4 id="associações-com-ansiedade-depressão-stress">Associações com ansiedade, depressão, stress</h4>
+<p>A meta-análise de Nguyen et al. (2025)<sup><a href="#user-content-fn-5" id="user-content-fnref-5-2" data-footnote-ref="" aria-describedby="footnote-label">5</a></sup> também quantificou saúde mental:</p>
+<ul>
+<li><strong>Saúde mental geral</strong>: associação negativa (r ≈ −0,21).</li>
+<li><strong>Stress</strong>: associação moderada com uso intensivo (r ≈ −0,34).</li>
+<li><strong>Ansiedade</strong>: associação moderada com uso intensivo (r ≈ −0,33).</li>
+<li><strong>Depressão</strong>: associação fraca a moderada.</li>
+<li><strong>Insônia / pobre qualidade de sono</strong>: também associado.</li>
+<li><strong>Loneliness e reduced well-being</strong>: associados.</li>
+</ul>
+<p>Essas associações apareciam tanto em adolescentes quanto em adultos, e em múltiplas plataformas.</p>
+<h3 id="25-o-impacto-em-idosos-é-maior-do-que-em-adolescentes">2.5. O impacto em idosos é MAIOR do que em adolescentes</h3>
+<p>Uma descoberta recente, pouco discutida na mídia brasileira, é que <strong>idosos são ainda mais afetados por redes sociais de feed infinito do que adolescentes</strong>.</p>
+<h4 id="jmir-aging-2025-estudo-com-15986-idosos-em-xangai">JMIR Aging (2025): estudo com 15.986 idosos em Xangai</h4>
+<p>Um estudo transversal robusto (N=15.986 adultos aposentados, idade média 68,5 anos) publicado em <em>JMIR Aging</em> (2025)<sup><a href="#user-content-fn-12" id="user-content-fnref-12" data-footnote-ref="" aria-describedby="footnote-label">12</a></sup> avaliou associações entre uso de redes sociais e saúde mental em idosos:</p>
+<p><strong>Achados principais:</strong></p>
+<ul>
+<li>98% dos idosos usam redes sociais, com WeChat, Douyin (versão chinesa do TikTok) e Kuaishou sendo as plataformas mais comuns.</li>
+<li>52,3% passam 2-3 horas/dia; 32,3% passam <strong>>4 horas/dia</strong>.</li>
+<li>20,3% apresentam sinais de <strong>vício em redes sociais</strong>.</li>
+</ul>
+<p><strong>Associações com saúde mental:</strong></p>
+<ul>
+<li>Idosos com <strong>≥6 horas/dia de uso</strong>: odds ratio de <strong>1,44 para ansiedade</strong> (IC 95% 1,20-1,72) e <strong>1,50 para depressão</strong> (IC 95% 1,25-1,79), comparado com ≤1 hora/dia.</li>
+<li>Idosos <strong>viciados em redes sociais</strong>: odds ratio de <strong>2,81 para ansiedade</strong> e <strong>2,51 para depressão</strong>, comparado com não-viciados.</li>
+</ul>
+<p><strong>Subgrupos mais afetados</strong>: mulheres, idade 49-75 (em oposição aos muito idosos), baixa educação/renda, moradores urbanos.</p>
+<p><strong>O problema não é “proteger crianças de redes sociais” — é proteger todos</strong> de um design que explora vulnerabilidades neuropsicológicas em qualquer idade. Idosos, que foram completamente deixados de fora das propostas de proibição para &#x3C;16 anos, são uma população de risco ainda maior.</p>
+<h2 id="3-fundamento-jurídico">3. FUNDAMENTO JURÍDICO</h2>
+<h3 id="31-base-constitucional">3.1. Base constitucional</h3>
+<p>A Constituição Federal de 1988 oferece fundamento claro:</p>
+<h4 id="saúde-como-dever-do-estado">Saúde como dever do Estado</h4>
+<p><strong>Art. 6º</strong> (direitos sociais): “A saúde [é direito de todos].”</p>
+<p><strong>Art. 196</strong> (seção de saúde): “A saúde é direito de todos e <strong>dever do Estado</strong>, garantido mediante políticas sociais e econômicas que visem à redução do risco de doença e de outros agravos.”</p>
+<p>Isso não se limita a epidemiologia clássica (doenças infecciosas). Transtornos de ansiedade, depressão e distúrbios de atenção são <strong>doenças e agravos à saúde</strong>. Logo, reduzir fatores ambientais que demonstradamente aumentam sua incidência é <strong>dever constitucional do Estado</strong>.</p>
+<h4 id="liberdade-econômica-condicionada">Liberdade econômica condicionada</h4>
+<p><strong>Art. 1º, III</strong>: fundamento da República é “a dignidade da pessoa humana”.</p>
+<p><strong>Art. 170</strong> (ordem econômica): “A ordem econômica, fundada na valorização do trabalho humano e na livre iniciativa, <strong>é assegurada</strong> (em itálico: não é absoluta), observados os seguintes princípios:”</p>
+<ul>
+<li>Art. 170, I: “soberania nacional”;</li>
+<li>Art. 170, III: “função social da propriedade”;</li>
+<li>Art. 170, V: “defesa do consumidor”;</li>
+<li>Art. 170, VIII: “busca do pleno emprego”.</li>
+</ul>
+<p><strong>Crucial</strong>: livre iniciativa <strong>não é direito absoluto</strong>. Ela é <strong>condicionada</strong> à função social, à proteção do consumidor e ao bem-estar geral.</p>
+<h4 id="proteção-de-grupos-vulneráveis">Proteção de grupos vulneráveis</h4>
+<p><strong>Art. 5º, XXXII</strong>: “o Estado promoverá, na forma da lei, a defesa do consumidor”.</p>
+<p><strong>Art. 227</strong>: “É dever da família, da sociedade e do Estado assegurar à criança, ao adolescente e ao jovem, com <strong>absoluta prioridade</strong>, direitos conforme convenção. Art. 227, § 1º: “O Estado promoverá programas de assistência integral à saúde da criança… incluindo atenção à saúde mental”.</p>
+<h3 id="32-stf-mandato-regulatório-implícito">3.2. STF: mandato regulatório implícito</h3>
+<p>Em junho de 2025, o STF declarou a <strong>inconstitucionalidade parcial do art. 19 do Marco Civil da Internet</strong>, afirmando que o modelo de “safe harbor” amplo (imunidade de plataformas de responsabilidade por conteúdo de terceiros sem ordem judicial) <strong>não oferecia proteção suficiente a direitos fundamentais</strong>.</p>
+<p>A corte impôs às plataformas um <strong>“dever de cuidado qualificado”</strong> incluindo:</p>
+<ul>
+<li>mecanismos proativos para detecção e remoção de conteúdo manifestamente ilícito;</li>
+<li>políticas de moderação transparentes e eficientes;</li>
+<li>investimento em IA e equipes especializadas.</li>
+</ul>
+<p><strong>Dois pontos capitais para seu projeto:</strong></p>
+<ol>
+<li>O STF reconheceu <strong>“estado de omissão” legislativa</strong> e explicitamente convidou o Congresso a <strong>atualizar o marco normativo para plataformas digitais</strong>.</li>
+<li>O tribunal já admitiu que é legítimo impor <strong>deveres estruturais de governança de risco e design</strong> a plataformas, desde que proporcionados e fundamentados em proteção de direitos fundamentais.</li>
+</ol>
+<p><strong>Essa proposta se alinha perfeitamente com essa exigência</strong>: não se trata de uma arbitrariedade regulatória; é uma resposta ao mandato do STF de atualizar a proteção de direitos fundamentais no ambiente digital.</p>
+<h3 id="33-analogia-com-outras-regulações-cigarro-álcool-jogos-de-azar-ambiente">3.3. Analogia com outras regulações: cigarro, álcool, jogos de azar, ambiente</h3>
+<p>O Brasil já tem precedentes de <strong>regulação de atividades econômicas legítimas que geram dano social difuso</strong>:</p>
+<h4 id="tabagismo">Tabagismo</h4>
+<ul>
+<li>Proibição de publicidade em rádio, TV e via internet.</li>
+<li>Rótulos com avisos e imagens de dano.</li>
+<li>Restrição de horário de venda.</li>
+<li>Espaços sem fumo em ambientes públicos.</li>
+</ul>
+<h4 id="bebidas-alcoólicas">Bebidas alcoólicas</h4>
+<ul>
+<li>Proibição de publicidade em horário nobre de TV.</li>
+<li>Restrição de venda para menores.</li>
+<li>Avisos sanitários em rótulos.</li>
+<li>Lei Seca (proibição de venda após certas horas).</li>
+</ul>
+<h4 id="jogos-de-azar">Jogos de azar</h4>
+<ul>
+<li>Regulação de cassinos, máquinas caça-níqueis, bingo.</li>
+<li>Limite de horas de funcionamento.</li>
+<li>Proibição em certos locais (escolas, hospitais).</li>
+<li>Avisos sobre riscos de vício.</li>
+</ul>
+<h4 id="ambiental">Ambiental</h4>
+<ul>
+<li>Regulação de indústria de mineração (licenciamento, estudo de impacto ambiental, restrições de operação).</li>
+<li>Não se proíbe minerar; regula-se <strong>como</strong> minerar para reduzir danos.</li>
+</ul>
+<p><strong>Ninguém diz que isso viola liberdade econômica.</strong> Por quê? Porque há <strong>demonstração científica de dano à saúde pública</strong>, e as restrições são <strong>proporcionais ao risco</strong> (não proíbem a venda, apenas regulam contexto e publicidade). Não se trata de proibit redes sociais, mas regula <strong>o design e a forma de entrega de conteúdo</strong> para reduzir dano à saúde mental documentado em dezenas de estudos peer-reviewed.</p>
+<h3 id="34-marco-civil-da-internet-espaço-para-novo-capítulo-sobre-ambiência-digital-saudável">3.4. Marco Civil da Internet: espaço para novo capítulo sobre “ambiência digital saudável”</h3>
+<p>O <strong>Marco Civil (Lei 12.965/2014)</strong> estabelece princípios, garantias e deveres no uso da internet. Seus capítulos cobrem:</p>
+<ul>
+<li>Acesso à internet como essencial ao exercício de direitos.</li>
+<li>Privacidade e proteção de dados.</li>
+<li>Direitos e deveres dos usuários.</li>
+<li>Responsabilidade civil de provedores.</li>
+</ul>
+<p><strong>Não há capítulo dedicado a “saúde mental no ambiente digital” ou “proteção contra design predatório”.</strong></p>
+<p>É natural, portanto, propor um <strong>novo capítulo</strong> (ou lei complementar) que aborde:</p>
+<ul>
+<li>Proibições quanto a feed infinito e recomendação personalizada de conteúdo audiovisual sem limite.</li>
+<li>Obrigações de avaliação de impacto em saúde mental.</li>
+<li>Sanções proporcionais (multas significativas, restrição de features, até suspensão em caso extremo).</li>
+</ul>
+<h3 id="35-o-conhecimento-das-plataformas-smoking-gun-da-intencionalidade">3.5. O conhecimento das plataformas: “smoking gun” da intencionalidade</h3>
+<p>Um elemento adicional que fortalece a base jurídica é o <strong>reconhecimento explícito das próprias plataformas</strong> de que seu design é viciante e prejudicial.</p>
+<h4 id="documentos-internos-da-meta-2016-2018-desvelados-em-2026">Documentos internos da Meta (2016-2018, desvelados em 2026)</h4>
+<p>Processos de procuradores-gerais contra Meta (Utah, Califórnia, Carolina do Norte, etc.) incluem documentos internos<sup><a href="#user-content-fn-13" id="user-content-fnref-13" data-footnote-ref="" aria-describedby="footnote-label">13</a></sup> <sup><a href="#user-content-fn-17" id="user-content-fnref-17" data-footnote-ref="" aria-describedby="footnote-label">14</a></sup> recentemente desvelados (janeiro-fevereiro de 2026) que mostram:</p>
+<p><strong>Intencionalidade explícita:</strong></p>
+<p>Em um Email de 2016: “Mark [Zuckerberg] decidiu que adolescentes será a prioridade estratégica da empresa no 1º semestre de 2017. Mensagens internas revelam que a companhia estava ciente dos danos causados por seu design:</p>
+<ul>
+<li>“teens can’t switch off from Instagram even if they want to” > “Adolescentes não conseguem sair do Instagram mesmo que queiram.”</li>
+<li>“oh my gosh yall IG is a drug… We’re basically pushers… We are causing Reward Deficit Disorder bc people are binging on IG so much they can’t feel reward anymore… like their reward tolerance is so high.” > “Oh meu Deus, o Instagram é uma droga… Somos basicamente traficantes… Estamos causando Transtorno de Déficit de Recompensa porque as pessoas estão consumindo tanto Instagram que não conseguem mais sentir recompensa… como se sua tolerância à recompensa estivesse tão alta.”</li>
+</ul>
+<h4 id="tiktok-depoimentos-e-admissões">TikTok: depoimentos e admissões</h4>
+<p>Documentos de processes nos EUA revelam que <strong>executivos do TikTok reconheciam internamente o design viciante</strong> e a impossibilidade de usuários (especialmente menores) de “resistir” ao uso.<sup><a href="#user-content-fn-14" id="user-content-fnref-14" data-footnote-ref="" aria-describedby="footnote-label">15</a></sup> <sup><a href="#user-content-fn-15" id="user-content-fnref-15" data-footnote-ref="" aria-describedby="footnote-label">16</a></sup></p>
+<p>O Estado não está <em>inventando</em> um problema; está <strong>respondendo a um problema que as próprias empresas reconhecem internamente</strong>. Isso fortalece o argumento de que:</p>
+<ol>
+<li>Não é “pânico moral” ou falta de evidência.</li>
+<li>As plataformas tiveram oportunidade de auto-regulação e falharam.</li>
+<li>Há <strong>intencionalidade</strong> (não negligência) em manter o design viciante, porque é lucrativo.</li>
+</ol>
+<p>Logo, regulação estatal é <strong>necessária e proporcional</strong>.</p>
+<h2 id="4-a-proposta">4. A PROPOSTA</h2>
+<h3 id="41-escopo">4.1. Escopo</h3>
+<p>A lei se aplica a <strong>plataformas digitais que permitem compartilhamento de conteúdo visual de grande porte</strong>, definidas como:</p>
+<ul>
+<li>Serviços de internet que permitam hospedagem e publicação de conteúdo audiovisual gerado por usuários ou inteligência artificial;</li>
+<li>Que operem modelo de curadoria de conteúdo audiovisual;</li>
+<li>Com <strong>mais de 1 milhão de usuários mensais ativos no Brasil</strong> (ou equivalente global que determine a ANP/Senacon);</li>
+</ul>
+<p>Exemplos: TikTok, Instagram (Reels), YouTube (Shorts), Snapchat, BeReal, etc.</p>
+<p><strong>Fora do escopo</strong>: blogs, wikis, fóruns tradicionais (Reddit, 4chan), YouTube full-videos sem feed infinito forcado, email, chat, VoIP.</p>
+<h3 id="42-estrutura-das-obrigações">4.2. Estrutura das obrigações</h3>
+<h4 id="1-feed-principal-apenas-conexões-explícitas-ordem-cronológica">1. Feed principal: apenas conexões explícitas, ordem cronológica</h4>
+<h5 id="obrigação-central">Obrigação central:</h5>
+<p>Qualquer curadoria de conteúdo na plataforma será composta <strong>exclusivamente de conteúdo de contas com as quais o usuário tenha estabelecido uma “conexão explícita e individual”</strong> (ou “seguidor”).</p>
+<p><strong>Ordem</strong>: cronológica, da publicação mais recente para a mais antiga.</p>
+<p><strong>Algoritmos permitidos</strong>: apenas filtros não-personalizados (ex.: “mostrar só vídeos”, “mostrar só textos”), mas nunca em nível de perfil individual inferido.</p>
+<p><strong>Efeito prático:</strong> um usuário vendo seu feed vê apenas conteúdo de contas que ele <em>escolheu</em> seguir, na ordem que as pessoas publicaram. Sem curações surpresa.</p>
+<h4 id="2-proibição-de-seguir-em-massa">2. Proibição de “seguir em massa”</h4>
+<h5 id="obrigação-central-1">Obrigação central:</h5>
+<p>Proibir funções que permitam <strong>seguir simultaneamente dezenas ou centenas de contas com um click</strong>, ou “seguir categoria inteira”, ou “seguir todos os seguidores de [conta X]”.</p>
+<p>Cada seguida deve ser <strong>ato individual e consciente</strong>.</p>
+<p><strong>Efeito prático:</strong> evitar uma burla do modelo atual ao facilitar que o usuário possa seguir milhares de contas com um click, o que na prática recria o feed infinito. O usuário deve escolher conscientemente cada conta que quer seguir.</p>
+<h4 id="3-fim-da-aba-for-you-e-equivalentes-para-conteúdo-passivo">3. Fim da aba “For You” (e equivalentes) para conteúdo passivo</h4>
+<h5 id="obrigação-central-2">Obrigação central:</h5>
+<p>Proibir abas, seções ou fluxos que apresentem <strong>sequência contínua de conteúdo audiovisual não-solicitado</strong>, em base de recomendação algorítmica, quando essa recomendação não decorre de uma <strong>ação de busca ativa</strong> pelo usuário.</p>
+<p>Em outras palavras: sem mais “For You page” que te recomenda infinitamente vídeos de contas que não segues. Sem “Discover” silencioso.</p>
+<h4 id="4-pesquisas-algoritmicamente-ordenadas-mas-textuais-e-ativas">4. Pesquisas algoritmicamente ordenadas, mas textuais e ativas</h4>
+<h5 id="obrigação-central-3">Obrigação central:</h5>
+<p>Resultados de busca podem ser ordenados por algoritmo (ex.: ordenar por “relevância”, “novidade”, “engagement”). <strong>PORÉM:</strong></p>
+<ul>
+<li>A busca deve ser <strong>iniciada por input ativo do usuário</strong> (digitação de termo, comando de voz), não por um clique em recomendação passiva.</li>
+<li>Não há autoplay infinito; o usuário escolhe cada vídeo que quer ver.</li>
+<li>Resultados de busca, devem ser <strong>finitos, claramente demarcada e pausados</strong> (“15 vídeos”, “próxima página”,  delay forçado entre navegação de uma página e outra).</li>
+</ul>
+<p><strong>Efeito prático:</strong> buscar por “receita de bolo” continua possível; o que não é possível é o app recomendar infinitamente vídeos de receitas sem você ter solicitado.</p>
+<h4 id="5-fim-do-feed-infinito-stop-cues-obrigatórios">5. Fim do feed infinito: stop cues obrigatórios</h4>
+<h5 id="obrigação-central-4">Obrigação central:</h5>
+<p>O feed principal deve ter <strong>limite diário de itens ou blocos de limite, após os quais há pausa até ação consciente do usuário</strong>.</p>
+<p><strong>Exemplos de implementação:</strong></p>
+<ul>
+<li>Blocos de 20 items: após cada 20, a rolagem pausa e pede confirmação (“Continuar?”). Esta contagem é independente do aplicativo estar aberto de forma contínua ou não. Ou seja, Se o usuário visualiza 10 itens, fecha o app, e depois volta, ele ainda tem 10 itens antes de chegar ao próximo aviso.</li>
+<li>Tempo de inatividade: após 30 minutos de uso contínuo, a tela pausa pedindo confirmação.</li>
+</ul>
+<p><strong>Objetivo:</strong> restaurar <strong>ciclos conscientes</strong> e <strong>marcadores temporais</strong> que o feed infinito eliminou. Não é punição; é recordar ao cérebro: “você já viu muito, pausa e avalia se quer continuar”. O usuário segue com liberdade de continuar seu consumo, mas com maior consciência do tempo gasto.</p>
+<h4 id="6-janela-limitada-de-recomendação-algorítmica-audiovisual">6. Janela limitada de recomendação algorítmica audiovisual</h4>
+<p>É possível que seja argumentado que tal modelo minaria a exposição a novos conteúdos e criadores. Apesar de um argumento fraco porque muitas redes sociais já existiam antes do modelo de feed infinito, se for necessário barganhar, a proposta pode incluir uma <strong>janela limitada de recomendação algorítmica audiovisual</strong>.</p>
+<h5 id="obrigação-central-5">Obrigação central:</h5>
+<p>É permitido o <strong>conteúdo audiovisual recomendado</strong>, mas com <strong>limite quantitativo diário rigoroso</strong>.</p>
+<p><strong>Exemplo de implementação:</strong></p>
+<ul>
+<li>Até <strong>10 conteúdos audiovisuais por usuário por dia</strong>, exibidos em seção claramente identificada como “Descobrir” ou similar.</li>
+<li>Após atingir 10, a aba deixa de exibir recomendações novas por aquele dia.</li>
+<li>Isso permite que usuários descubram conteúdo novo, mas em janela <strong>muito limitada</strong>, reduzindo risco de vício e compulsão.</li>
+</ul>
+<p><strong>Alternativa regulatória (para evitar obsolescência em lei):</strong></p>
+<p>Definir em lei o <strong>princípio</strong> (“limites rigorosos de conteúdo audiovisual recomendado por dia”), e deixar que <strong>órgão regulador</strong> (ex.: autoridade de serviços digitais) defina o número exato em regulamento, permitindo ajustes com evolução tecnológica.</p>
+<h4 id="7-sugestões-de-contas-permitidas-mas-fora-do-feed-principal">7. Sugestões de contas: permitidas, mas fora do feed principal</h4>
+<h5 id="obrigação-central-6">Obrigação central:</h5>
+<p>Recomendações de novas contas para seguir podem continuar, mas:</p>
+<ul>
+<li><strong>Não aparecem no feed principal</strong> (que é cronológico-apenas-conexões).</li>
+<li>Aparecem em seção separada (ex.: “Contas sugeridas”), <strong>sem autoplay</strong> de vídeos.</li>
+<li>Quando o usuário clica em sugestão, vê o perfil da conta, mas <strong>não entra em um fluxo infinito de vídeos</strong> daquela conta automaticamente.</li>
+</ul>
+<h3 id="43-exceções">4.3. Exceções</h3>
+<h4 id="áudio-passivo-spotify-youtube-music-em-fundo">Áudio passivo (Spotify, YouTube Music em fundo)</h4>
+<p><strong>Serviços de streaming de áudio</strong> podem ser <strong>amplamente isentos</strong>, desde que:</p>
+<ul>
+<li>Não promovam <strong>rolagem visual infinita ou autoplay de videoclipes</strong>;</li>
+</ul>
+<p><strong>Razão:</strong> música de fundo é <strong>consumo passivo e de baixa atenção</strong> — usar Spotify enquanto trabalha não gera o mesmo mecanismo de feed infinito + recompensa variável + dopamina que vídeos curtos.</p>
+<h4 id="videoclipes-sem-shuffle-automático">Videoclipes: sem shuffle automático</h4>
+<p>Se plataforma oferece <strong>videoclipes</strong> (ex.: YouTube Music oferece vídeos de clipes), esses não podem ter <strong>shuffle ativado por padrão</strong>.</p>
+<p><strong>Razão:</strong> videoclipes, diferentemente de música, recaptam atenção visual. Logo, shuffle automático de videoclipes gera o mesmo risco de feed infinito.</p>
+<h3 id="44-sanções-e-compliance">4.4. Sanções e compliance</h3>
+<h4 id="órgão-regulador">Órgão regulador</h4>
+<p>Lei designa ou cria autoridade responsável por:</p>
+<ul>
+<li>Detalhar parâmetros técnicos (números exatos de recomendações diárias, definições de “grande porte”, etc.).</li>
+<li>Auditar plataformas e publicar relatórios.</li>
+<li>Receber denúncias de usuários e investigar.</li>
+</ul>
+<p><strong>Opção 1</strong>: criar “Autoridade de Ambiência Digital” (similar ao modelo da UE, que criou coordenador de DSA).
+<strong>Opção 2</strong>: delegar à Anatel + Senacon.</p>
+<h4 id="sanções">Sanções</h4>
+<ul>
+<li><strong>Multa de até 2% do faturamento anual global</strong> da plataforma por violação.</li>
+<li><strong>Suspensão de operação no Brasil</strong> em caso de reincidência grave.</li>
+<li><strong>Bloqueio de acesso via ISPs brasileiros</strong> como último recurso (após tentativas de compliance).</li>
+</ul>
+<p><strong>Razão de multa alta</strong>: se plataforma fatura bilhões com design viciante, multa simbólica não funciona. Deve haver <strong>impacto real</strong>.</p>
+<h2 id="5-os-ganhos-eleitorais-e-de-liderança-global">5. OS GANHOS ELEITORAIS E DE LIDERANÇA GLOBAL</h2>
+<h3 id="51-apelo-popular-incontestável">5.1. Apelo popular incontestável</h3>
+<p>Este é um dos raros temas em que há <strong>consenso transversal</strong>: praticamente ninguém gosta de feed infinito.</p>
+<ul>
+<li><strong>Adolescentes e pais</strong>: reconhecem mal-estar, ansiedade, vício.</li>
+<li><strong>Trabalhadores</strong>: sentem perda de produtividade e focus.</li>
+<li><strong>Idosos</strong>: em particular, se tornaram público-alvo de golpes e desinformação via algoritmos.</li>
+<li><strong>Espectro político</strong>: conservadores preocupados com famílias; progressistas preocupados com bem-estar mental e privacidade; libertários preocupados com exploração de dados.</li>
+</ul>
+<p>Diferentemente de outras pautas regulatórias que geram polarização, essa tem potencial de <strong>alto apoio multipartidário</strong>.</p>
+<h3 id="52-oportunidade-de-visibilidade-global">5.2. Oportunidade de visibilidade global</h3>
+<p>O Brasil seria <strong>pioneiro no mundo</strong> em regular feed infinito ao nível de design (a UE está dando passos tímidos<sup><a href="#user-content-fn-16" id="user-content-fnref-16" data-footnote-ref="" aria-describedby="footnote-label">17</a></sup>; os EUA ainda discutem).</p>
+<p>Isso gera:</p>
+<ul>
+<li><strong>Repercussão internacional em mídia</strong>: O país que adotar tal medida receberá ampla atenção dos demais por servir como estudo de caso pioneiro.</li>
+<li><strong>Influência normativa global</strong>: universidades, think tanks internacionais, outros legisladores olham para o Brasil como modelo.</li>
+<li><strong>Posicionamento civilizatório</strong>: o Brasil se apresenta como país que enfrenta Big Tech em defesa de cidadão, não como vassalo de interesses corporativos.</li>
+</ul>
+<p>Comparação com Marco Civil: quando o Brasil aprovou o Marco Civil da Internet (2014), isso foi reconhecido globalmente como modelo de proteção de direitos. Sua proposta de regulação de design pode ser análoga em impacto.</p>
+<h3 id="53-ganho-político-individual">5.3. Ganho político individual</h3>
+<p>Para o legislador que encabece:</p>
+<ul>
+<li><strong>Narrativa forte</strong>: “Eu enfrentei TikTok, Meta e Google para proteger a saúde mental dos brasileiros.”</li>
+<li><strong>Alto engajamento</strong>: tema que conecta com quase toda população. Trata-se de um tema com potencial de ser discutido da mesa de bar aos telejornais</li>
+<li><strong>Inevitabilidade</strong>: a crescente fadiga com o dano causado pelas redes sociais e a montanha de conhecimento científico comprovando isso torna essa regulação inevitável. Quem quer que encabece no momento terá a vantagem do pioneirismo em ser conhecido como a pessoa que iniciou algo que possivelmente será replicado em nível global</li>
+<li><strong>Coalizão amplamente possível</strong>: desde grupos de pais conservadores até movimentos pró-ciência.</li>
+</ul>
+<h2 id="6-por-que-proibir-menores-de-16-anos-não-funciona-e-piora-o-problema">6. POR QUE “PROIBIR MENORES DE 16 ANOS” NÃO FUNCIONA (E PIORA O PROBLEMA)</h2>
+<h3 id="61-ineficácia-técnica">6.1. Ineficácia técnica</h3>
+<p>Propostas de <strong>proibição de acesso para menores de 16 anos</strong> (modelo Austrália, ou semelhante) têm um problema fundamental: <strong>são facilmente contornáveis</strong>.</p>
+<h4 id="burlas-comuns">Burlas comuns</h4>
+<ul>
+<li>Usar email/cadastro dos pais ou familiares.</li>
+<li>Pedir a amigos maiores que compartilhem conta.</li>
+<li>Usar VPNs para simular localização.</li>
+<li>Criar contas falsas com dados fictícios ou de terceiros.</li>
+<li>Usar plataformas alternativas não-reguladas.</li>
+</ul>
+<p><strong>Resultado prático em Austrália (2024-2025):</strong> após proibição, uso juvenil migrou para plataformas menores / underground<sup><a href="#user-content-fn-18" id="user-content-fnref-18" data-footnote-ref="" aria-describedby="footnote-label">18</a></sup> e houve salto na utilização de VPNs.</p>
+<p>Ao excluir completamente só os jovens, permanecem os incentivos para que eles encontrem outras redes. Ao mudar o design para todos, a base de usuário permanece ativa por inércia, mas o dano é mitigado.</p>
+<h3 id="62-incentivo-perverso-expansão-da-coleta-de-dados-biométricos">6.2. Incentivo perverso: expansão da coleta de dados biométricos</h3>
+<p>Para “verificar idade de forma robusta”, empresas são forçadas a exigir:</p>
+<ul>
+<li>Fotografia de documento de identidade ou cartão de credito.</li>
+<li>Dados biométricos (reconhecimento facial, varredura de íris).</li>
+<li>Histórico de compras ou renda (para estimar idade).</li>
+</ul>
+<p><strong>Efeito colateral:</strong> <strong>plataformas coletam E armazenam vastamente mais dados pessoais e biométricos</strong>, ampliando superfícies de risco de vazamento, uso secundário malévolo, discriminação.</p>
+<p>A solução de “proteger menores” acaba causando <strong>maior risco de privacidade para todos</strong>.</p>
+<h3 id="63-deixa-intacto-o-núcleo-do-problema">6.3. Deixa intacto o núcleo do problema</h3>
+<p>Propostas de idade mínima <strong>não tocam no design viciante</strong>.</p>
+<ul>
+<li>Adultos continuam usando feed infinito e sofrendo ansiedade, depressão, fragmentação cognitiva.</li>
+<li>Idosos (os mais afetados</li>
+<li>O modelo de negócio de retenção compulsiva continua intacto para maiores de 16.</li>
+</ul>
+<p>Logo: <strong>Mal resolve um sintoma para um grupo, deixando a raiz do problema intacta</strong>.</p>
+<h3 id="64-cria-ilusão-de-problema-resolvido">6.4. Cria ilusão de “problema resolvido”</h3>
+<p>A narrativa “proibimos para menores” permite que legisladores <strong>se sintam satisfeitos</strong> (“fizemos algo”) sem de fato atacar o problema estrutural.</p>
+<p>Resultado: população pensa que o problema foi resolvido, plataformas continuam com design predatório, e em 5 anos descobrem que nada mudou.</p>
+<h3 id="65-alternativa-eficaz">6.5. Alternativa eficaz</h3>
+<p>Ao regular <strong>o design em si</strong> (não a idade de acesso), você:</p>
+<ul>
+<li><strong>Reduz o risco para todos</strong> (crianças, adolescentes, adultos, idosos) simultaneamente.</li>
+<li>Não requer vigilância invasiva ou coleta de dados biométricos.</li>
+<li><strong>Ataca a raiz</strong>: muda o incentivo econômico da plataforma (se não pode manter feed infinito, o modelo de “máxima retenção” não é mais viável).</li>
+<li>Permite que plataformas <strong>continuem operando e inovando</strong>, apenas sob regras mais saudáveis.</li>
+</ul>
+<h2 id="7-dispositivos-normativos-a-serem-alterados">7. DISPOSITIVOS NORMATIVOS A SEREM ALTERADOS</h2>
+<p>Uma implementação completa exigiria ajustes em múltiplos diplomas:</p>
+<h3 id="71-lei-nova-ou-capítulo-do-marco-civil">7.1. Lei nova ou capítulo do Marco Civil</h3>
+<p><strong>Opção A (preferida):</strong> Nova Lei de “Ambiência Digital Saudável” ou similar.
+<strong>Opção B:</strong> Novo capítulo no Marco Civil da Internet (Lei 12.965/2014).</p>
+<p><strong>Conteúdo:</strong></p>
+<ul>
+<li>Definições (plataformas de grande porte, feed infinito, recomendação personalizada, conexão explícita).</li>
+<li>Obrigações de design (feed cronológico, limite de recomendações, stop cues).</li>
+<li>Autoridade reguladora e procedimentos de auditoria.</li>
+<li>Sanções.</li>
+</ul>
+<h3 id="72-alteração-do-código-de-defesa-do-consumidor">7.2. Alteração do Código de Defesa do Consumidor</h3>
+<p>Adicionar inciso ao art. 39 (práticas abusivas) qualificando como abusivo:</p>
+<blockquote>
+<p>“Usar interfaces ou mecanismos de design de plataforma digital cujo propósito manifesto seja induzir, por manipulação psicológica ou neuropsicológica comprovada, uso compulsivo ou prolongado, em especial através de reforço intermitente de recompensas, remoção de pistas naturais de parada (stop cues), ou sistemas de recomendação baseados em perfis psicológicos invidividualizados, quando o resultado previsível é potencial dano à saúde mental, atenção ou bem-estar do consumidor.”</p>
+</blockquote>
+<h3 id="73-ajustes-na-lgpd">7.3. Ajustes na LGPD</h3>
+<p><strong>Art. 6º (princípios)</strong>: adicionar menção a “proteção da saúde mental” e “autodeterminação informacional sobre tempo de atenção”.</p>
+<p><strong>Art. 20 (decisões automatizadas)</strong>: reforçar que sistemas de recomendação cuja métrica exclusiva é maximização de engajamento não podem usar perfis psicológicos sensíveis de vulnerabilidade.</p>
+<h3 id="74-lei-ou-resolução-de-criação-de-autoridade-reguladora">7.4. Lei ou resolução de criação de autoridade reguladora</h3>
+<p>Definir:</p>
+<ul>
+<li>Composição (ex.: membros de Anatel, Senacon, órgãos de saúde).</li>
+<li>Competências.</li>
+<li>Orçamento.</li>
+<li>Procedimentos de auditoria e enforcement.</li>
+</ul>
+<h3 id="75-possivelmente-complementos-no-eca-e-estatuto-da-juventude">7.5. Possivelmente, complementos no ECA e Estatuto da Juventude</h3>
+<p>Reforçar proteção de menores contra design viciante sem criar regime de exclusão total.</p>
+<h2 id="8-síntese-e-recomendação">8. SÍNTESE E RECOMENDAÇÃO</h2>
+<h3 id="há-margem-para-debate">Há margem para debate?</h3>
+<p>Não. Há <strong>evidência robusta de que feeds infinitos com recomendação algorítmica personalíssima causam dano mensurável à cognição, atenção, saúde mental e bem-estar</strong>, em todas as faixas etárias, com particular gravidade em idosos. Estamos em um período da história análogo à era pré-regulação do tabaco, quando o conhecimento científico já era claro, mas a ação política ainda não tinha ocorrido.</p>
+<p>Há <strong>reconhecimento das próprias plataformas</strong> de que o design é viciante e prejudicial.</p>
+<p>Há <strong>fundamento constitucional claro</strong> (saúde como dever estatal, liberdade econômica condicionada, proteção do consumidor).</p>
+<p>Há <strong>precedentes de regulação comparável</strong> em direito brasileiro e internacional.</p>
+<p>Há <strong>vácuo regulatório explicitamente reconhecido pelo STF</strong> e convite para legislação nova.</p>
+<h3 id="a-proposta-é-proporcional">A proposta é proporcional?</h3>
+<p>Sim. Não proíbe redes sociais, não censura conteúdo, não impede inovação. <strong>Regula o design</strong> (a forma como o conteúdo é organizado e entregue) para reduzir dano.</p>
+<p>É análogo a como o Estado regula publicidade, horários, contexto de venda de produtos reconhecidamente nocivos.</p>
+<h3 id="qual-é-o-ganho-político">Qual é o ganho político?</h3>
+<p><strong>Transversal</strong>: quase todo eleitorado sente na pele o problema.</p>
+<p><strong>Global</strong>: Brasil como pioneiro em regulação de design, com potencial de influência mundial.</p>
+<p><strong>Individual</strong>: legislador conhecido como aquele que enfrentou Big Tech em defesa de cidadão.</p>
+<h3 id="qual-é-a-próxima-ação">Qual é a próxima ação?</h3>
+<p>Recomenda-se:</p>
+<ol>
+<li><strong>Apresentação pública da proposta</strong> com exposição detalhada, envolvendo especialistas em neurociência, direito digital, saúde pública.</li>
+<li><strong>Construção de coalição</strong>: mobilizar pais, movimentos de bem-estar mental, ativistas de privacidade, pesquisadores.</li>
+<li><strong>Engajamento com mídia</strong>: dobradinha de influenciadores e mídia tradicional para tornar o assunto pauta forte no debate</li>
+<li><strong>Diálogo com reguladores</strong>: Anatel, Senacon, Anvisa, para sinalizações de alinhamento.</li>
+<li><strong>Minuta de lei</strong>: com especialistas, transformar esta exposição em projeto de lei tecnicamente rigoroso.</li>
+</ol>
+<p>Pessoas relevantes:</p>
+<ol>
+<li>Dr. Cristiano Nabuco de Abreu</li>
+<li>Dra. Li Li Min</li>
+<li>Dr. Daniel Spritzer</li>
+<li>Dr. Drauzio Varella</li>
+<li>Laura Marise &#x26; Ana Bonassa - Influencers divulgadoras de conteúdo científico</li>
+<li>Lucas Zanandrez - Influencer divulgador de conteúdo científico</li>
+<li>Tristan Harris &#x26; Aza Raskin - Fundadores do Center for Humane Technology e criador do feed infinito (hoje detrator)</li>
+<li>Gabriela Rocha &#x26; Rodrigo Vaz - Produtores da matéria no Fantástico sobre vício em celular</li>
+</ol>
+<hr>
+<h2 id="referências">REFERÊNCIAS</h2>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>FERSTER, Charles B.; SKINNER, Burrhus Frederic. <strong>Schedules of reinforcement</strong>. Cambridge, MA: B. F. Skinner Foundation, 2014. E-book. Originalmente publicado por: Prentice-Hall, 1957. Disponível em: <a href="https://www.bfskinner.org/wp-content/uploads/2015/05/Schedules_of_Reinforcement_PDF.pdf">https://www.bfskinner.org/wp-content/uploads/2015/05/Schedules_of_Reinforcement_PDF.pdf</a>. Acesso em: 9 fev. 2026. <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-2">
+<p>SCHULTZ, Wolfram; DAYAN, Peter; MONTAGUE, P. Read. A neural substrate of prediction and reward. <strong>Science</strong>, v. 275, n. 5306, p. 1593-1599, 14 mar. 1997. Disponível em: <a href="https://pubmed.ncbi.nlm.nih.gov/9054347/">https://pubmed.ncbi.nlm.nih.gov/9054347/</a>. Acesso em: 9 fev. 2026. <a href="#user-content-fnref-2" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a> <a href="#user-content-fnref-2-2" data-footnote-backref="" aria-label="Back to reference 2-2" class="data-footnote-backref">↩<sup>2</sup></a></p>
+</li>
+<li id="user-content-fn-3">
+<p>BERRIDGE, Kent C.; ROBINSON, Terry E. What is the role of dopamine in reward: hedonic impact, reward learning, or incentive salience?. <strong>Brain Research Reviews</strong>, v. 28, n. 3, p. 309-369, dez. 1998. Disponível em: <a href="https://pubmed.ncbi.nlm.nih.gov/9858756/">https://pubmed.ncbi.nlm.nih.gov/9858756/</a>. Acesso em: 9 fev. 2026. <a href="#user-content-fnref-3" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-4">
+<p>GRAPHIC, BBC News Online. <strong>Social media apps are ‘deliberately’ addictive to users</strong>. Londres: BBC News, 4 jul. 2018. Disponível em: <a href="https://www.bbc.com/news/technology-44640959">https://www.bbc.com/news/technology-44640959</a>. Acesso em: 9 fev. 2026. <a href="#user-content-fnref-4" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-5">
+<p>Nguyen, L., Walters, J., Paul, S., Monreal Ijurco, S., Rainey, G. E., Parekh, N., Blair, G., &#x26; Darrah, M. (2025). Feeds, feelings, and focus: A systematic review and meta-analysis examining the cognitive and mental health correlates of short-form video use. <em>Psychological Bulletin</em>, 151(9), 1125–1146. <a href="https://doi.org/10.1037/bul0000498">https://doi.org/10.1037/bul0000498</a> <a href="#user-content-fnref-5" data-footnote-backref="" aria-label="Back to reference 5" class="data-footnote-backref">↩</a> <a href="#user-content-fnref-5-2" data-footnote-backref="" aria-label="Back to reference 5-2" class="data-footnote-backref">↩<sup>2</sup></a></p>
+</li>
+<li id="user-content-fn-6">
+<p>Jiang, Q., &#x26; Ma, L. (2024). Swiping more, thinking less: Using TikTok hinders analytic thinking. <em>CyberPsychology, Behavior, and Social Networking</em>, 27(6), 485–491. <a href="https://doi.org/10.5817/CP2024-3-1">https://doi.org/10.5817/CP2024-3-1</a> <a href="#user-content-fnref-6" data-footnote-backref="" aria-label="Back to reference 6" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-7">
+<p>Chiossi, F., Künne, M., &#x26; Pfeiffer, T. (2023). Short-form videos degrade our capacity to retain intentions: Effect of context switching on prospective memory. In <em>Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems</em> (pp. 1–15). <a href="https://doi.org/10.48550/arXiv.2302.03714">https://doi.org/10.48550/arXiv.2302.03714</a> <a href="#user-content-fnref-7" data-footnote-backref="" aria-label="Back to reference 7" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-8">
+<p>Barton, K., &#x26; Smyth, P. (2025). Context-switching in short-form videos: What is the impact on prospective memory? <em>Memory</em>, 33(2), 245–258. <a href="https://doi.org/10.1080/09658211.2025.2521076">https://doi.org/10.1080/09658211.2025.2521076</a> <a href="#user-content-fnref-8" data-footnote-backref="" aria-label="Back to reference 8" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-9">
+<p>Satici, S. A., Tsetim, K., &#x26; Kayis, A. R. (2023). Doomscrolling Scale: Association with personality traits, fear of missing out, psychological distress, and wellbeing. <em>Current Psychology</em>, 42, 19041–19052. <a href="https://doi.org/10.1007/s11482-022-10110-7">https://doi.org/10.1007/s11482-022-10110-7</a> <a href="#user-content-fnref-9" data-footnote-backref="" aria-label="Back to reference 9" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-10">
+<p>Shabahang, R., Rezaei, R., &#x26; De Ridder, D. (2024). Doomscrolling and existential anxiety in social media users: The moderating role of mindfulness. <em>Computers in Human Behavior</em>, 152, 107995. <a href="https://doi.org/10.1016/j.chbr.2024.100438">https://doi.org/10.1016/j.chbr.2024.100438</a> <a href="#user-content-fnref-10" data-footnote-backref="" aria-label="Back to reference 10" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-11">
+<p>EL-SAYED, Mona; ALZAHARNI, Saeed Jabactey. Social Media Doomscrolling and Anxiety: Psychological Resilience as a Moderator. <strong>Journal of Assessment and Research in Applied Counseling (JARAC)</strong>, v. 7, n. 4, out. 2025. Disponível em: <a href="https://journals.kmanpub.com/index.php/jarac/article/view/4776">https://journals.kmanpub.com/index.php/jarac/article/view/4776</a>. Acesso em: 9 fev. 2026. <a href="#user-content-fnref-11" data-footnote-backref="" aria-label="Back to reference 11" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-12">
+<p>Sun, Y., Lin, Z., Zhou, X., Cen, Y., Miao, Q., &#x26; Cheng, Z. (2025). Associations between social media use and anxiety, depression, and sleep quality among older adults. <em>JMIR Aging</em>, 8, e71712. <a href="https://doi.org/10.2196/71712">https://doi.org/10.2196/71712</a> <a href="#user-content-fnref-12" data-footnote-backref="" aria-label="Back to reference 12" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-13">
+<p>Utah Attorney General. (2024). State of Utah v. Meta Platforms, Inc. Unredacted Public Complaint. <a href="https://socialmedia.utah.gov/wp-content/uploads/2024/01/230908060-Utah-v.-Meta-Unredacted-Public-Complaint.pdf">https://socialmedia.utah.gov/wp-content/uploads/2024/01/230908060-Utah-v.-Meta-Unredacted-Public-Complaint.pdf</a> <a href="#user-content-fnref-13" data-footnote-backref="" aria-label="Back to reference 13" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-17">
+<p>TECH OVERSIGHT REPORT: UNSEALED COURT DOCUMENTS SHOW TEEN ADDICTION WAS BIG TECH’S “TOP PRIORITY”. <a href="https://techoversight.org/2026/01/25/top-report-mdl-jan-25/">https://techoversight.org/2026/01/25/top-report-mdl-jan-25/</a> <a href="#user-content-fnref-17" data-footnote-backref="" aria-label="Back to reference 14" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-14">
+<p>Goodman, S. (2024, October 11). Kentucky’s TikTok lawsuit revealed executives knew about app’s effect on teens. <em>Kentucky Public Radio</em>. <a href="https://www.lpm.org/news/2024-10-11/listen-kentuckys-tiktok-lawsuit-revealed-executives-knew-about-apps-effect-on-teens">https://www.lpm.org/news/2024-10-11/listen-kentuckys-tiktok-lawsuit-revealed-executives-knew-about-apps-effect-on-teens</a> <a href="#user-content-fnref-14" data-footnote-backref="" aria-label="Back to reference 15" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-15">
+<p>NPR. (2024, October 11). TikTok executives know about app’s effect on teens, lawsuit documents allege. <em>NPR</em>. <a href="https://www.npr.org/2024/10/11/1210942201/tiktok-executives-know-about-apps-effect-on-teens-lawsuit-documents-allege">https://www.npr.org/2024/10/11/1210942201/tiktok-executives-know-about-apps-effect-on-teens-lawsuit-documents-allege</a> <a href="#user-content-fnref-15" data-footnote-backref="" aria-label="Back to reference 16" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-16">
+<p>UNIÃO Europeia acusa TikTok de ‘design viciante’ e cobra mudanças para proteger usuários. <strong>G1</strong>, 6 fev. 2026. Disponível em: <a href="https://g1.globo.com/google/amp/tecnologia/noticia/2026/02/06/uniao-europeia-acusa-tiktok-de-design-viciante-e-cobra-mudancas-para-proteger-usuarios.ghtml">https://g1.globo.com/google/amp/tecnologia/noticia/2026/02/06/uniao-europeia-acusa-tiktok-de-design-viciante-e-cobra-mudancas-para-proteger-usuarios.ghtml</a> <a href="#user-content-fnref-16" data-footnote-backref="" aria-label="Back to reference 17" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-18">
+<p>Teens hoping to get around Australia’s social media ban are rushing to smaller apps. Where are they going?. <a href="https://www.theguardian.com/australia-news/2025/dec/04/under-16s-are-already-fleeing-to-apps-not-covered-by-australias-social-media-ban-heres-where-theyre-going">https://www.theguardian.com/australia-news/2025/dec/04/under-16s-are-already-fleeing-to-apps-not-covered-by-australias-social-media-ban-heres-where-theyre-going</a> <a href="#user-content-fnref-18" data-footnote-backref="" aria-label="Back to reference 18" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section> </div> <div class="project-tags" style="margin-top: var(--space-xl);"> <span class="project-tag">#Política pública</span><span class="project-tag">#Saúde mental</span><span class="project-tag">#Redes sociais</span><span class="project-tag">#Regulação</span> </div> </article> <div style="margin-top: var(--space-xl);"> <a href="/blog/" class="btn btn-secondary">← All Posts</a> </div> </div> </section>  <footer class="footer"> <div class="container" style="background: transparent;"> <p><strong>Code</strong> licensed under <a href="/LICENSE.txt" target="_blank" rel="noopener noreferrer">GPLv3</a> • <strong>Content</strong> © Jonas Coelho - <a href="/LICENSE.txt" target="_blank" rel="noopener noreferrer">All Rights Reserved</a></p> </div> </footer> </main> <!-- Scripts --> <script type="module" src="/js/main.js"></script> </body> </html>
