@@ -466,6 +466,8 @@ Em 2024, o estado de Nova Iorque aprovou a Senate Bill S7694[^20], que proíbe f
 
 Em 2023, o Parlamento Europeu aprovou uma resolução[^21] (que não possui caráter normativo), instando a Comissão Europeia a tomar medidas contra o design viciante, incluindo a proibição de feed infinito. A Comissão ainda não apresentou proposta legislativa concreta, mas o tema está em discussão. Recentemente, o TikTok entrou na mira da UE por práticas de design viciante, e a Comissão tem sinalizado que pode avançar com regulação específica.[^16]
 
+Por fim, este ano, foi iniciado um processo judicial na California contra Meta e Google, em que a autora alega danos à sua saúde mental por conta do design viciante dos aplicativos. O processo inicialmente incluiria também TikTok e Snapchat, que preferiram fechar um acordo para que o caso não fosse levado a juízo.[^33]  
+
 Ou seja, a proposta tem ganhado momento no cenário internacional, mas ainda falta alguém dar o passo decisivo de aprovar uma lei concreta. O Brasil tem a oportunidade de ser esse pioneiro, e colher os frutos de liderança global em regulação digital.
 
 Isso gera:
@@ -486,7 +488,19 @@ Para o legislador que encabece:
 
 ## 6. POR QUE "PROIBIR MENORES DE 16 ANOS" NÃO FUNCIONA (E PIORA O PROBLEMA)
 
-### 6.1. Ineficácia técnica
+### 6.1. Isola jovens LGBT e outras minorias que encontram apoio nas redes
+
+Diversos estudos indicam que **jovens LGBT usam redes sociais de forma mais intensiva justamente para buscar apoio e reduzir solidão**, especialmente quando vivem em contextos hostis ou pouco acolhedores. Revisões sistemáticas sobre saúde mental de jovens LGBT em mídias sociais apontam que esses ambientes online funcionam como “espaços seguros” para conexão com pares, exploração de identidade e troca de experiências, o que se associa a maior sensação de pertencimento e bem‑estar.[^23] [^24] [^26] [^28] [^22]
+
+Pesquisas mostram que adolescentes LGBT têm maior probabilidade de ter amigos próximos conhecidos online e relatam que esses amigos oferecem apoio emocional muitas vezes superior ao de amigos presenciais. Estudos com adolescentes de minorias sexuais em vários países destacam que esses jovens usam grupos e comunidades online (muitas vezes anônimos, separados da família) para falar sobre solidão, depressão, bullying e dúvidas sobre sexualidade e gênero, justamente por não encontrarem esse espaço em casa ou na escola. Para jovens LGBT em áreas rurais ou conservadoras, a internet é descrita como “ferramenta vital” para reduzir isolamento e acessar pares LGBT que simplesmente não existem no entorno offline.[^24] [^25] [^28] [^22] [^23]
+
+A literatura sobre adolescentes e redes sociais ressalta que **banimentos amplos ou restrições rígidas podem aumentar sentimentos de isolamento**, frustrar necessidades psicossociais básicas e até fortalecer rebeldia sem oferecer alternativas de apoio equivalentes. Relatórios recentes de saúde pública, como o parecer do Surgeon General dos EUA, enfatizam que jovens de grupos marginalizados — em particular LGBT — parecem se beneficiar de modo singular das oportunidades de conexão oferecidas por redes sociais, e que políticas devem levar em conta esses benefícios.[^30] [^26] [^27]
+
+Quando a lei simplesmente “desliga” o acesso para menores de 16 anos, **quem já tinha família acolhedora, escola segura e rede offline de apoio perde pouco**, mas quem dependia do suporte online perde praticamente tudo. Na prática, isso pode significar: mais solidão, maior dificuldade de formação de identidade positiva, maior exposição a depressão e ideação suicida, e dependência ainda maior de ambientes offline que muitas vezes são justamente a fonte do estigma ou da violência.[^25] [^28] [^30] [^23] [^24]
+
+Por isso, especialistas em saúde mental adolescente têm defendido que regulações foquem em reduzir riscos de design (conteúdos nocivos, assédio, hiper-engajamento) e desenvolver habilidades de autorregulação emocional e literacia digital, **em vez de bans generalizados que cortam também os efeitos protetores das redes para jovens vulneráveis**. Em outras palavras, ao tentar “proteger” de forma indiscriminada, proibições etárias rígidas acabam punindo sobretudo quem mais precisa de espaços online seguros e de comunidades de acolhimento.[^31] [^26] [^27] [^28] [^23]
+
+### 6.2. Ineficácia técnica
 
 Propostas de **proibição de acesso para menores de 16 anos** (modelo Austrália, ou semelhante) têm um problema fundamental: **são facilmente contornáveis**.
 
@@ -502,7 +516,7 @@ Propostas de **proibição de acesso para menores de 16 anos** (modelo Austráli
 
 Ao excluir completamente só os jovens, permanecem os incentivos para que eles encontrem outras redes. Ao mudar o design para todos, a base de usuário permanece ativa por inércia, mas o dano é mitigado.
 
-### 6.2. Incentivo perverso: expansão da coleta de dados biométricos
+### 6.3. Incentivo perverso: expansão da coleta de dados biométricos
 
 Para "verificar idade de forma robusta", empresas são forçadas a exigir:
 - Fotografia de documento de identidade ou cartão de credito.
@@ -513,23 +527,23 @@ Para "verificar idade de forma robusta", empresas são forçadas a exigir:
 
 A solução de "proteger menores" acaba causando **maior risco de privacidade para todos**.
 
-### 6.3. Deixa intacto o núcleo do problema
+### 6.4. Deixa intacto o núcleo do problema
 
 Propostas de idade mínima **não tocam no design viciante**.
 
 - Adultos continuam usando feed infinito e sofrendo ansiedade, depressão, fragmentação cognitiva.
-- Idosos (os mais afetados)
-- O modelo de negócio de retenção compulsiva continua intacto para maiores de 16.
+- Idosos, igualmente propensos a serem vítimas do design viciante, seguem sem nenhuma proteção.
+- O modelo de negócio de retenção compulsiva mantém incentivos para piorar.
 
 Logo: **Mal resolve um sintoma para um grupo, deixando a raiz do problema intacta**.
 
-### 6.4. Cria ilusão de "problema resolvido"
+### 6.5. Cria ilusão de "problema resolvido"
 
 A narrativa "proibimos para menores" permite que legisladores **se sintam satisfeitos** ("fizemos algo") sem de fato atacar o problema estrutural.
 
 Resultado: população pensa que o problema foi resolvido, plataformas continuam com design predatório, e em 5 anos descobrem que nada mudou.
 
-### 6.5. Alternativa eficaz
+### 6.6. Alternativa eficaz
 
 Ao regular **o design em si** (não a idade de acesso), você:
 
@@ -537,6 +551,10 @@ Ao regular **o design em si** (não a idade de acesso), você:
 - Não requer vigilância invasiva ou coleta de dados biométricos.
 - **Ataca a raiz**: muda o incentivo econômico da plataforma (se não pode manter feed infinito, o modelo de "máxima retenção" não é mais viável).
 - Permite que plataformas **continuem operando e inovando**, apenas sob regras mais saudáveis.
+
+Proibir menores de 16 anos tende a **prejudicar de forma desproporcional justamente os jovens que mais precisam de espaços online de apoio**, em especial LGBT, neurodivergentes, jovens com deficiência e outros grupos marginalizados. A literatura recente mostra que redes sociais frequentemente funcionam como fonte central de pertencimento, informação e suporte emocional para esses grupos, sobretudo quando a família, a escola ou a comunidade local não oferecem esse apoio.[^22] [^23] [^24] [^25] [^26] [^27] [^28]
+
+O problema não é o acesso dos jovens às redes. O problema é a forma como essas redes são feitas hoje em dia. Redes sociais existem de maneira ampla antes mesmo da popularização do computador pessoal. Feed infinito com recomendações personalíssimas, por sua vez, surgiu há pouco mais de 10 anos. Não são as redes que são o problema, é um traço específico de seu design atual.
 
 ## 7. DISPOSITIVOS NORMATIVOS A SEREM ALTERADOS
 
@@ -617,16 +635,54 @@ Recomenda-se:
 4. **Diálogo com reguladores**: Anatel, Senacon, Anvisa, para sinalizações de alinhamento.
 5. **Minuta de lei**: com especialistas, transformar esta exposição em projeto de lei tecnicamente rigoroso.
 
-Pessoas relevantes:
+## 9. PESSOAS RELEVANTES
 
-1. Dr. Cristiano Nabuco de Abreu
-2. Dra. Li Li Min
-3. Dr. Daniel Spritzer
-4. Dr. Drauzio Varella
-5. Laura Marise & Ana Bonassa - Influencers divulgadoras de conteúdo científico
-6. Lucas Zanandrez - Influencer divulgador de conteúdo científico
-7. Tristan Harris & Aza Raskin - Fundadores do Center for Humane Technology e criador do feed infinito (hoje detrator)
-8. Gabriela Rocha & Rodrigo Vaz - Produtores da matéria no Fantástico sobre vício em celular
+### Clínicos e pesquisadores em “dependência tecnológica”
+
+- **Dr. Cristiano Nabuco de Abreu**
+Psicólogo clínico, PhD, pós‑doc em Psiquiatria pela USP, coordenador do Programa de Dependência de Internet do AMITI (Ipq‑FMUSP), referência pioneira em dependência de internet e uso problemático de telas no Brasil, autor de livros e capítulos sobre o tema, com foco forte em crianças e adolescentes.
+→ Perfil: especialista central para qualquer discussão sobre vício em internet, protocolos clínicos, prevenção e tratamento.
+
+- **Dr. Daniel Spritzer**
+Psiquiatra da infância e adolescência, doutor em Psiquiatria pela UFRGS, coordena o Grupo de Estudos sobre Adições Tecnológicas (GEAT) e participa de grupo de trabalho da OMS sobre uso problemático de jogos digitais; autor de “Crianças bem conectadas” e de diversos artigos sobre dependência de telas, games e apostas.
+→ Perfil: especialista em saúde mental infantil, jogos/apostas e formulação de critérios para “adições tecnológicas”.
+
+- **Dr. Li Li Min**
+Neurologista e epileptologista, professor titular de Neurologia na UNICAMP, atua em cirurgia de epilepsia, neuroimagem e neurociência, com produção extensa em epilepsia, AVC e plasticidade cerebral. Se manifestou anteriormente em entrevistas sobre como as redes sociais podem ter comportamento ansiogênico. [^31]
+→ Perfil: relevante como autoridade em neurociência e efeitos cerebrais de estímulos digitais, potencial ponte para evidência neurofisiológica.
+
+
+### Divulgadores e mídia em ciência, saúde e tecnologia
+
+- **Dr. Drauzio Varella**
+Médico oncologista e escritor, uma das principais referências em divulgação de saúde pública no Brasil, com produção constante sobre hábitos de vida, saúde mental e uso de tecnologia em seu portal.
+→ Perfil: voz de alto alcance para levar ao público leigo recomendações de uso saudável de telas e riscos de vício, mesmo sem foco técnico em “internet addiction” stricto sensu.
+
+- **Laura Marise \& Ana Bonassa – “Nunca vi 1 cientista”**
+Cientistas e divulgadoras. O projeto “Nunca vi 1 cientista” é um perfil grande de divulgação científica em redes, com ênfase em checagem de fatos, saúde e consumo crítico de informações online.
+→ Perfil: influenciadoras centrais em alfabetização científica e combate à desinformação em redes; podem ancorar campanhas de uso responsável de redes, inclusive sobre vício e impactos em saúde mental.
+
+- **Lucas Zanandrez – “Olá, Ciência!”**
+Biomédico, empreendedor e divulgador científico, fundador do canal “Olá, Ciência!”, focado em saúde, bem‑estar e educação científica; o canal cresceu muito na pandemia combatendo desinformação e hoje alcança milhões de pessoas/mês.
+→ Perfil: divulgador com forte foco em saúde e comportamento, excelente para traduzir evidência sobre vício em internet, algoritmos e impactos em jovens.
+
+
+### Regulação de plataformas, “humane tech” e política pública
+
+- **Tristan Harris \& Aza Raskin**
+Co‑fundadores do Center for Humane Technology e co‑hosts do podcast “Your Undivided Attention”; Aza é frequentemente citado como inventor do “infinite scroll”, hoje crítico do próprio design persuasivo que ajuda a sustentar vícios em feeds.
+→ Perfil: referências globais em crítica ao modelo de negócios da atenção, arquitetura persuasiva de plataformas, regulação de redes e desenho de sistemas pró‑bem‑estar (padrões de design, incentivos econômicos, propostas regulatórias).
+
+- **Sacha Haworth \& Marjorie K. Connolly**
+Sacha é diretora‑executiva do Tech Oversight Project, organização de advocacy que pressiona por regulação mais dura de Big Tech, incluindo IA e redes sociais, com foco em proteção de consumidores e crianças, combate a monopólios e responsabilização de plataformas.
+Marjorie é Communications Director do mesmo projeto, com histórico em campanhas de comunicação sobre saúde e política de tecnologia, traduzindo temas regulatórios complexos para o debate público. → Perfil: atores políticos/advocacy diretamente envolvidos em legislação de segurança online, proteção de crianças, moderação de conteúdo e fiscalização de plataformas.
+
+
+### Jornalismo e grandes reportagens sobre vício em celular
+
+- **Gabriela Rocha \& Rodrigo Vaz**
+Jornalistas/produtores da matéria do Fantástico sobre vício em celular (Rede Globo), responsáveis por pautar o tema para grande público, articulando casos clínicos, especialistas e impactos sociais.
+→ Perfil: relevantes como ponte para cobertura em mídia tradicional.
 
 
 ---
@@ -675,3 +731,23 @@ Pessoas relevantes:
 [^20]: Senate Bill S7694, New York State Senate (2024). https://www.nysenate.gov/legislation/bills/2023/S7694/amendment/original
 
 [^21]: Resolução do Parlamento Europeu, de 12 de dezembro de 2023, sobre conceção dos serviços em linha de forma a criar dependência e proteção dos consumidores no mercado único da UE. https://www.europarl.europa.eu/doceo/document/TA-9-2023-0459_PT.html
+
+[^22]: Knowles EA, Danzi BA. The Role of Online Social Support in Mental Health: Comparing Rural and Urban Youth. Children, 2024. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC11854462/. Acesso em: 12 fev. 2026.
+
+[^23]: BERGER, M. N. et al. Social Media Use and Health and Well-being of Lesbian, Gay, Bisexual, Transgender, and Queer Youth: Systematic Review. Journal of Medical Internet Research, 2022. Disponível em: https://www.jmir.org/2022/9/e38449/. Acesso em: 12 fev. 2026.
+
+[^24]: YBARRA, M. L. et al. Online social support as a buffer against online and offline peer and sexual victimization among U.S. LGBT and non-LGBT youth. Child Abuse & Neglect, 2015. (Disponível em PMC 2019). Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC6483382/. Acesso em: 12 fev. 2026.
+
+[^25]: CHARBONNIER, E. et al. Young Sexual Minority Adolescent Experiences of Self-expression and Isolation on Social Media: Cross-sectional Survey Study. JMIR Mental Health, 2021. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC8482247/. Acesso em: 12 fev. 2026.
+
+[^26]: DIGITAL WELLNESS LAB. The Online Experiences of LGBTQ+ Youth: Research Brief. Boston: Boston Children’s Hospital, 2025. Disponível em: https://digitalwellnesslab.org/research-briefs/the-online-experiences-of-lgbtq-youth/. Acesso em: 12 fev. 2026.
+
+[^27]: MCALISTER, K. L. et al. Social Media Use in Adolescents: Bans, Benefits, and Emotion Regulation Behaviors. JMIR Mental Health, v. 11, p. e64626, 2024. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC11554337/. Acesso em: 12 fev. 2026.
+
+[^28]: CESANO, J. et al. Examining Social Media Experiences and Attitudes Toward Technology-Based Interventions for Reducing Social Isolation Among LGBTQ Youth Living in Rural United States: An Online Qualitative Study. Frontiers in Digital Health, v. 4, p. 892120, 2022. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC9271672/. Acesso em: 12 fev. 2026.
+
+[^30]: PRAKASH, Om. et al. Is it time for India to set social media age limits for adolescents? Indian journal of psychiatry. 2025. Disponível em: https://pmc.ncbi.nlm.nih.gov/articles/PMC11964175/. Acesso em: 12 fev. 2026.
+
+[^31]: Fundação Conrado Wessel. Cultura Científica. https://www.fcw.org.br/culturacientifica9/li-li-min
+
+[^33]: JORNAL NACIONAL Pela primeira vez, duas bigh techs enfrentam júri popular em processo sobre vício nas redes sociais. https://g1.globo.com/jornal-nacional/noticia/2026/02/10/pela-primeira-vez-duas-bigh-techs-enfrentam-juri-popular-em-processo-sobre-vicio-nas-redes-sociais.ghtml
