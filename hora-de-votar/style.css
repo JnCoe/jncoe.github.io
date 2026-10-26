@@ -59,11 +59,12 @@
   -webkit-text-fill-color: transparent; width: fit-content;
 }
 .lede { color: var(--text-secondary); max-width: 62ch; font-size: 1.05rem; }
-.logline { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary); background: var(--card); border: 1px solid var(--grid); border-radius: 6px; padding: 8px 10px; margin-top: 14px; overflow-x: auto; white-space: pre; }
+/* real log excerpts: kept byte for byte, so they scroll sideways inside their box */
+.logline { font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.6; color: var(--text-secondary); background: var(--bg-body, var(--card)); border: 1px solid var(--grid); border-radius: 6px; padding: 8px 10px; margin: 0; overflow-x: auto; white-space: pre; tab-size: 4; }
 .logline b { color: var(--accent); font-weight: 600; }
 
 /* sections */
-.hdv-section { padding-top: var(--space-xl, 32px); }
+.hdv-section { padding-top: var(--space-xl, 32px); scroll-margin-top: calc(var(--dock-h, 0px) + 8px); }
 .hdv-section > h2 {
   font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
   font-size: 2.2rem; line-height: 1; letter-spacing: 0.01em; margin-bottom: 8px;
@@ -83,30 +84,47 @@
 
 /* the urna "display": always dark, in both themes */
 .player { background: var(--screen); border-color: var(--screen); color: var(--screen-text); }
-.player .muted, .player .clock small, .player .ticks { color: color-mix(in srgb, var(--screen-text) 62%, transparent); }
-.readout { display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; justify-content: space-between; }
-.clock { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 2rem; font-weight: 500; display: flex; flex-direction: column; line-height: 1.1; }
-.clock small { font-size: 0.8rem; font-weight: 400; }
-.counter { display: flex; flex-direction: column; align-items: flex-end; }
-.hero { font-family: var(--font-display); font-size: clamp(3rem, 11vw, 5.2rem); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; line-height: 1; }
-.delta { margin-top: 6px; min-height: 1.4em; }
+.player .muted { color: color-mix(in srgb, var(--screen-text) 62%, transparent); }
+.readout { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px 32px; }
+.count { display: flex; flex-direction: column; min-width: 0; }
+.count-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: color-mix(in srgb, var(--screen-text) 62%, transparent); }
+.count-label b { color: var(--screen-text); font-family: var(--font-mono); font-weight: 500; letter-spacing: 0; }
+.count-late .hero { color: var(--late); }
+.hero { font-family: var(--font-display); font-size: clamp(2.6rem, 9vw, 4.6rem); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; line-height: 1.05; }
+.delta { margin-top: 14px; padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--screen-text) 15%, transparent); }
 .late-flag { color: var(--late); font-weight: 600; }
 
-.controls { display: flex; gap: 12px; align-items: center; margin-top: 18px; }
+/* the clock: an urna "display" stuck to the top of the screen (below the site's mobile header) */
+.hdv > .dock {
+  position: sticky; top: 0; z-index: var(--z-sticky, 200);
+  display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: "play clock track scope";
+  align-items: center; gap: 6px 16px;
+  margin-bottom: 8px; padding: 10px 18px 4px;
+  background: var(--screen); color: var(--screen-text);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+.dock .clock { grid-area: clock; display: flex; flex-direction: column; line-height: 1.1; padding-bottom: 6px; }
+.dock #clock { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1.6rem; font-weight: 500; }
+.dock .clock small { font-size: 0.75rem; white-space: nowrap; color: color-mix(in srgb, var(--screen-text) 62%, transparent); font-variant-numeric: tabular-nums; }
+.dock-track { grid-area: track; min-width: 0; }
+.dock .scope { grid-area: scope; margin: 0 0 6px; }
 #play {
+  grid-area: play; margin-bottom: 6px;
   flex: none; width: 44px; height: 44px; border-radius: 50%;
   border: 0; background: var(--accent); color: #fff;
   font-size: 1rem; cursor: pointer;
 }
 #play:hover { filter: brightness(1.1); }
-#play:focus-visible, .player input[type=range]:focus-visible { outline: 2px solid var(--screen-text); outline-offset: 2px; }
-.player input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); height: 28px; }
-.ticks { position: relative; height: 18px; margin-left: 56px; font-size: 0.75rem; }
+#play:focus-visible, .dock input[type=range]:focus-visible { outline: 2px solid var(--screen-text); outline-offset: 2px; }
+.dock input[type=range] { display: block; width: 100%; margin: 0; accent-color: var(--accent); height: 28px; }
+.ticks { position: relative; height: 16px; margin: 0 8px; font-size: 0.7rem; color: color-mix(in srgb, var(--screen-text) 62%, transparent); }
 .ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
 
-.scope { display: inline-flex; gap: 2px; padding: 2px; margin-bottom: 14px; border-radius: 999px; background: color-mix(in srgb, var(--screen-text) 12%, transparent); }
+.scope { display: inline-flex; gap: 2px; padding: 2px; border-radius: 999px; background: color-mix(in srgb, var(--screen-text) 12%, transparent); }
 .scope button {
-  border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  border: 0; border-radius: 999px; padding: 6px 12px; white-space: nowrap; cursor: pointer;
   font: 600 0.85rem var(--font-body); background: transparent;
   color: color-mix(in srgb, var(--screen-text) 70%, transparent);
 }
@@ -129,19 +147,19 @@
 .bars .fill { height: 100%; background: var(--accent); border-radius: 0 4px 4px 0; min-width: 1px; transition: width 0.12s linear; }
 .bars .val { font-variant-numeric: tabular-nums; color: var(--text-secondary); text-align: right; min-width: 7ch; }
 
-/* 100% stacked bars of the 15-min periods */
-.stack { position: relative; display: grid; gap: 18px; }
-.stack-row .stack-label { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; margin-bottom: 6px; }
-.stack-row .stack-label b { font-weight: 600; }
-/* no gap: a fixed gap would distort shares this small; wide segments get an inset separator instead */
-.stack-bar { display: flex; height: 36px; }
-.stack-bar .seg { height: 100%; min-width: 0; cursor: default; }
-.stack-bar .seg:first-child { border-radius: 4px 0 0 4px; }
-.stack-bar .seg:last-child { border-radius: 0 4px 4px 0; }
-.stack-bar .seg:hover, .stack-bar .seg:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 1px; }
-.stack-legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 4px 16px; font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
-.stack-legend span { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
-.stack-legend i { flex: none; width: 12px; height: 12px; border-radius: 3px; }
+/* the size of "after 17h": two shares side by side, then the 15-min periods */
+.share { display: grid; gap: 22px; }
+.share-head { display: flex; align-items: baseline; gap: 6px 14px; flex-wrap: wrap; margin-bottom: 8px; }
+.share-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 600; line-height: 1; color: var(--late); font-variant-numeric: tabular-nums; }
+.share-text { max-width: 52ch; }
+.share-bar { height: 14px; border-radius: 4px; background: var(--accent-wash); overflow: hidden; }
+.share-bar i { display: block; height: 100%; background: var(--late); }
+.share-take { color: var(--text-secondary); border-top: 1px solid var(--grid); padding-top: 14px; }
+.periods td.bar-cell { white-space: nowrap; }
+.periods .bar-cell > span:first-child { display: inline-block; min-width: 6.5ch; text-align: right; }
+.periods .mini { display: inline-block; vertical-align: middle; width: 110px; height: 10px; margin-left: 10px; }
+.periods .mini i { display: block; height: 100%; background: var(--late); border-radius: 0 3px 3px 0; }
+
 
 /* "Depois das 17h" tiles */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px; }
@@ -149,6 +167,8 @@
 .tile .label { color: var(--text-secondary); font-size: 0.85rem; }
 .tile .value { font-family: var(--font-display); font-size: 2.3rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.2; }
 .tile .note { color: var(--text-muted); font-size: 0.8rem; }
+.tile-late .value { color: var(--late); }
+.hist-bar { transition: opacity 0.15s; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; margin-bottom: 16px; }
 .grid2 .card { margin: 0; }
 .grid2 .col { display: grid; gap: 16px; align-content: start; }
@@ -199,21 +219,38 @@ th.num .sort { flex-direction: row-reverse; }
 }
 .faq details[open] summary::after { content: "−"; }
 .faq summary:focus-visible { outline: 2px solid var(--color-primary, #5393ce); outline-offset: -2px; border-radius: var(--radius); }
-.faq .answer { padding: 0 18px 16px; color: var(--text-secondary); display: grid; gap: 10px; max-width: 80ch; }
+.faq .answer { padding: 0 18px 16px; color: var(--text-secondary); display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; max-width: 80ch; }
+.faq details { scroll-margin-top: calc(var(--dock-h, 0px) + 8px); }
 .faq .answer ul { padding-left: 20px; display: grid; gap: 6px; }
 .faq .src { font-size: 0.8rem; color: var(--text-muted); }
 .hdv table.compact { max-width: 520px; }
 
 .hdv-footer { text-align: center; padding-top: var(--space-xl, 32px); }
 
+@media (max-width: 1024px) {
+  .hdv > .dock { top: var(--mobile-header-height, 64px); }
+  .hdv-section, .faq details { scroll-margin-top: calc(var(--mobile-header-height, 64px) + var(--dock-h, 0px) + 8px); }
+}
 @media (max-width: 768px) {
   .hdv { --gutter: 16px; }
   .hdv-hero { padding-top: 24px; }
 }
+@media (max-width: 640px) {
+  /* phones: play, time and toggle on one line, the slider full width below; edge to edge */
+  .hdv > .dock {
+    grid-template-columns: auto 1fr auto; grid-template-areas: "play clock scope" "track track track";
+    gap: 4px 12px; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter));
+    padding: 8px var(--gutter) 2px; border-radius: 0;
+  }
+  .dock #play, .dock .clock, .dock .scope { margin-bottom: 0; padding-bottom: 0; }
+  .dock #play { width: 38px; height: 38px; }
+  .dock #clock { font-size: 1.35rem; }
+  .scope button { padding: 6px 10px; font-size: 0.8rem; }
+  .periods .mini { width: 56px; margin-left: 6px; }
+}
 @media (max-width: 560px) {
-  .counter { align-items: flex-start; }
   .card, .player { padding: 16px; }
   .steps li { padding-left: 56px; }
   .steps li::before { left: 14px; }
 }
-@media (prefers-reduced-motion: reduce) { .bars .fill { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .bars .fill, .hist-bar { transition: none; } }

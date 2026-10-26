@@ -58,9 +58,10 @@
 
       <nav class="sidebar-nav">
         <ul>
-          <li><a href="#linha-do-tempo" class="nav-link active">Linha do tempo</a></li>
-          <li><a href="#depois-das-17h" class="nav-link">Depois das 17h</a></li>
-          <li><a href="#metodologia" class="nav-link">Metodologia</a></li>
+          <li><a href="#metodologia" class="nav-link active">Metodologia</a></li>
+          <li><a href="#linha-do-tempo" class="nav-link">Linha do tempo</a></li>
+          <li><a href="#depois-das-17h" class="nav-link">Depois do horário</a></li>
+          <li><a href="#tamanho" class="nav-link">O tamanho do “depois”</a></li>
           <li><a href="#faq" class="nav-link">Perguntas frequentes</a></li>
           <li><a href="#faq-tecnico" class="nav-link">Perguntas técnicas</a></li>
         </ul>
@@ -103,77 +104,25 @@
       <p class="eyebrow">Eleições 2026 · 2º turno · 25 de outubro</p>
       <h1>Hora de Votar</h1>
       <p class="lede">Cada voto computado nas urnas eletrônicas, extraído dos logs publicados pelo TSE.
-        Até as 15h somamos tudo; depois disso, minuto a minuto até o último voto do país.</p>
-      <div class="logline" aria-label="Exemplo de linha do log da urna">25/10/2026 18:28:51  INFO  02469587  VOTA  <b>O voto do eleitor foi computado</b>  443E846668A36DE4</div>
+        Até as 15h, os votos aparecem somados; daí em diante, minuto a minuto, até o último voto.</p>
     </header>
 
-    <section id="linha-do-tempo" class="hdv-section">
-      <div class="player" aria-label="Linha do tempo">
-        <div class="scope" role="group" aria-label="Quais votos mostrar">
-          <button type="button" id="scope-all" data-scope="all" aria-pressed="true">Brasil + exterior</button>
-          <button type="button" id="scope-br" data-scope="br" aria-pressed="false">Só Brasil</button>
-        </div>
-        <div class="readout">
-          <div class="clock"><span id="clock">15:00</span><small>horário de Brasília</small></div>
-          <div class="counter">
-            <span id="counter" class="hero">0</span>
-            <span id="counter-sub" class="muted">votos computados</span>
-          </div>
-        </div>
-        <div class="controls">
-          <button id="play" type="button" aria-label="Reproduzir">▶</button>
-          <input id="slider" type="range" min="0" max="0" value="0" step="1" aria-label="Horário">
-        </div>
+    <!-- the clock: sticks to the top of the screen and drives every number below it -->
+    <div class="dock" id="dock" role="region" aria-label="Relógio da página">
+      <button id="play" type="button" aria-label="Reproduzir">▶</button>
+      <div class="clock">
+        <span id="clock">17:00</span>
+        <small><span class="late-flag" id="dock-after">–</span> depois</small>
+      </div>
+      <div class="dock-track">
+        <input id="slider" type="range" min="0" max="0" value="0" step="1" aria-label="Horário de Brasília">
         <div class="ticks" id="ticks" aria-hidden="true"></div>
-        <p id="delta" class="delta muted"></p>
       </div>
-
-      <figure class="card">
-        <figcaption><h3>Votos por minuto</h3><p class="muted">Ritmo de votação a partir das 15h. A linha vertical marca o encerramento oficial (17h).</p></figcaption>
-        <div class="chart" id="chart-rate"></div>
-      </figure>
-      <figure class="card">
-        <figcaption><h3 id="uf-title">Votos depois das 15:00, por UF</h3><p class="muted">Votos computados depois do horário selecionado no controle acima.</p></figcaption>
-        <div id="uf-bars" class="bars"></div>
-      </figure>
-    </section>
-
-    <section id="depois-das-17h" class="hdv-section">
-      <h2>Depois das 17h</h2>
-      <p class="intro muted">As seções fecham às 17h (horário de Brasília), mas quem já estava na fila ainda vota.
-        No exterior, o encerramento é às 17h no horário local.</p>
-      <div class="tiles" id="tiles"></div>
-
-      <div class="grid2">
-        <figure class="card">
-          <figcaption><h3>Votos após o encerramento, por UF</h3><p class="muted">Clique no nome de uma coluna para ordenar.</p></figcaption>
-          <div class="table-wrap"><table id="t-uf"></table></div>
-        </figure>
-        <div class="col">
-          <figure class="card">
-            <figcaption><h3>Quando as últimas seções terminaram no Brasil</h3><p class="muted">Seções no Brasil pelo horário do último voto, em faixas de 15 min após as 17h.</p></figcaption>
-            <div class="chart" id="chart-close"></div>
-          </figure>
-          <figure class="card">
-            <figcaption><h3>O tamanho do “depois das 17h”</h3><p class="muted">Cada barra soma 100% do Brasil. Os tons de verde são as faixas de 15 min antes do encerramento; os de laranja, depois. Passe o mouse para ver cada faixa.</p></figcaption>
-            <div id="stack" class="stack"></div>
-          </figure>
-        </div>
+      <div class="scope" role="group" aria-label="Quais votos mostrar">
+        <button type="button" data-scope="all" aria-pressed="true">Com exterior</button>
+        <button type="button" data-scope="br" aria-pressed="false">Só Brasil</button>
       </div>
-
-      <figure class="card">
-        <figcaption><h3>Municípios com mais votos após o encerramento</h3></figcaption>
-        <div class="table-wrap"><table id="t-mun"></table></div>
-      </figure>
-      <figure class="card">
-        <figcaption><h3>Locais de votação com mais votos após o encerramento</h3></figcaption>
-        <div class="table-wrap"><table id="t-local"></table></div>
-      </figure>
-      <figure class="card">
-        <figcaption><h3>As seções que votaram até mais tarde</h3></figcaption>
-        <div class="table-wrap"><table id="t-latest"></table></div>
-      </figure>
-    </section>
+    </div>
 
     <section id="metodologia" class="hdv-section">
       <h2>Metodologia</h2>
@@ -187,18 +136,19 @@
         </li>
         <li>
           <h3>Baixar o log de cada urna</h3>
-          <p>Para cada uma dessas seções, baixamos do site oficial de resultados (<code>resultados.tse.jus.br</code>) o pacote de arquivos da urna,
-            que inclui o <strong>log</strong>: o diário de bordo do equipamento, com uma linha para cada evento, do momento em que é ligado até o fim da votação.</p>
+          <p>Para cada uma dessas seções, o pacote de arquivos da urna é baixado do site oficial de resultados (<code>resultados.tse.jus.br</code>).
+            O pacote inclui o <strong>log</strong>: o diário de bordo do equipamento, com uma linha para cada evento, do momento em que é ligado até o fim da votação
+            (veja <a href="#log-formato">um trecho real</a>).</p>
         </li>
         <li>
           <h3>Contar os votos</h3>
           <p>Cada linha <em>“O voto do eleitor foi computado”</em> registrada em 25/10/2026 conta como um voto, no horário em que foi gravada.
-            O mesmo log também traz o 1º turno e os testes de preparação, que descartamos pela data.</p>
+            O mesmo log também traz o 1º turno e os testes de preparação, que são descartados pela data.</p>
         </li>
         <li>
           <h3>Converter para o horário de Brasília</h3>
           <p>A urna registra o horário <strong>local</strong>. No Brasil, a votação abre às 8h de Brasília em todo o país, então o horário em que as urnas
-            de cada município abriram revela o fuso dele. No exterior, usamos o fuso de cada cidade no dia da eleição.</p>
+            de cada município abriram revela o fuso dele. No exterior, vale o fuso de cada cidade no dia da eleição.</p>
         </li>
         <li>
           <h3>Separar o que veio depois das 17h</h3>
@@ -206,23 +156,87 @@
         </li>
         <li>
           <h3>Conferir com o resultado oficial</h3>
-          <p id="coverage">Somamos os votos de cada município e comparamos com o comparecimento oficial divulgado pelo TSE.</p>
+          <p id="coverage">Os votos de cada município são somados e comparados com o comparecimento oficial divulgado pelo TSE.</p>
         </li>
       </ol>
       <p class="muted">Código e dados: <a href="https://github.com/JnCoe/hora-de-votar">repositório no GitHub</a>. Detalhes de cada caso especial estão nas <a href="#faq-tecnico">perguntas técnicas</a>.</p>
+    </section>
+
+    <section id="linha-do-tempo" class="hdv-section">
+      <h2>Linha do tempo</h2>
+      <p class="intro muted">Arraste o relógio no topo da tela (ou aperte ▶): todos os números da página acompanham o horário escolhido.</p>
+      <div class="player" aria-live="polite">
+        <div class="readout">
+          <div class="count">
+            <span class="count-label">computados até <b class="js-time">17:00</b></span>
+            <span id="n-before" class="hero">–</span>
+            <span id="p-before" class="muted"></span>
+          </div>
+          <div class="count count-late">
+            <span class="count-label">computados depois das <b class="js-time">17:00</b></span>
+            <span id="n-after" class="hero">–</span>
+            <span id="p-after" class="muted"></span>
+          </div>
+        </div>
+        <p id="scope-note" class="delta muted"></p>
+      </div>
+
+      <figure class="card">
+        <figcaption><h3>Votos por minuto</h3><p class="muted">Ritmo de votação a partir das 15h. A linha vertical cinza marca o encerramento oficial (17h); a escura, o horário escolhido. Toque ou clique no gráfico para mover o relógio.</p></figcaption>
+        <div class="chart" id="chart-rate"></div>
+      </figure>
+      <figure class="card">
+        <figcaption><h3>Votos depois das <span class="js-time">17:00</span>, por UF</h3><p class="muted">Votos computados depois do horário escolhido no relógio.</p></figcaption>
+        <div id="uf-bars" class="bars"></div>
+      </figure>
+    </section>
+
+    <section id="depois-das-17h" class="hdv-section">
+      <h2>Depois das <span class="js-time">17:00</span></h2>
+      <p class="intro muted">As seções fecham às 17h (horário de Brasília), mas quem já estava na fila ainda vota.
+        No exterior, o encerramento é às 17h no horário local. O relógio desta página é sempre o de Brasília.</p>
+      <div class="tiles" id="tiles"></div>
+
+      <div class="grid2">
+        <figure class="card">
+          <figcaption><h3>Por UF, em detalhe</h3><p class="muted">Votos depois das <span class="js-time">17:00</span>, que fração eles são do total da UF e o horário do último voto. Toque no nome de uma coluna para ordenar.</p></figcaption>
+          <div class="table-wrap"><table id="t-uf"></table></div>
+        </figure>
+        <figure class="card">
+          <figcaption><h3>Quando as últimas seções terminaram no Brasil</h3><p class="muted">Seções no Brasil pelo horário do último voto, em faixas de 15 min após as 17h. As faixas que já terminaram antes do horário escolhido ficam apagadas.</p></figcaption>
+          <div class="chart" id="chart-close"></div>
+        </figure>
+      </div>
+
+      <figure class="card">
+        <figcaption><h3>As seções que votaram até mais tarde</h3><p class="muted">No Brasil.</p></figcaption>
+        <div class="table-wrap"><table id="t-latest"></table></div>
+      </figure>
+    </section>
+
+    <section id="tamanho" class="hdv-section">
+      <h2>O tamanho do “depois das 17h”</h2>
+      <p class="intro muted">Só no Brasil, com o encerramento fixo às 17h. Muitas seções ainda tinham fila às 17h, mas cada uma recebeu poucos votos depois disso.</p>
+      <div class="card">
+        <div id="share" class="share"></div>
+      </div>
+      <figure class="card">
+        <figcaption><h3>Depois das 17h, em faixas de 15 minutos</h3><p class="muted"><strong>Seções:</strong> quantas tiveram o último voto em cada faixa. <strong>Votos:</strong> quantos foram computados nela.</p></figcaption>
+        <div class="table-wrap"><table id="t-periods" class="periods"></table></div>
+      </figure>
     </section>
 
     <section id="faq" class="hdv-section">
       <h2>Perguntas frequentes</h2>
       <div class="faq">
         <details>
-          <summary>Como você sabe o horário de cada voto?</summary>
+          <summary>Como se sabe o horário de cada voto?</summary>
           <div class="answer">
             <p>Cada urna eletrônica grava um <strong>log</strong>: um arquivo de texto com o registro cronológico do que acontece no equipamento.
               Cada linha traz data, hora, o número da urna, o programa que gerou o evento e uma mensagem. Quando um eleitor termina de votar,
-              a urna grava a linha <em>“O voto do eleitor foi computado”</em>, como no exemplo no topo da página.</p>
+              a urna grava a linha <em>“O voto do eleitor foi computado”</em> (veja <a href="#log-formato">um trecho real</a> nas perguntas técnicas).</p>
             <p>Depois da eleição, o TSE publica os arquivos de cada urna, incluindo o log, para que qualquer pessoa possa baixá-los e auditar o resultado.
-              Nós só lemos esses arquivos e contamos as linhas.</p>
+              Esta página apenas lê esses arquivos e conta as linhas.</p>
             <p class="src">Fontes: <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/saiba-como-acompanhar-a-totalizacao-dos-votos-apos-as-17h">TSE: como acompanhar a totalização após as 17h</a> ·
               <a href="https://www.tse.jus.br/eleicoes/eleicoes-2022/arquivos/formato-dos-arquivos-de-log-17-9-22/@@download/file/formato-arquivos-log.pdf">TSE: formato dos arquivos de log (PDF)</a></p>
           </div>
@@ -242,7 +256,7 @@
         <details>
           <summary>Como saber se os números desta página estão corretos?</summary>
           <div class="answer">
-            <p>Somamos todos os votos de todas as urnas, município por município, e comparamos com o comparecimento oficial que o próprio TSE divulga.</p>
+            <p>Todos os votos de todas as urnas foram somados, município por município, e comparados com o comparecimento oficial que o próprio TSE divulga.</p>
             <p id="faq-match">Os totais batem quase exatamente.</p>
             <div class="table-wrap"><table id="t-gap" class="compact"></table></div>
             <p>Nenhum município tem mais votos nos logs do que no resultado oficial. Cada voto que falta foi rastreado até a seção de origem;
@@ -250,9 +264,21 @@
           </div>
         </details>
         <details>
+          <summary>Por que eu deveria confiar neste projeto?</summary>
+          <div class="answer">
+            <p><strong>Você não precisa confiar.</strong> Todo o código está aberto no <a href="https://github.com/JnCoe/hora-de-votar">GitHub</a>,
+              e os dados de entrada são os arquivos públicos que o TSE publica para cada urna. Qualquer pessoa pode baixar os mesmos arquivos,
+              rodar o mesmo código no próprio computador e conferir se chega aos mesmos números.</p>
+            <p>Também dá para conferir sem programar: escolha uma seção no site de resultados do TSE (<code>resultados.tse.jus.br</code>), baixe o log dela,
+              abra o arquivo <code>logd.dat</code> que está dentro e conte as linhas <em>“O voto do eleitor foi computado”</em> de 25/10/2026.
+              O <a href="#log-formato">trecho nas perguntas técnicas</a> vem da seção 405 da zona 1 de São Paulo, a última do país a registrar um voto.</p>
+            <p>Se encontrar alguma diferença, abra uma <a href="https://github.com/JnCoe/hora-de-votar/issues">issue no repositório</a>.</p>
+          </div>
+        </details>
+        <details>
           <summary>Como saber se os arquivos do TSE não foram alterados?</summary>
           <div class="answer">
-            <p>Cada linha do log termina com um código, como o <code>443E846668A36DE4</code> do exemplo no topo da página. É um autenticador
+            <p>Cada linha do log termina com um código, como o <code>77B46326A6EBC5E9</code> do <a href="#log-formato">trecho real</a> nas perguntas técnicas. É um autenticador
               calculado a partir do conteúdo da linha: se alguém mudar um único caractere, o código deixa de corresponder.</p>
             <p>Além disso, os arquivos que a urna produz ao fim da votação (boletim de urna, log e Registro Digital do Voto) são
               <strong>assinados digitalmente</strong> com uma chave própria de cada urna. Uma assinatura digital funciona como um lacre:
@@ -271,7 +297,7 @@
               A partir daí, só quem recebeu senha pode votar, e a votação continua até o último eleitor com senha votar.
               Quem chega depois das 17h não vota.</p>
             <p>Por isso uma seção com fila longa às 17h pode registrar votos até bem mais tarde. Mesmo assim, os votos depois das 17h
-              são uma fração mínima do total (veja <a href="#depois-das-17h">Depois das 17h</a>).</p>
+              são uma fração mínima do total (veja <a href="#tamanho">o tamanho do “depois das 17h”</a>).</p>
             <p class="src">Fonte: <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/o-que-acontece-nas-secoes-eleitorais-apos-as-17h-entenda-as-regras-de-seguranca-e-fiscalizacao">TSE: o que acontece nas seções eleitorais após as 17h</a></p>
           </div>
         </details>
@@ -280,8 +306,8 @@
           <div class="answer">
             <p>Não. Desde 2022, a votação no Brasil vai das 8h às 17h <strong>pelo horário de Brasília</strong> em todo o país.
               Nos estados com fuso diferente, o horário local se ajusta: no Acre, por exemplo, a votação abre às 6h locais.</p>
-            <p>No exterior é diferente: as seções funcionam das 8h às 17h no horário local de cada país. Por isso o exterior aparece separado
-              no controle “Só Brasil” e tem votos muito antes e muito depois do Brasil.</p>
+            <p>No exterior é diferente: as seções funcionam das 8h às 17h no horário local de cada país. Por isso o exterior pode ser
+              retirado com o botão “Só Brasil” no relógio, e tem votos muito antes e muito depois do Brasil.</p>
             <p class="src">Fontes: <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-26-dias-votacao-comeca-e-termina-no-mesmo-horario-em-todo-o-pais">TSE: votação começa e termina no mesmo horário em todo o país</a> ·
               <a href="https://www.tse.jus.br/comunicacao/noticias/2021/Dezembro/padronizacao-do-horario-de-votacao-no-brasil-nao-afetara-eleitores-que-residem-no-exterior">TSE: padronização não afeta eleitores no exterior</a></p>
           </div>
@@ -291,8 +317,8 @@
           <div class="answer">
             <p>O mesário primeiro desliga e religa a urna. Se o problema continuar, ela é trocada por uma <strong>urna de contingência</strong>,
               e a mídia com os votos já registrados é transferida para a nova urna. Se nada funcionar, a votação segue em cédulas de papel.</p>
-            <p>Nesses casos, o pacote publicado pelo TSE pode trazer o log de mais de uma urna para a mesma seção. Nós juntamos esses logs e
-              removemos linhas repetidas.</p>
+            <p>Nesses casos, o pacote publicado pelo TSE pode trazer o log de mais de uma urna para a mesma seção. Esses logs são juntados e
+              as linhas repetidas, removidas.</p>
             <p class="src">Fontes: <a href="https://www.tse.jus.br/eleicoes/urna-eletronica/seguranca-da-urna/procedimentos-de-contingencia">TSE: procedimentos de contingência</a> ·
               <a href="https://www.tse.jus.br/legislacao/compilada/res/2026/resolucao-no-23-751-de-26-de-fevereiro-de-2026">Resolução TSE nº 23.751/2026</a></p>
           </div>
@@ -317,25 +343,51 @@
 
     <section id="faq-tecnico" class="hdv-section">
       <h2>Perguntas técnicas</h2>
-      <p class="intro muted">Como os arquivos são lidos, e cada caso especial que encontramos nos logs do 2º turno.</p>
+      <p class="intro muted">Como os arquivos são lidos, e cada caso especial encontrado nos logs do 2º turno.</p>
       <div class="faq">
-        <details>
+        <details id="log-formato">
           <summary>Qual é o formato do log?</summary>
           <div class="answer">
             <p>Em 2026, o arquivo <code>*-log.jez</code> de cada seção é um ZIP. Normalmente ele contém um único <code>logd.dat</code>, um texto em latin-1
               separado por tabulações: data e hora, nível, número da urna, aplicativo (<code>VOTA</code>, <code>GAP</code>, <code>LOGD</code>…), mensagem e o autenticador da linha.</p>
-            <p>O log de uma urna do 2º turno inclui todo o histórico dela: a preparação e o dia inteiro do 1º turno (04/10). Só usamos linhas de 25/10/2026,
+            <p>Os trechos abaixo são linhas reais, sem nenhuma alteração, do log da seção 405 da zona 1 de São Paulo (SP): a seção do Brasil que registrou o último voto do 2º turno.
+              O log começa na preparação da urna, semanas antes do 1º turno:</p>
+<pre class="logline">24/09/2026 11:39:49	INFO	02031723	LOGD	Início das operações do logd	C00F764AD29817A3
+24/09/2026 11:39:49	INFO	02031723	LOGD	Urna ligada em 24/09/2026 às 11:38:55	E254C107A5DD407E
+24/09/2026 11:39:49	INFO	02031723	SCUE	Iniciando aplicação - 1º turno	930A846F9A36AB9B</pre>
+            <p>Na manhã do 2º turno, a urna declara para qual município, zona e seção foi carregada, e abre a votação:</p>
+<pre class="logline">25/10/2026 07:05:28	INFO	02031723	GAP	Município: 71072	E561655BD2D0659C
+25/10/2026 07:05:28	INFO	02031723	GAP	Zona Eleitoral: 0001	2A6E860433228355
+25/10/2026 07:05:28	INFO	02031723	GAP	Seção Eleitoral: 0405	22BB62B1FDE465C4
+25/10/2026 08:04:02	INFO	02031723	VOTA	Urna pronta para receber votos	38B4BC0534812A8F</pre>
+            <p>Um eleitor completo, das 18:39:16 às 18:39:38, já depois do encerramento oficial. A linha destacada é a única contada por esta página:</p>
+<pre class="logline">25/10/2026 18:39:16	INFO	02031723	VOTA	Identificador do eleitor digitado pelo mesário	21E78E7C37B3BA50
+25/10/2026 18:39:16	INFO	02031723	VOTA	Identificador digitado pelo mesário foi: (Título de eleitor)	C861EF03327DDD9C
+25/10/2026 18:39:16	INFO	02031723	VOTA	Foto do eleitor apresentada	F79D1A91287DBF86
+25/10/2026 18:39:19	INFO	02031723	VOTA	Solicita digital. Tentativa [1] de [4]	EC71260AFFC20C85
+25/10/2026 18:39:26	INFO	02031723	VOTA	Capturada a digital. Tentativa [1] de [4]	D0DC62A56BFEE248
+25/10/2026 18:39:32	INFO	02031723	VOTA	Tipo de habilitação do eleitor [biométrica]	AB297CCACC4FCB0D
+25/10/2026 18:39:32	INFO	02031723	VOTA	Eleitor foi habilitado	B60659C1C786C96E
+25/10/2026 18:39:36	INFO	02031723	VOTA	Voto confirmado para [Presidente]	788720B6EF321678
+25/10/2026 18:39:37	INFO	02031723	VOTA	<b>O voto do eleitor foi computado</b>	77B46326A6EBC5E9
+25/10/2026 18:39:38	INFO	02031723	VOTA	Aguardando digitação do identificador do eleitor	79B3A2BBB51EE93E</pre>
+            <p>E o fim da votação, depois do último eleitor:</p>
+<pre class="logline">25/10/2026 19:10:29	INFO	02031723	VOTA	Operador selecionou: Encerrar votação	386FCB6B0C5B6620
+25/10/2026 19:10:29	INFO	02031723	VOTA	Operador indagado se todas as pessoas presentes votaram	648CCB9C1ACAD8EF
+25/10/2026 19:10:32	INFO	02031723	VOTA	Todas as pessoas presentes já votaram? SIM	58C16370811B1F36
+25/10/2026 19:12:20	INFO	02031723	VOTA	Inicio do Encerramento	0CC3DDE40CEA7653</pre>
+            <p>O log de uma urna do 2º turno inclui todo o histórico dela: a preparação e o dia inteiro do 1º turno (04/10). Só entram na conta as linhas de 25/10/2026,
               e só depois da primeira <em>“Urna pronta para receber votos”</em> do dia.</p>
           </div>
         </details>
         <details>
           <summary>Como é feita a conversão de fuso horário?</summary>
           <div class="answer">
-            <p>A urna grava o horário local. No Brasil, para cada município, pegamos a mediana do horário em que as urnas abriram a votação (que deve ser 8h de Brasília)
-              e deduzimos quantas horas o relógio local está atrás de Brasília. Isso dá, por exemplo, 2h no Acre e 1h na maior parte do Amazonas.</p>
+            <p>A urna grava o horário local. No Brasil, para cada município, toma-se a mediana do horário em que as urnas abriram a votação (que deve ser 8h de Brasília)
+              e daí se deduz quantas horas o relógio local está atrás de Brasília. Isso dá, por exemplo, 2h no Acre e 1h na maior parte do Amazonas.</p>
             <p>Em 12 municípios (11 no oeste do Amazonas, como Tabatinga e Benjamin Constant, e Fernando de Noronha) o fuso indicado pelos horários de abertura
-              é diferente do padrão da UF; usamos o fuso indicado pelos dados.</p>
-            <p>No exterior, usamos o fuso oficial de cada cidade naquele dia. O horário de verão europeu terminou em 25/10/2026, o próprio dia da eleição,
+              é diferente do padrão da UF; nesses casos, vale o fuso indicado pelos dados.</p>
+            <p>No exterior, vale o fuso oficial de cada cidade naquele dia. O horário de verão europeu terminou em 25/10/2026, o próprio dia da eleição,
               e os Estados Unidos ainda estavam no horário de verão.</p>
           </div>
         </details>
@@ -365,17 +417,17 @@
           <div class="answer">
             <p>Quando uma urna é substituída, a urna de contingência copia o log da urna original e o pacote publicado traz os dois. Cada log declara,
               ao ligar, o município, a zona e a seção para os quais foi carregado (a urna de contingência declara seção 0000 até assumir uma seção).</p>
-            <p>Encontramos o mesmo log publicado dentro do pacote de <strong>duas seções diferentes</strong>: em Santa Maria de Jetibá (ES), zona 9, o log da seção 112
-              (304 votos) também aparecia no pacote da seção 85. Contá-lo nas duas seções somaria 304 votos a mais. Por isso só contamos votos de logs que declaram
+            <p>O mesmo log apareceu publicado dentro do pacote de <strong>duas seções diferentes</strong>: em Santa Maria de Jetibá (ES), zona 9, o log da seção 112
+              (304 votos) também aparecia no pacote da seção 85. Contá-lo nas duas seções somaria 304 votos a mais. Por isso só são contados votos de logs que declaram
               a própria seção do pacote (ou que não declaram nenhuma). Com essa regra, o município bate exatamente com o oficial, e nenhum município tem mais votos nos logs
               do que no resultado oficial.</p>
-            <p>Também removemos linhas de voto idênticas (mesmo horário, urna e autenticador) que aparecem mais de uma vez no mesmo pacote: foram 231.</p>
+            <p>Também são removidas linhas de voto idênticas (mesmo horário, urna e autenticador) que aparecem mais de uma vez no mesmo pacote: foram 231.</p>
           </div>
         </details>
         <details>
           <summary>Pode haver votos no boletim de urna que não aparecem no log?</summary>
           <div class="answer">
-            <p>Sim, em casos raros de falha da urna. Encontramos três:</p>
+            <p>Sim, em casos raros de falha da urna. Foram encontrados três:</p>
             <ul>
               <li><strong>Boa Vista do Incra (RS), zona 17, seção 191:</strong> a urna original falhou duas vezes e o log dela termina no meio de um voto (com
                 <em>“Voto confirmado para [Presidente]”</em> mas sem <em>“computado”</em>). Uma urna de contingência assumiu às 09:58. O boletim tem 92 votos; os logs têm 90
@@ -396,7 +448,7 @@
               esse padrão, com a urna religada minutos depois: na seção 254 o boletim de urna <strong>contou</strong> o voto; na seção 374, <strong>não contou</strong>.</p>
             <p>Por isso a regra é conferir com o boletim de urna da própria seção: o voto confirmado só entra na linha do tempo, no horário da confirmação, quando a diferença entre
               o boletim e os votos computados no log é exatamente o número de votos confirmados. Se o boletim não tem esse voto, ele fica de fora.
-              Encontramos esse caso em Conde (BA), Santa Rita (PB, seção 254), Parnaíba (PI) e Boa Vista do Incra (RS); Santa Rita (seção 374) foi descartado.</p>
+              Esse caso aparece em Conde (BA), Santa Rita (PB, seção 254), Parnaíba (PI) e Boa Vista do Incra (RS); Santa Rita (seção 374) foi descartado.</p>
           </div>
         </details>
       </div>
