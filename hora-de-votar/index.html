@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-NJRJQG4Y13"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NJRJQG4Y13');
+  </script>
+  <!-- Hotjar Tracking Code for https://jncoe.github.io/ -->
+  <script>
+    (function (h, o, t, j, a, r) {
+      h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+      h._hjSettings = { hjid: 3547449, hjsv: 6 };
+      a = o.getElementsByTagName('head')[0];
+      r = o.createElement('script'); r.async = 1;
+      r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+  </script>
+  <!-- apply the stored theme before first paint -->
+  <script>
+    try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light'); } catch (e) {}
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hora de Votar</title>
+  <meta name="description" content="Cada voto do 2º turno presidencial de 2026, minuto a minuto, a partir dos logs das urnas eletrônicas.">
+  <link href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🗳️&lt;/text&gt;&lt;/svg&gt;" rel="icon">
+
+  <!-- Fonts: Inter for the site chrome; Barlow Condensed, Source Sans 3 and JetBrains Mono for the page -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Site stylesheets (jncoe.github.io) -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h1 class="sidebar-logo">Hora de Votar</h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo escuro">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#linha-do-tempo" class="nav-link active">Linha do tempo</a></li>
+          <li><a href="#depois-das-17h" class="nav-link">Depois das 17h</a></li>
+          <li><a href="#metodologia" class="nav-link">Metodologia</a></li>
+          <li><a href="#faq" class="nav-link">Perguntas frequentes</a></li>
+          <li><a href="#faq-tecnico" class="nav-link">Perguntas técnicas</a></li>
+        </ul>
+        <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 1rem 0;">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li><a href="/" class="nav-link"
+              style="background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 8px;">Jonascoelho.com</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/jonasbarros/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/JnCoe" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header" id="mobileHeader">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="mobile-title">Hora de Votar</span>
+    <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Alternar modo escuro">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
+
+  <main class="main-content hdv" id="mainContent">
+    <header class="hdv-hero">
+      <p class="eyebrow">Eleições 2026 · 2º turno · 25 de outubro</p>
+      <h1>Hora de Votar</h1>
+      <p class="lede">Cada voto computado nas urnas eletrônicas, extraído dos logs publicados pelo TSE.
+        Até as 15h somamos tudo; depois disso, minuto a minuto até o último voto do país.</p>
+      <div class="logline" aria-label="Exemplo de linha do log da urna">25/10/2026 18:28:51  INFO  02469587  VOTA  <b>O voto do eleitor foi computado</b>  443E846668A36DE4</div>
+    </header>
+
+    <section id="linha-do-tempo" class="hdv-section">
+      <div class="player" aria-label="Linha do tempo">
+        <div class="scope" role="group" aria-label="Quais votos mostrar">
+          <button type="button" id="scope-all" data-scope="all" aria-pressed="true">Brasil + exterior</button>
+          <button type="button" id="scope-br" data-scope="br" aria-pressed="false">Só Brasil</button>
+        </div>
+        <div class="readout">
+          <div class="clock"><span id="clock">15:00</span><small>horário de Brasília</small></div>
+          <div class="counter">
+            <span id="counter" class="hero">0</span>
+            <span id="counter-sub" class="muted">votos computados</span>
+          </div>
+        </div>
+        <div class="controls">
+          <button id="play" type="button" aria-label="Reproduzir">▶</button>
+          <input id="slider" type="range" min="0" max="0" value="0" step="1" aria-label="Horário">
+        </div>
+        <div class="ticks" id="ticks" aria-hidden="true"></div>
+        <p id="delta" class="delta muted"></p>
+      </div>
+
+      <figure class="card">
+        <figcaption><h3>Votos por minuto</h3><p class="muted">Ritmo de votação a partir das 15h. A linha vertical marca o encerramento oficial (17h).</p></figcaption>
+        <div class="chart" id="chart-rate"></div>
+      </figure>
+      <figure class="card">
+        <figcaption><h3 id="uf-title">Votos depois das 15:00, por UF</h3><p class="muted">Votos computados depois do horário selecionado no controle acima.</p></figcaption>
+        <div id="uf-bars" class="bars"></div>
+      </figure>
+    </section>
+
+    <section id="depois-das-17h" class="hdv-section">
+      <h2>Depois das 17h</h2>
+      <p class="intro muted">As seções fecham às 17h (horário de Brasília), mas quem já estava na fila ainda vota.
+        No exterior, o encerramento é às 17h no horário local.</p>
+      <div class="tiles" id="tiles"></div>
+
+      <div class="grid2">
+        <figure class="card">
+          <figcaption><h3>Votos após o encerramento, por UF</h3><p class="muted">Clique no nome de uma coluna para ordenar.</p></figcaption>
+          <div class="table-wrap"><table id="t-uf"></table></div>
+        </figure>
+        <div class="col">
+          <figure class="card">
+            <figcaption><h3>Quando as últimas seções terminaram no Brasil</h3><p class="muted">Seções no Brasil pelo horário do último voto, em faixas de 15 min após as 17h.</p></figcaption>
+            <div class="chart" id="chart-close"></div>
+          </figure>
+          <figure class="card">
+            <figcaption><h3>O tamanho do “depois das 17h”</h3><p class="muted">Cada barra soma 100% do Brasil. Os tons de verde são as faixas de 15 min antes do encerramento; os de laranja, depois. Passe o mouse para ver cada faixa.</p></figcaption>
+            <div id="stack" class="stack"></div>
+          </figure>
+        </div>
+      </div>
+
+      <figure class="card">
+        <figcaption><h3>Municípios com mais votos após o encerramento</h3></figcaption>
+        <div class="table-wrap"><table id="t-mun"></table></div>
+      </figure>
+      <figure class="card">
+        <figcaption><h3>Locais de votação com mais votos após o encerramento</h3></figcaption>
+        <div class="table-wrap"><table id="t-local"></table></div>
+      </figure>
+      <figure class="card">
+        <figcaption><h3>As seções que votaram até mais tarde</h3></figcaption>
+        <div class="table-wrap"><table id="t-latest"></table></div>
+      </figure>
+    </section>
+
+    <section id="metodologia" class="hdv-section">
+      <h2>Metodologia</h2>
+      <p class="intro">Do arquivo publicado pelo TSE ao número na tela, em seis passos.</p>
+      <ol class="steps">
+        <li>
+          <h3>Listar todas as seções</h3>
+          <p>O TSE publica, para cada UF, a lista de municípios, zonas e seções do 2º turno: 517.179 seções, incluindo o exterior.
+            Dessas, 17.931 são <em>seções agregadas</em>: seus eleitores votam na urna de outra seção (a principal), então não têm arquivos próprios.
+            Sobram 499.248 seções com urna própria.</p>
+        </li>
+        <li>
+          <h3>Baixar o log de cada urna</h3>
+          <p>Para cada uma dessas seções, baixamos do site oficial de resultados (<code>resultados.tse.jus.br</code>) o pacote de arquivos da urna,
+            que inclui o <strong>log</strong>: o diário de bordo do equipamento, com uma linha para cada evento, do momento em que é ligado até o fim da votação.</p>
+        </li>
+        <li>
+          <h3>Contar os votos</h3>
+          <p>Cada linha <em>“O voto do eleitor foi computado”</em> registrada em 25/10/2026 conta como um voto, no horário em que foi gravada.
+            O mesmo log também traz o 1º turno e os testes de preparação, que descartamos pela data.</p>
+        </li>
+        <li>
+          <h3>Converter para o horário de Brasília</h3>
+          <p>A urna registra o horário <strong>local</strong>. No Brasil, a votação abre às 8h de Brasília em todo o país, então o horário em que as urnas
+            de cada município abriram revela o fuso dele. No exterior, usamos o fuso de cada cidade no dia da eleição.</p>
+        </li>
+        <li>
+          <h3>Separar o que veio depois das 17h</h3>
+          <p>No Brasil, “depois do encerramento” é qualquer voto às 17h00 de Brasília ou mais tarde. No exterior, às 17h00 do horário local.</p>
+        </li>
+        <li>
+          <h3>Conferir com o resultado oficial</h3>
+          <p id="coverage">Somamos os votos de cada município e comparamos com o comparecimento oficial divulgado pelo TSE.</p>
+        </li>
+      </ol>
+      <p class="muted">Código e dados: <a href="https://github.com/JnCoe/hora-de-votar">repositório no GitHub</a>. Detalhes de cada caso especial estão nas <a href="#faq-tecnico">perguntas técnicas</a>.</p>
+    </section>
+
+    <section id="faq" class="hdv-section">
+      <h2>Perguntas frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>Como você sabe o horário de cada voto?</summary>
+          <div class="answer">
+            <p>Cada urna eletrônica grava um <strong>log</strong>: um arquivo de texto com o registro cronológico do que acontece no equipamento.
+              Cada linha traz data, hora, o número da urna, o programa que gerou o evento e uma mensagem. Quando um eleitor termina de votar,
+              a urna grava a linha <em>“O voto do eleitor foi computado”</em>, como no exemplo no topo da página.</p>
+            <p>Depois da eleição, o TSE publica os arquivos de cada urna, incluindo o log, para que qualquer pessoa possa baixá-los e auditar o resultado.
+              Nós só lemos esses arquivos e contamos as linhas.</p>
+            <p class="src">Fontes: <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/saiba-como-acompanhar-a-totalizacao-dos-votos-apos-as-17h">TSE: como acompanhar a totalização após as 17h</a> ·
+              <a href="https://www.tse.jus.br/eleicoes/eleicoes-2022/arquivos/formato-dos-arquivos-de-log-17-9-22/@@download/file/formato-arquivos-log.pdf">TSE: formato dos arquivos de log (PDF)</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>É possível saber em quem cada pessoa votou?</summary>
+          <div class="answer">
+            <p><strong>Não.</strong> O log registra <em>que</em> um voto foi computado e a que horas, mas não registra o voto nem quem votou:
+              não há nome, número do título ou candidato escolhido.</p>
+            <p>Os votos em si ficam em outro arquivo, o Registro Digital do Voto (RDV), que os grava em posições aleatórias, como cédulas
+              misturadas numa urna de lona. Assim não é possível reconstruir a ordem dos votantes nem ligar um eleitor ao seu voto.
+              Este projeto não usa o RDV.</p>
+            <p class="src">Fontes: <a href="https://www.tse.jus.br/comunicacao/radio/2022/Novembro/fato-logs-das-urnas-nao-revelam-votos-nem-dados-pessoais-de-eleitores">TSE: logs das urnas não revelam votos nem dados pessoais</a> ·
+              <a href="https://www.tse.jus.br/comunicacao/noticias/2023/Abril/registro-digital-do-voto-glossario-explica-o-que-e-e-como-acessar">TSE: o que é o Registro Digital do Voto</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>Como saber se os números desta página estão corretos?</summary>
+          <div class="answer">
+            <p>Somamos todos os votos de todas as urnas, município por município, e comparamos com o comparecimento oficial que o próprio TSE divulga.</p>
+            <p id="faq-match">Os totais batem quase exatamente.</p>
+            <div class="table-wrap"><table id="t-gap" class="compact"></table></div>
+            <p>Nenhum município tem mais votos nos logs do que no resultado oficial. Cada voto que falta foi rastreado até a seção de origem;
+              os casos estão explicados um a um nas <a href="#faq-tecnico">perguntas técnicas</a>.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Como saber se os arquivos do TSE não foram alterados?</summary>
+          <div class="answer">
+            <p>Cada linha do log termina com um código, como o <code>443E846668A36DE4</code> do exemplo no topo da página. É um autenticador
+              calculado a partir do conteúdo da linha: se alguém mudar um único caractere, o código deixa de corresponder.</p>
+            <p>Além disso, os arquivos que a urna produz ao fim da votação (boletim de urna, log e Registro Digital do Voto) são
+              <strong>assinados digitalmente</strong> com uma chave própria de cada urna. Uma assinatura digital funciona como um lacre:
+              qualquer pessoa pode conferi-la com a chave pública, e qualquer alteração no arquivo a invalida.</p>
+            <p>Por fim, o boletim de urna é impresso na própria seção ao fim da votação, e essa cópia em papel pode ser comparada
+              com o resultado que o TSE publica para a urna.</p>
+            <p class="src">Fontes: <a href="https://www.tse.jus.br/eleicoes/eleicoes-2022/arquivos/formato-dos-arquivos-de-log-17-9-22/@@download/file/formato-arquivos-log.pdf">TSE: formato dos arquivos de log (PDF)</a> ·
+              <a href="https://www.tse.jus.br/comunicacao/noticias/2021/Agosto/assinatura-digital-e-resumos-digitais-trazem-ainda-mais-seguranca-a-urna-eletronica">TSE: assinatura digital e resumos digitais</a> ·
+              <a href="https://www.tse.jus.br/institucional/escola-judiciaria-eleitoral/publicacoes/revistas-da-eje/artigos/revista-eletronica-eje-n.-6-ano-4/por-que-a-urna-eletronica-e-segura">TSE: por que a urna eletrônica é segura</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>Por que há votos depois das 17h? Isso é irregular?</summary>
+          <div class="answer">
+            <p>Não é irregular. Às 17h, os mesários distribuem senhas a todas as pessoas que já estão na fila, começando pela última.
+              A partir daí, só quem recebeu senha pode votar, e a votação continua até o último eleitor com senha votar.
+              Quem chega depois das 17h não vota.</p>
+            <p>Por isso uma seção com fila longa às 17h pode registrar votos até bem mais tarde. Mesmo assim, os votos depois das 17h
+              são uma fração mínima do total (veja <a href="#depois-das-17h">Depois das 17h</a>).</p>
+            <p class="src">Fonte: <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/o-que-acontece-nas-secoes-eleitorais-apos-as-17h-entenda-as-regras-de-seguranca-e-fiscalizacao">TSE: o que acontece nas seções eleitorais após as 17h</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>As urnas do Acre ou do Amazonas fecham mais tarde?</summary>
+          <div class="answer">
+            <p>Não. Desde 2022, a votação no Brasil vai das 8h às 17h <strong>pelo horário de Brasília</strong> em todo o país.
+              Nos estados com fuso diferente, o horário local se ajusta: no Acre, por exemplo, a votação abre às 6h locais.</p>
+            <p>No exterior é diferente: as seções funcionam das 8h às 17h no horário local de cada país. Por isso o exterior aparece separado
+              no controle “Só Brasil” e tem votos muito antes e muito depois do Brasil.</p>
+            <p class="src">Fontes: <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-26-dias-votacao-comeca-e-termina-no-mesmo-horario-em-todo-o-pais">TSE: votação começa e termina no mesmo horário em todo o país</a> ·
+              <a href="https://www.tse.jus.br/comunicacao/noticias/2021/Dezembro/padronizacao-do-horario-de-votacao-no-brasil-nao-afetara-eleitores-que-residem-no-exterior">TSE: padronização não afeta eleitores no exterior</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>O que acontece se a urna quebra no meio da votação?</summary>
+          <div class="answer">
+            <p>O mesário primeiro desliga e religa a urna. Se o problema continuar, ela é trocada por uma <strong>urna de contingência</strong>,
+              e a mídia com os votos já registrados é transferida para a nova urna. Se nada funcionar, a votação segue em cédulas de papel.</p>
+            <p>Nesses casos, o pacote publicado pelo TSE pode trazer o log de mais de uma urna para a mesma seção. Nós juntamos esses logs e
+              removemos linhas repetidas.</p>
+            <p class="src">Fontes: <a href="https://www.tse.jus.br/eleicoes/urna-eletronica/seguranca-da-urna/procedimentos-de-contingencia">TSE: procedimentos de contingência</a> ·
+              <a href="https://www.tse.jus.br/legislacao/compilada/res/2026/resolucao-no-23-751-de-26-de-fevereiro-de-2026">Resolução TSE nº 23.751/2026</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>O que são zona, seção e boletim de urna?</summary>
+          <div class="answer">
+            <p>A <strong>seção</strong> é a sala onde você vota, com uma urna e um grupo de eleitores. A <strong>zona</strong> é a unidade da Justiça Eleitoral
+              que reúne várias seções. O <strong>boletim de urna</strong> (BU) é o resultado que a urna imprime e grava ao fim da votação, com o total de
+              votos da seção.</p>
+            <p class="src">Fonte: <a href="https://www.tse.jus.br/comunicacao/noticias/2021/Junho/boletim-de-urna-traz-o-resultado-impresso-da-secao-de-votacao">TSE: boletim de urna traz o resultado impresso da seção</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>Este projeto tem ligação com o TSE?</summary>
+          <div class="answer">
+            <p>Não. É um projeto independente que usa apenas dados públicos do TSE.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="faq-tecnico" class="hdv-section">
+      <h2>Perguntas técnicas</h2>
+      <p class="intro muted">Como os arquivos são lidos, e cada caso especial que encontramos nos logs do 2º turno.</p>
+      <div class="faq">
+        <details>
+          <summary>Qual é o formato do log?</summary>
+          <div class="answer">
+            <p>Em 2026, o arquivo <code>*-log.jez</code> de cada seção é um ZIP. Normalmente ele contém um único <code>logd.dat</code>, um texto em latin-1
+              separado por tabulações: data e hora, nível, número da urna, aplicativo (<code>VOTA</code>, <code>GAP</code>, <code>LOGD</code>…), mensagem e o autenticador da linha.</p>
+            <p>O log de uma urna do 2º turno inclui todo o histórico dela: a preparação e o dia inteiro do 1º turno (04/10). Só usamos linhas de 25/10/2026,
+              e só depois da primeira <em>“Urna pronta para receber votos”</em> do dia.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Como é feita a conversão de fuso horário?</summary>
+          <div class="answer">
+            <p>A urna grava o horário local. No Brasil, para cada município, pegamos a mediana do horário em que as urnas abriram a votação (que deve ser 8h de Brasília)
+              e deduzimos quantas horas o relógio local está atrás de Brasília. Isso dá, por exemplo, 2h no Acre e 1h na maior parte do Amazonas.</p>
+            <p>Em 12 municípios (11 no oeste do Amazonas, como Tabatinga e Benjamin Constant, e Fernando de Noronha) o fuso indicado pelos horários de abertura
+              é diferente do padrão da UF; usamos o fuso indicado pelos dados.</p>
+            <p>No exterior, usamos o fuso oficial de cada cidade naquele dia. O horário de verão europeu terminou em 25/10/2026, o próprio dia da eleição,
+              e os Estados Unidos ainda estavam no horário de verão.</p>
+          </div>
+        </details>
+        <details>
+          <summary>O que são seções agregadas e como elas entram na conta?</summary>
+          <div class="answer">
+            <p>17.931 seções do 2º turno são agregadas: os eleitores delas votam na urna de outra seção, a principal. Elas não têm urna nem arquivos próprios
+              (o índice de arquivos delas retorna 404). Os votos desses eleitores estão no log da seção principal e são contados lá.</p>
+            <p class="src">Fonte: <a href="https://www.tse.jus.br/comunicacao/noticias/2022/Novembro/secoes-eleitorais-desaparecem-entenda-o-agrupamento-dos-locais-de-votacao">TSE: entenda o agrupamento dos locais de votação</a></p>
+          </div>
+        </details>
+        <details>
+          <summary>Quais seções não têm log de votação?</summary>
+          <div class="answer">
+            <p>69 seções com urna própria não têm log com votos:</p>
+            <ul>
+              <li><strong>38 no exterior</strong> não têm nenhum arquivo publicado (status “Sem arquivo”). Todas ficam em cidades com comparecimento oficial zero, então não afetam o total.</li>
+              <li><strong>29 no exterior</strong> votaram totalmente em <strong>cédulas de papel</strong>. O resultado foi digitado depois no Sistema de Apuração, cujo log registra a digitação, não cada voto.
+                Essas seções somam 831 votos, que existem no resultado oficial mas não têm horário.</li>
+              <li><strong>2 no Brasil</strong> são urnas eletrônicas cujo log não foi publicado: Niterói (RJ), zona 144, seção 7 (186 votos) e Guarulhos (SP), zona 395, seção 298 (268 votos;
+                no momento da coleta, a seção ainda constava como “Recebida”, não totalizada). Nos dois casos, o boletim de urna confirma o número de votos.</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Por que um pacote pode ter logs de várias urnas?</summary>
+          <div class="answer">
+            <p>Quando uma urna é substituída, a urna de contingência copia o log da urna original e o pacote publicado traz os dois. Cada log declara,
+              ao ligar, o município, a zona e a seção para os quais foi carregado (a urna de contingência declara seção 0000 até assumir uma seção).</p>
+            <p>Encontramos o mesmo log publicado dentro do pacote de <strong>duas seções diferentes</strong>: em Santa Maria de Jetibá (ES), zona 9, o log da seção 112
+              (304 votos) também aparecia no pacote da seção 85. Contá-lo nas duas seções somaria 304 votos a mais. Por isso só contamos votos de logs que declaram
+              a própria seção do pacote (ou que não declaram nenhuma). Com essa regra, o município bate exatamente com o oficial, e nenhum município tem mais votos nos logs
+              do que no resultado oficial.</p>
+            <p>Também removemos linhas de voto idênticas (mesmo horário, urna e autenticador) que aparecem mais de uma vez no mesmo pacote: foram 231.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Pode haver votos no boletim de urna que não aparecem no log?</summary>
+          <div class="answer">
+            <p>Sim, em casos raros de falha da urna. Encontramos três:</p>
+            <ul>
+              <li><strong>Boa Vista do Incra (RS), zona 17, seção 191:</strong> a urna original falhou duas vezes e o log dela termina no meio de um voto (com
+                <em>“Voto confirmado para [Presidente]”</em> mas sem <em>“computado”</em>). Uma urna de contingência assumiu às 09:58. O boletim tem 92 votos; os logs têm 90
+                linhas <em>“computado”</em> e 1 voto confirmado (veja a próxima pergunta). O voto restante não tem nenhum registro: o log mostra um eleitor identificado às 09:02 e nenhuma linha até a urna ser religada, às 09:38.</li>
+              <li><strong>Ibotirama (BA), zona 173, seção 235:</strong> a urna original nunca abriu a votação (erro no leitor biométrico às 07:48). A urna de contingência votou das 10:12 às 16:46,
+                com 204 votos. O boletim tem 217: 13 votos não aparecem em nenhum log publicado.</li>
+              <li><strong>São José de Ribamar (MA), zona 47, seção 609:</strong> o pacote só tem o log da urna de contingência (188 votos, das 10:58 às 16:57). O log da urna original não foi publicado.
+                O boletim tem 224: faltam 36.</li>
+            </ul>
+            <p>Somando os três, são 50 votos que estão no boletim de urna, mas sem nenhum horário nos logs publicados.</p>
+          </div>
+        </details>
+        <details>
+          <summary>E quando o log tem “Voto confirmado”, mas não “computado”?</summary>
+          <div class="answer">
+            <p>Acontece quando a urna desliga ou falha no meio de um voto: o log registra <em>“Voto confirmado para [Presidente]”</em>, mas para antes da linha
+              <em>“O voto do eleitor foi computado”</em>. O log sozinho não diz se esse voto entrou no resultado. Em Santa Rita (PB), duas seções da mesma zona têm exatamente
+              esse padrão, com a urna religada minutos depois: na seção 254 o boletim de urna <strong>contou</strong> o voto; na seção 374, <strong>não contou</strong>.</p>
+            <p>Por isso a regra é conferir com o boletim de urna da própria seção: o voto confirmado só entra na linha do tempo, no horário da confirmação, quando a diferença entre
+              o boletim e os votos computados no log é exatamente o número de votos confirmados. Se o boletim não tem esse voto, ele fica de fora.
+              Encontramos esse caso em Conde (BA), Santa Rita (PB, seção 254), Parnaíba (PI) e Boa Vista do Incra (RS); Santa Rita (seção 374) foi descartado.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <footer class="hdv-footer muted">Projeto independente, sem vínculo com o TSE.</footer>
+  </main>
+
+  <script src="app.js"></script>
+
+  <!-- Site navigation (mobile menu, active link on scroll) -->
+  <script type="module">
+    import NavigationManager from '/js/modules/navigation.js';
+    new NavigationManager();
+  </script>
+
+  <!-- Theme toggle, same behavior as the rest of the site -->
+  <script>
+    class ThemeManager {
+      constructor() {
+        this.currentTheme = this.getStoredTheme();
+        this.init();
+      }
+      getStoredTheme() {
+        try { return localStorage.getItem('theme') || 'light'; } catch (e) { return 'light'; }
+      }
+      setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        this.currentTheme = theme;
+        const icon = theme === 'light' ? 'fa-moon' : 'fa-sun';
+        document.querySelectorAll('.theme-toggle i, .theme-toggle-mobile i')
+          .forEach((i) => { i.className = `fas ${icon}`; });
+      }
+      init() {
+        this.setTheme(this.currentTheme);
+        document.querySelectorAll('.theme-toggle, .theme-toggle-mobile').forEach((b) => {
+          b.addEventListener('click', () => this.setTheme(this.currentTheme === 'light' ? 'dark' : 'light'));
+        });
+      }
+    }
+    new ThemeManager();
+  </script>
+</body>
+</html>
