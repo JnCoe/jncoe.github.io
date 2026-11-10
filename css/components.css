@@ -283,6 +283,55 @@
     font-weight: var(--font-weight-medium);
 }
 
+/* Multiple roles within one organization */
+.timeline-role + .timeline-role {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.timeline-role-header {
+    margin-bottom: var(--space-sm);
+}
+
+/* Role dates sit under the role title, smaller and muted, so only the
+   organization's overall date range stays in the right-hand column */
+.timeline-role-date {
+    display: block;
+    margin-top: 2px;
+    padding-left: calc(1em + var(--space-xs)); /* align with title text, past the icon */
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.timeline-role-header .timeline-subtitle {
+    margin: 0;
+    font-size: var(--font-size-base);
+    align-items: baseline; /* keep the icon on the first line if the title wraps */
+}
+
+/* Smaller dot on the timeline line for earlier roles.
+   No `top` is set, so it keeps its natural vertical position (level with
+   its role) while `left` resolves against .timeline-item. This relies on
+   .timeline-content NOT being positioned or transformed. */
+.timeline-subdot {
+    position: absolute;
+    left: 25px; /* line center (32px) - half width */
+    width: 14px;
+    height: 14px;
+    margin-top: 5px;
+    background: var(--color-secondary);
+    border: 3px solid var(--bg-body);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--border-color);
+    z-index: var(--z-base);
+}
+
+.timeline-item[data-type="education"] .timeline-subdot {
+    background: var(--color-primary);
+}
+
 /* Project Cards */
 .projects-grid {
     display: grid;
@@ -723,6 +772,14 @@
     
     .timeline-dot {
         left: 2px;
+    }
+
+    .timeline-subdot {
+        left: 5px;
+    }
+
+    .timeline-role-header .timeline-subtitle {
+        font-size: var(--font-size-sm);
     }
     
     .timeline-header {

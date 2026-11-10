@@ -23,14 +23,9 @@ class TimelineManager {
      * @returns {string} HTML string
      */
     createTimelineItem(item) {
-        const subtitle = item.subtitle ? 
-            `<div class="timeline-info" title="${item.subtitle}">
-                <i class="fas fa-info-circle"></i>
-            </div>` : '';
-
-        const tags = item.tags.map(tag => 
-            `<span class="timeline-tag">${tag}</span>`
-        ).join('');
+        if (item.roles && item.roles.length) {
+            return this.createMultiRoleItem(item);
+        }
 
         return `
             <div class="timeline-item" data-type="${item.type}">
@@ -40,17 +35,61 @@ class TimelineManager {
                         <div>
                             <h3 class="timeline-title">${item.organization}</h3>
                             <p class="timeline-subtitle">
-                                <i class="fas ${item.type === 'education' ? 'fa-graduation-cap' : 'fa-briefcase'}"></i>
+                                <i class="fas ${this.getIcon(item)}"></i>
                                 ${item.title}
                             </p>
                         </div>
                         <div class="timeline-date">${item.date}</div>
                     </div>
                     <p class="timeline-description">${item.description}</p>
-                    <div class="timeline-tags">${tags}</div>
+                    <div class="timeline-tags">${this.createTags(item.tags)}</div>
                 </div>
             </div>
         `;
+    }
+
+    /**
+     * Create HTML for an organization with several roles (newest first).
+     * Every role after the first gets a smaller dot on the timeline line.
+     * @param {Object} item - Timeline data item with a `roles` array
+     * @returns {string} HTML string
+     */
+    createMultiRoleItem(item) {
+        const roles = item.roles.map((role, index) => `
+            <div class="timeline-role">
+                ${index > 0 ? '<div class="timeline-subdot"></div>' : ''}
+                <div class="timeline-role-header">
+                    <p class="timeline-subtitle">
+                        <i class="fas ${this.getIcon(item)}"></i>
+                        ${role.title}
+                    </p>
+                    <span class="timeline-role-date">${role.date}</span>
+                </div>
+                <p class="timeline-description">${role.description}</p>
+                <div class="timeline-tags">${this.createTags(role.tags)}</div>
+            </div>
+        `).join('');
+
+        return `
+            <div class="timeline-item" data-type="${item.type}">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <h3 class="timeline-title">${item.organization}</h3>
+                        <div class="timeline-date">${item.date}</div>
+                    </div>
+                    ${roles}
+                </div>
+            </div>
+        `;
+    }
+
+    getIcon(item) {
+        return item.type === 'education' ? 'fa-graduation-cap' : 'fa-briefcase';
+    }
+
+    createTags(tags = []) {
+        return tags.map(tag => `<span class="timeline-tag">${tag}</span>`).join('');
     }
 
     /**

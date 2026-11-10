@@ -1,0 +1,193 @@
+diff --git a/css/components.css b/css/components.css
+index cc9b507..8f644a1 100644
+--- a/css/components.css
++++ b/css/components.css
+@@ -283,6 +283,55 @@
+     font-weight: var(--font-weight-medium);
+ }
+ 
++/* Multiple roles within one organization */
++.timeline-role + .timeline-role {
++    margin-top: var(--space-lg);
++    padding-top: var(--space-lg);
++    border-top: 1px solid rgba(255, 255, 255, 0.15);
++}
++
++.timeline-role-header {
++    margin-bottom: var(--space-sm);
++}
++
++/* Role dates sit under the role title, smaller and muted, so only the
++   organization's overall date range stays in the right-hand column */
++.timeline-role-date {
++    display: block;
++    margin-top: 2px;
++    padding-left: calc(1em + var(--space-xs)); /* align with title text, past the icon */
++    font-family: var(--font-family-mono);
++    font-size: var(--font-size-xs);
++    color: rgba(255, 255, 255, 0.65);
++}
++
++.timeline-role-header .timeline-subtitle {
++    margin: 0;
++    font-size: var(--font-size-base);
++    align-items: baseline; /* keep the icon on the first line if the title wraps */
++}
++
++/* Smaller dot on the timeline line for earlier roles.
++   No `top` is set, so it keeps its natural vertical position (level with
++   its role) while `left` resolves against .timeline-item. This relies on
++   .timeline-content NOT being positioned or transformed. */
++.timeline-subdot {
++    position: absolute;
++    left: 25px; /* line center (32px) - half width */
++    width: 14px;
++    height: 14px;
++    margin-top: 5px;
++    background: var(--color-secondary);
++    border: 3px solid var(--bg-body);
++    border-radius: 50%;
++    box-shadow: 0 0 0 3px var(--border-color);
++    z-index: var(--z-base);
++}
++
++.timeline-item[data-type="education"] .timeline-subdot {
++    background: var(--color-primary);
++}
++
+ /* Project Cards */
+ .projects-grid {
+     display: grid;
+@@ -724,6 +773,14 @@
+     .timeline-dot {
+         left: 2px;
+     }
++
++    .timeline-subdot {
++        left: 5px;
++    }
++
++    .timeline-role-header .timeline-subtitle {
++        font-size: var(--font-size-sm);
++    }
+     
+     .timeline-header {
+         flex-direction: column;
+diff --git a/js/data/timeline-data.js b/js/data/timeline-data.js
+index a60aa5c..3f4392c 100644
+--- a/js/data/timeline-data.js
++++ b/js/data/timeline-data.js
+@@ -7,10 +7,22 @@ export const timelineData = [
+     {
+         type: 'work',
+         organization: 'Dow Jones',
+-        title: 'Senior Data Analyst',
+         date: '2025 - Present',
+-        description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights.',
+-        tags: ['Python', 'SQL', 'PowerBI', 'Business Intelligence']
++        // Multiple roles at the same organization, newest first
++        roles: [
++            {
++                title: 'Sr. Machine Learning Engineer',
++                date: '2026 - Present',
++                description: 'Developing natural-language AI agents on Snowflake that turn a vast enterprise data estate into on-demand insights, backed by semantic modeling and rigorous LLM evaluation.',
++                tags: ['Snowflake', 'AI Agents', 'Semantic Modeling', 'LLM Evaluation', 'Python']
++            },
++            {
++                title: 'Sr. Data Analyst',
++                date: '2025 - 2026',
++                description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights.',
++                tags: ['Python', 'SQL', 'PowerBI', 'Business Intelligence']
++            }
++        ]
+     },
+     {
+         type: 'work',
+diff --git a/js/modules/timeline.js b/js/modules/timeline.js
+index 39ea3b0..cf58af6 100644
+--- a/js/modules/timeline.js
++++ b/js/modules/timeline.js
+@@ -23,14 +23,9 @@ class TimelineManager {
+      * @returns {string} HTML string
+      */
+     createTimelineItem(item) {
+-        const subtitle = item.subtitle ? 
+-            `<div class="timeline-info" title="${item.subtitle}">
+-                <i class="fas fa-info-circle"></i>
+-            </div>` : '';
+-
+-        const tags = item.tags.map(tag => 
+-            `<span class="timeline-tag">${tag}</span>`
+-        ).join('');
++        if (item.roles && item.roles.length) {
++            return this.createMultiRoleItem(item);
++        }
+ 
+         return `
+             <div class="timeline-item" data-type="${item.type}">
+@@ -40,19 +35,63 @@ class TimelineManager {
+                         <div>
+                             <h3 class="timeline-title">${item.organization}</h3>
+                             <p class="timeline-subtitle">
+-                                <i class="fas ${item.type === 'education' ? 'fa-graduation-cap' : 'fa-briefcase'}"></i>
++                                <i class="fas ${this.getIcon(item)}"></i>
+                                 ${item.title}
+                             </p>
+                         </div>
+                         <div class="timeline-date">${item.date}</div>
+                     </div>
+                     <p class="timeline-description">${item.description}</p>
+-                    <div class="timeline-tags">${tags}</div>
++                    <div class="timeline-tags">${this.createTags(item.tags)}</div>
++                </div>
++            </div>
++        `;
++    }
++
++    /**
++     * Create HTML for an organization with several roles (newest first).
++     * Every role after the first gets a smaller dot on the timeline line.
++     * @param {Object} item - Timeline data item with a `roles` array
++     * @returns {string} HTML string
++     */
++    createMultiRoleItem(item) {
++        const roles = item.roles.map((role, index) => `
++            <div class="timeline-role">
++                ${index > 0 ? '<div class="timeline-subdot"></div>' : ''}
++                <div class="timeline-role-header">
++                    <p class="timeline-subtitle">
++                        <i class="fas ${this.getIcon(item)}"></i>
++                        ${role.title}
++                    </p>
++                    <span class="timeline-role-date">${role.date}</span>
++                </div>
++                <p class="timeline-description">${role.description}</p>
++                <div class="timeline-tags">${this.createTags(role.tags)}</div>
++            </div>
++        `).join('');
++
++        return `
++            <div class="timeline-item" data-type="${item.type}">
++                <div class="timeline-dot"></div>
++                <div class="timeline-content">
++                    <div class="timeline-header">
++                        <h3 class="timeline-title">${item.organization}</h3>
++                        <div class="timeline-date">${item.date}</div>
++                    </div>
++                    ${roles}
+                 </div>
+             </div>
+         `;
+     }
+ 
++    getIcon(item) {
++        return item.type === 'education' ? 'fa-graduation-cap' : 'fa-briefcase';
++    }
++
++    createTags(tags = []) {
++        return tags.map(tag => `<span class="timeline-tag">${tag}</span>`).join('');
++    }
++
+     /**
+      * Render timeline items
+      * @param {string} filter - Filter type ('all', 'education', 'work')

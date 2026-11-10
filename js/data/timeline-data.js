@@ -7,10 +7,22 @@ export const timelineData = [
     {
         type: 'work',
         organization: 'Dow Jones',
-        title: 'Senior Data Analyst',
         date: '2025 - Present',
-        description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights.',
-        tags: ['Python', 'SQL', 'PowerBI', 'Business Intelligence']
+        // Multiple roles at the same organization, newest first
+        roles: [
+            {
+                title: 'Sr. Machine Learning Engineer',
+                date: '2026 - Present',
+                description: 'Developing natural-language AI agents on Snowflake that turn a vast enterprise data estate into on-demand insights, backed by semantic modeling and rigorous LLM evaluation.',
+                tags: ['Snowflake', 'AI Agents', 'Semantic Modeling', 'LLM Evaluation', 'Python']
+            },
+            {
+                title: 'Sr. Data Analyst',
+                date: '2025 - 2026',
+                description: 'Responsible for developing data products, establishing analytics standards, and bridging technical and business teams to deliver actionable insights.',
+                tags: ['Python', 'SQL', 'PowerBI', 'Business Intelligence']
+            }
+        ]
     },
     {
         type: 'work',
