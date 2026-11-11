@@ -380,6 +380,59 @@ export const projectsData = [
                 icon: 'fas fa-file-pdf'
             }
         ]
+    },
+    {
+        id: 'hora-de-votar',
+        title: 'Hora de Votar - Every vote, minute by minute',
+        description: 'Parsing the logs of nearly 500,000 electronic voting machines, I rebuilt the timeline of every vote cast in the 2026 Brazilian presidential runoff.',
+        image: 'images/hora-de-votar.jpg',
+        imagePosition: 'top',
+        tags: ['ETL', 'Data Visualization', 'Elections', 'Open Source'],
+        technologies: [
+            {
+                label: 'Polars',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'HTTPX',
+                colorA: '#e3d7ab',
+                colorB: '#dfb317',
+                logoIcon: 'fab fa-python'
+            },
+            {
+                label: 'Bash',
+                colorA: '#979797',
+                colorB: '#000000',
+                logoIcon: 'fab fa-linux',
+                iconColor: '#ffffff'
+            },
+            {
+                label: 'Javascript',
+                colorA: '#f7df1e',
+                colorB: '#333333',
+                logoIcon: 'fab fa-js',
+                iconColor: '#323330'
+            }
+        ],
+        fullDescription: `
+            <p>On election day in Brazil, polling stations close at 5 p.m., but everyone already in line is still allowed to vote. How many votes are actually cast after closing time, and where? To answer that, I downloaded the log files published by the Superior Electoral Court (TSE) for each of the 499,248 polling sections with their own voting machine in the 2026 presidential runoff. The logs record every event on the machine, including a timestamped line for each vote cast.</p>
+
+            <p>The Python pipeline, built with Polars, extracts every vote from those logs, converts each machine's local time to Brasília time by inferring the municipality's time zone from when its machines opened, and checks the totals against the official turnout for each municipality. The result is an interactive page (in Portuguese) where a single clock drives every chart and number, showing the pace of voting minute by minute and how many votes were cast after closing time in each state and abroad.</p>
+        `,
+        links: [
+            {
+                url: 'hora-de-votar/',
+                text: 'View Project (Portuguese)',
+                icon: 'fas fa-chart-line'
+            },
+            {
+                url: 'https://github.com/JnCoe/hora-de-votar',
+                text: 'GitHub Repository',
+                icon: 'fab fa-github'
+            }
+        ]
     }
 ];
 
