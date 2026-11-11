@@ -21,7 +21,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 				) : (
 					<div class="projects-grid">
 						{allPosts.map(post => (
-							<a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="project-card">
+							<a href={`/blog/${post.id}/`} class="project-card">
 								<div class="project-content">
 									<div class="post-date" style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-xs);">
 										{post.data.pubDate.toLocaleDateString('en-US', {
