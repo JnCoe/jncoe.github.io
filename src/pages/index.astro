@@ -27,7 +27,8 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 										{post.data.pubDate.toLocaleDateString('en-US', {
 											year: 'numeric',
 											month: 'long',
-											day: 'numeric'
+											day: 'numeric',
+											timeZone: 'UTC'
 										})}
 									</div>
 									<h2 class="project-title">{post.data.title}</h2>

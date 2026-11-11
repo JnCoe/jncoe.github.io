@@ -31,8 +31,8 @@ const { title, description, pubDate, updatedDate, author, tags } = entry.data;
 
 					<div class="timeline-subtitle" style="margin-bottom: var(--space-xl); color: var(--text-secondary);">
 						<span>By {author}</span>
-						<span style="margin-left: var(--space-md);">Published: {pubDate.toLocaleDateString()}</span>
-						{updatedDate && <span style="margin-left: var(--space-md);">Updated: {updatedDate.toLocaleDateString()}</span>}
+						<span style="margin-left: var(--space-md);">Published: {pubDate.toLocaleDateString('en-US', { timeZone: 'UTC' })}</span>
+						{updatedDate && <span style="margin-left: var(--space-md);">Updated: {updatedDate.toLocaleDateString('en-US', { timeZone: 'UTC' })}</span>}
 					</div>
 
 					{headings?.some(heading => heading.depth <= 2) && (
